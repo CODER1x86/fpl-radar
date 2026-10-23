@@ -1,18 +1,18 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-10-23T08:42:11Z",
+   "last_ok": "2026-10-23T14:26:41Z",
    "last_status": 200,
-   "ms": 230,
-   "bytes": 1786348,
+   "ms": 222,
+   "bytes": 1786985,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "fixtures": {
-   "last_ok": "2026-10-23T08:42:11Z",
+   "last_ok": "2026-10-23T14:26:41Z",
    "last_status": 200,
-   "ms": 88,
+   "ms": 59,
    "bytes": 278235,
    "not_modified": false,
    "attempts": 1,
@@ -49,17 +49,17 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-10-23T08:42:11Z",
- "fixtures_last_ok": "2026-10-23T08:42:11Z",
+ "last_ingest_attempt": "2026-10-23T14:26:41Z",
+ "fixtures_last_ok": "2026-10-23T14:26:41Z",
  "picks_last_ok": "2026-10-23T08:42:11Z",
  "history_last_ok": "2026-10-23T08:42:11Z",
- "market_last": "2026-10-23T08:42:11Z",
+ "market_last": "2026-10-23T14:26:41Z",
  "raw_last": "2026-10-23T00:03:18Z",
- "last_ingest_ok": "2026-10-23T08:42:11Z",
- "data_observed_at": "2026-10-23T08:42:11Z",
+ "last_ingest_ok": "2026-10-23T14:26:41Z",
+ "data_observed_at": "2026-10-23T14:26:41Z",
  "last_archive": "2026-10-23T00:03:18Z",
- "last_model_ok": "2026-10-23T08:42:11Z",
- "model_inputs_hash": "d1ea1fc4b6d41185",
+ "last_model_ok": "2026-10-23T14:26:41Z",
+ "model_inputs_hash": "fafe766b0680f319",
  "blanks_doubles": {
   "8": {
    "doubles": [],
@@ -82,7 +82,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-10-23T08:42:11Z",
+ "last_alert_check": "2026-10-23T14:26:41Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -121,15 +121,15 @@
  "health": "ok",
  "quota": {
   "month": "2026-10",
-  "runs": 16,
-  "est_billable_minutes": 16,
+  "runs": 17,
+  "est_billable_minutes": 17,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
  "freshness": "current",
  "data_age_minutes": 0.0,
  "last_delivery": {
-  "ts": "2026-10-23T05:32:39Z",
+  "ts": "2026-10-23T14:26:41Z",
   "n": 3,
   "records": [
    {
