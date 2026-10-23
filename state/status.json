@@ -1,10 +1,10 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-10-23T00:03:18Z",
+   "last_ok": "2026-10-23T00:10:33Z",
    "last_status": 200,
-   "ms": 151,
-   "bytes": 1785915,
+   "ms": 230,
+   "bytes": 1785852,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
@@ -40,14 +40,14 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-10-23T00:03:18Z",
+ "last_ingest_attempt": "2026-10-23T00:10:33Z",
  "fixtures_last_ok": "2026-10-23T00:03:18Z",
  "picks_last_ok": "2026-10-23T00:03:18Z",
  "history_last_ok": "2026-10-23T00:03:18Z",
  "market_last": "2026-10-23T00:03:18Z",
  "raw_last": "2026-10-23T00:03:18Z",
- "last_ingest_ok": "2026-10-23T00:03:18Z",
- "data_observed_at": "2026-10-23T00:03:18Z",
+ "last_ingest_ok": "2026-10-23T00:10:33Z",
+ "data_observed_at": "2026-10-23T00:10:33Z",
  "last_archive": "2026-10-23T00:03:18Z",
  "last_model_ok": "2026-10-23T00:03:18Z",
  "model_inputs_hash": "d1ea1fc4b6d41185",
@@ -73,7 +73,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-10-23T00:03:18Z",
+ "last_alert_check": "2026-10-23T00:10:33Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -112,8 +112,8 @@
  "health": "ok",
  "quota": {
   "month": "2026-10",
-  "runs": 1,
-  "est_billable_minutes": 1,
+  "runs": 2,
+  "est_billable_minutes": 2,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
@@ -129,5 +129,98 @@
     "status": 201
    }
   ]
- }
+ },
+ "deadlines": {
+  "1": "2026-08-21T17:30:00Z",
+  "2": "2026-08-28T17:30:00Z",
+  "3": "2026-09-04T17:30:00Z",
+  "4": "2026-09-12T12:30:00Z",
+  "5": "2026-09-18T17:30:00Z",
+  "6": "2026-10-10T10:00:00Z",
+  "7": "2026-10-17T10:00:00Z",
+  "8": "2026-10-23T17:30:00Z",
+  "9": "2026-10-31T11:00:00Z",
+  "10": "2026-11-06T18:30:00Z",
+  "11": "2026-11-21T11:00:00Z",
+  "12": "2026-11-27T18:30:00Z",
+  "13": "2026-12-01T18:30:00Z",
+  "14": "2026-12-05T11:00:00Z",
+  "15": "2026-12-12T13:30:00Z",
+  "16": "2026-12-19T11:00:00Z",
+  "17": "2026-12-26T11:00:00Z",
+  "18": "2026-12-29T18:00:00Z",
+  "19": "2027-01-01T18:30:00Z",
+  "20": "2027-01-05T18:00:00Z",
+  "21": "2027-01-16T13:30:00Z",
+  "22": "2027-01-23T13:30:00Z",
+  "23": "2027-01-30T13:30:00Z",
+  "24": "2027-02-06T13:30:00Z",
+  "25": "2027-02-10T18:30:00Z",
+  "26": "2027-02-20T13:30:00Z",
+  "27": "2027-02-27T13:30:00Z",
+  "28": "2027-03-03T18:30:00Z",
+  "29": "2027-03-13T13:30:00Z",
+  "30": "2027-03-20T13:30:00Z",
+  "31": "2027-04-10T12:30:00Z",
+  "32": "2027-04-17T12:30:00Z",
+  "33": "2027-04-24T12:30:00Z",
+  "34": "2027-05-01T12:30:00Z",
+  "35": "2027-05-08T12:30:00Z",
+  "36": "2027-05-15T12:30:00Z",
+  "37": "2027-05-23T12:30:00Z",
+  "38": "2027-05-30T13:30:00Z"
+ },
+ "deadline_plan": [
+  {
+   "gw": 8,
+   "label": "T-48h",
+   "at": "2026-10-21T17:30:00Z",
+   "target": "2026-10-21T17:30:00Z",
+   "moved": false,
+   "severity": "medium",
+   "action": "Plan transfers / chips; watch press conferences",
+   "local": "Wed 21 Oct 20:30 EEST"
+  },
+  {
+   "gw": 8,
+   "label": "T-24h",
+   "at": "2026-10-22T17:30:00Z",
+   "target": "2026-10-22T17:30:00Z",
+   "moved": false,
+   "severity": "medium",
+   "action": "Plan transfers / chips; watch press conferences",
+   "local": "Thu 22 Oct 20:30 EEST"
+  },
+  {
+   "gw": 8,
+   "label": "T-6h",
+   "at": "2026-10-23T11:30:00Z",
+   "target": "2026-10-23T11:30:00Z",
+   "moved": false,
+   "severity": "high",
+   "action": "Lock in transfers; check press-conference news",
+   "local": "Fri 23 Oct 14:30 EEST"
+  },
+  {
+   "gw": 8,
+   "label": "T-2h",
+   "at": "2026-10-23T15:30:00Z",
+   "target": "2026-10-23T15:30:00Z",
+   "moved": false,
+   "severity": "high",
+   "action": "Final team check: transfers, captain, bench order",
+   "local": "Fri 23 Oct 18:30 EEST"
+  },
+  {
+   "gw": 8,
+   "label": "final",
+   "at": "2026-10-23T16:15:00Z",
+   "target": "2026-10-23T16:15:00Z",
+   "moved": false,
+   "severity": "high",
+   "action": "Last chance: confirm XI, captain/vice, bench order and transfers",
+   "local": "Fri 23 Oct 19:15 EEST"
+  }
+ ],
+ "next_deadline_text": "Fri 23 Oct 20:30 EEST (Africa/Cairo) · 18:30 BST UK · 17:30 UTC"
 }
