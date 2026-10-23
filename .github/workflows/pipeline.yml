@@ -1,0 +1,127 @@
+name: radar-pipeline
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"     # ingest + alerts (GitHub may delay scheduled runs under load)
+    - cron: "23 3 * * *"       # daily full validation (06:23 Cairo)
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "auto | validate | notify-test | export"
+        default: auto
+      force_model:
+        description: "force model recalculation"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write     # push the data branch
+  issues: write       # alert issues
+  pages: write
+  id-token: write
+
+concurrency:
+  group: radar-pipeline
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check out data branch (versioned history)
+        run: |
+          if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+            git clone --depth 1 --branch data "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" data
+          else
+            mkdir -p data && cd data && git init -b data && git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+            printf 'cache/\nlatest/\npublic/\nexport/\n*.tmp\n' > .gitignore
+          fi
+
+      - name: Restore working cache (raw responses, last-known-good, public files)
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            data/cache
+            data/latest
+            data/public
+          key: wc-state-${{ github.run_id }}
+          restore-keys: wc-state-
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        id: pipe
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          WC_DASHBOARD_URL: ${{ vars.DASHBOARD_URL }}
+          WC_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          MODE="${{ inputs.mode || 'auto' }}"
+          if [ "${{ github.event.schedule }}" = "23 3 * * *" ]; then MODE=validate; fi
+          FLAGS=""; [ "${{ inputs.force_model }}" = "true" ] && FLAGS="--force-model"
+          set +e; python -m wc.run "$MODE" $FLAGS; rc=$?; set -e
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
+          # rc 2 = sources failing: data branch + last-known-good page are still published, job marked failed at the end
+
+      - name: Commit data branch
+        if: always()
+        run: |
+          cd data
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          CHANGED=$(git diff --cached --name-only | grep -v -E '^state/(status\.json|runs\.jsonl)$' || true)
+          MIN=$(date -u +%M)
+          if [ -z "$CHANGED" ] && [ "$MIN" -ge 10 ] && [ "${{ steps.pipe.outputs.rc }}" = "0" ]; then
+            echo "only heartbeat changed — committing hourly to limit repo growth"; git reset -q; exit 0
+          fi
+          git commit -q -m "data: $(date -u +%Y-%m-%dT%H:%MZ) ${{ inputs.mode || 'auto' }}"
+          for i in 1 2 3; do git push -q origin HEAD:data && break || { sleep $((i*5)); git pull -q --rebase origin data || true; }; done
+
+      - name: Save working cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            data/cache
+            data/latest
+            data/public
+          key: wc-state-${{ github.run_id }}
+
+      - name: Build site
+        if: always()
+        run: |
+          mkdir -p site/data
+          cp dashboard/index.html site/
+          cp data/public/*.json site/data/ 2>/dev/null || echo '{"status":{"health":"failing","freshness":"none"}}' > site/data/dashboard.json
+          touch site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        if: always()
+        with:
+          path: site
+
+      - id: deploy
+        if: always()
+        uses: actions/deploy-pages@v4
+
+      - name: Fail visibly if sources failed
+        if: steps.pipe.outputs.rc != '0'
+        run: |
+          echo "::error::pipeline exit code ${{ steps.pipe.outputs.rc }} — see run log; dashboard shows last-known-good data labelled stale"
+          exit 1

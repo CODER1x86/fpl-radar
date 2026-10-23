@@ -1,0 +1,90 @@
+# WildCard.exe cloud pipeline configuration. No secrets here: secrets live in GitHub Actions secrets.
+[manager]
+id = 4969994
+team_name = "WildCard.exe"
+timezone = "Africa/Cairo"
+
+[squad]
+# Used only when the public picks endpoint is unavailable. The pipeline prefers /api/entry/{id}/event/{gw}/picks/.
+fallback_ids = [109, 497, 4, 175, 204, 304, 423, 427, 124, 368, 426, 571, 411, 346, 165]
+# Estimated selling prices (GBP m). FPL only exposes real selling prices to the signed-in owner (/api/my-team/),
+# so these are ESTIMATES derived from purchase price and the 50% sell-on rule. Shown as "estimate" everywhere.
+[squad.selling_price_estimates]
+411 = 15.6
+426 = 11.8
+4 = 7.9
+427 = 7.9
+165 = 7.7
+368 = 6.8
+124 = 5.8
+346 = 6.0
+571 = 4.8
+109 = 4.5
+204 = 4.5
+423 = 4.3
+175 = 3.9
+304 = 4.0
+497 = 4.0
+
+[watchlist]
+ids = [68, 330, 173, 8, 40, 154, 115, 13, 399, 94, 79, 566]
+
+[intervals]
+# Target intervals. The real cadence is limited by the GitHub Actions schedule (min 5 min, can be delayed).
+fixtures_hours = 3
+market_snapshot_minutes = 60
+model_max_age_minutes = 60
+model_min_gap_minutes = 15
+validate_hours = 24
+stale_after_minutes = 45
+raw_snapshot_hours = 24
+# projections are archived to git at most daily, plus hourly within this many hours of a deadline
+archive_deadline_hours = 3
+
+[alerts]
+quiet_start_hour = 1   # local time; non-critical alerts are held into a digest during quiet hours
+quiet_end_hour = 8
+ownership_threshold = 15.0   # % selected_by to alert on status/price changes of non-squad players
+dedup_hours = 72
+deadline_warn_hours = [24, 3]
+dashboard_url = ""   # filled by the deploy step when a verified Pages URL exists
+
+[model]
+horizon = 5
+simulations = 6000
+seed = 8
+europe_teams = [1, 15, 14, 2, 3]   # ARS, MCI, LIV, AVL, BOU — rotation haircut
+
+# Manual availability overrides: fraction of normal start probability for GW start_gw, start_gw+1, ...
+# Each override must carry a source and an expiry; expired overrides are ignored automatically.
+[[overrides]]
+id = 368
+name = "Szoboszlai"
+start_gw = 8
+availability = [0.0, 0.25, 0.55, 0.75, 0.75]
+source = "Liverpool press conference / injury reports, 2026-10-22"
+expires = "2026-11-25"
+
+[[overrides]]
+id = 423
+name = "Shaw"
+start_gw = 8
+availability = [0.0, 0.3, 0.5, 0.65, 0.65]
+source = "Man Utd injury update, 2026-10-22"
+expires = "2026-11-25"
+
+[[overrides]]
+id = 397
+name = "Semenyo"
+start_gw = 8
+availability = [0.0, 0.0, 0.0, 0.0, 0.0]
+source = "Club statement: ~8 weeks out, 2026-10"
+expires = "2026-12-15"
+
+[[overrides]]
+id = 12
+name = "Saka"
+start_gw = 8
+availability = [0.0, 0.0, 0.4, 0.7, 0.7]
+source = "Arsenal injury reports, 2026-10-22 (FPL status d, 50%)"
+expires = "2026-11-25"

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>WildCard.exe Radar</title>
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#14171f;--mute:#5b6372;--line:#e3e6eb;--acc:#5b3df5;--ok:#0f8a4f;--warn:#b86e00;--bad:#c62828;--chip:#eef0f4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1117;--card:#171a22;--ink:#e9ecf2;--mute:#9aa3b2;--line:#272b36;--acc:#9b8bff;--ok:#3ccf8e;--warn:#f0a94b;--bad:#ff6b6b;--chip:#222632}}
+:root[data-theme="dark"]{--bg:#0f1117;--card:#171a22;--ink:#e9ecf2;--mute:#9aa3b2;--line:#272b36;--acc:#9b8bff;--ok:#3ccf8e;--warn:#f0a94b;--bad:#ff6b6b;--chip:#222632}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,"Segoe UI",Tahoma,sans-serif}
+header{padding:16px;border-bottom:1px solid var(--line);background:var(--card);position:sticky;top:0;z-index:2}
+h1{margin:0;font-size:18px}h2{font-size:15px;margin:0 0 10px}.mute{color:var(--mute)}
+main{max-width:1180px;margin:0 auto;padding:16px;display:grid;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;overflow:hidden}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.kpi .v{font-size:16px;font-weight:600;direction:ltr;text-align:right}.kpi .l{color:var(--mute);font-size:12px}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;font-weight:600;background:var(--chip)}
+.b-ok{color:var(--ok)}.b-warn{color:var(--warn)}.b-bad{color:var(--bad)}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+th{color:var(--mute);font-weight:600;cursor:pointer;position:sticky;top:0;background:var(--card)}
+.scroll{overflow:auto;max-height:520px}td.n{direction:ltr;text-align:left;font-variant-numeric:tabular-nums}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}.tabs button,select,input{font:inherit;color:var(--ink);background:var(--chip);border:1px solid var(--line);border-radius:8px;padding:4px 10px}
+.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.pitch{display:grid;gap:6px}.row{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.pl{background:var(--chip);border-radius:8px;padding:6px 8px;min-width:96px;text-align:center;font-size:12px}.pl b{display:block;font-size:13px}
+.cap{outline:2px solid var(--acc)}.alert{border-inline-start:4px solid var(--line);padding:6px 10px;margin:6px 0;background:var(--chip);border-radius:6px}
+.sev-critical{border-color:var(--bad)}.sev-high{border-color:var(--warn)}.sev-medium{border-color:var(--acc)}
+.banner{padding:10px 14px;border-radius:10px;font-weight:600}.banner.stale{background:color-mix(in srgb,var(--warn) 18%,transparent)}.banner.bad{background:color-mix(in srgb,var(--bad) 18%,transparent)}
+.fx td{font-size:11px;text-align:center}.d2{background:#1c8a4a33}.d3{background:transparent}.d4{background:#c6282826}.d5{background:#c6282855}
+</style>
+</head>
+<body>
+<header><h1>WildCard.exe Radar <span id="hb" class="badge">…</span></h1>
+<div class="mute" id="sub">جاري التحميل…</div></header>
+<main>
+<div id="banner"></div>
+<section class="card"><h2>صحة النظام</h2><div class="grid" id="health"></div><div id="sources" style="margin-top:10px"></div><div id="errs"></div></section>
+<section class="card"><h2>التشكيلة المقترحة (نموذج) <span class="mute" id="lu-note"></span></h2><div class="tabs" id="lu-tabs"></div><div id="lineup"></div></section>
+<section class="card"><h2>الكابتن</h2><div class="scroll"><table id="caps"></table></div></section>
+<section class="card"><h2>التحويلات المقترحة (أفق 3 جولات، baseline)</h2><div id="tr-note" class="mute"></div><div class="scroll"><table id="tr"></table></div><h2 style="margin-top:12px">ثنائيات</h2><div class="scroll"><table id="pairs"></table></div></section>
+<section class="card"><h2>التنبيهات</h2><div id="alerts"></div></section>
+<section class="card"><h2>اللاعبين</h2><div class="tabs"><input id="q" placeholder="بحث"><select id="pos"><option value="">كل المراكز</option><option>GKP</option><option>DEF</option><option>MID</option><option>FWD</option></select><select id="who"><option value="">الكل</option><option value="mine">فريقي</option><option value="watch">المراقبة</option></select></div><div class="scroll"><table id="players"></table></div></section>
+<section class="card"><h2>تغيرات الأسعار المرصودة</h2><div class="scroll"><table id="prices"></table></div></section>
+<section class="card"><h2>المباريات و الـFDR</h2><div id="bd" class="mute"></div><div class="scroll"><table id="fx" class="fx"></table></div></section>
+<section class="card"><h2>دقة النموذج (توقع مقابل فعلي)</h2><div id="val"></div><h2 style="margin-top:12px">فحوصات الاتساق اليومية</h2><div id="cons"></div></section>
+<p class="mute" style="text-align:center">بيانات FPL الرسمية العامة فقط · مخرجات النموذج تقديرات وليست حقائق · لا أسرار ولا بيانات دخول في هذه الصفحة</p>
+</main>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ago=t=>{if(!t)return'—';const m=(Date.now()-Date.parse(t))/6e4;return m<1?'الآن':m<60?`منذ ${m|0} د`:m<1440?`منذ ${(m/60).toFixed(1)} س`:`منذ ${(m/1440).toFixed(1)} يوم`};
+const cairo=t=>t?new Date(t).toLocaleString('ar-EG',{timeZone:'Africa/Cairo',weekday:'short',day:'numeric',month:'short',hour:'2-digit',minute:'2-digit'}):'—';
+function table(el,cols,rows,sortKey){let sk=sortKey,dir=-1;const draw=()=>{const r=[...rows].sort((a,b)=>{const x=cols.find(c=>c.k===sk);const va=x&&x.v?x.v(a):a[sk],vb=x&&x.v?x.v(b):b[sk];return (va>vb?1:va<vb?-1:0)*dir});
+el.innerHTML='<thead><tr>'+cols.map(c=>`<th data-k="${c.k}">${c.h}</th>`).join('')+'</tr></thead><tbody>'+r.map(o=>'<tr>'+cols.map(c=>`<td class="${c.n?'n':''}">${c.f?c.f(o):esc(c.v?c.v(o):o[c.k])}</td>`).join('')+'</tr>').join('')+'</tbody>';
+el.querySelectorAll('th').forEach(th=>th.onclick=()=>{dir=sk===th.dataset.k?-dir:-1;sk=th.dataset.k;draw()})};draw()}
+const f1=v=>v==null?'—':(+v).toFixed(1),pc=v=>v==null?'—':(v*100).toFixed(0)+'%';
+async function load(){
+ let D;try{const r=await fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'});D=await r.json()}catch(e){$('#sub').textContent='تعذّر تحميل البيانات: '+e;return}
+ const S=D.status||{},P=D.projection,G=D.gw||{};
+ const h=S.health,fr=S.freshness;$('#hb').textContent=h==='ok'?'سليم':h==='degraded'?'متدهور':'متعطل';$('#hb').className='badge '+(h==='ok'?'b-ok':h==='degraded'?'b-warn':'b-bad');
+ $('#sub').textContent=`GW${G.next??'?'} — الديدلاين ${cairo(G.next_deadline)} (القاهرة) · آخر تحديث للصفحة ${ago(S.generated_at)}`;
+ if(fr!=='current')$('#banner').innerHTML=`<div class="banner ${fr==='stale'?'stale':'bad'}">⚠️ البيانات المعروضة ${fr==='stale'?'قديمة (آخر نسخة سليمة)':'غير متاحة'} — عمرها ${S.data_age_minutes??'?'} دقيقة. ${esc(S.last_error||'')}</div>`;
+ const k=[['آخر سحب ناجح',S.last_ingest_ok],['آخر حساب للنموذج',P?P.ts:S.last_model_ok],['آخر فحص تنبيهات',S.last_alert_check],['آخر تحقق يومي',S.last_validate_ok]];
+ $('#health').innerHTML=k.map(([l,t])=>`<div class="kpi"><div class="l">${l}</div><div class="v">${ago(t)}</div><div class="mute" style="font-size:11px;direction:ltr;text-align:right">${t||''}</div></div>`).join('')+
+  `<div class="kpi"><div class="l">حالة البيانات</div><div class="v"><span class="badge ${fr==='current'?'b-ok':'b-warn'}">${fr==='current'?'حالية':fr==='stale'?'قديمة':'لا يوجد'}</span></div></div>`+
+  `<div class="kpi"><div class="l">فشل متتالي</div><div class="v">${S.consecutive_failures??0}</div></div>`+
+  `<div class="kpi"><div class="l">قنوات التنبيه</div><div class="v" style="font-size:13px">${(S.notify_channels||[]).join(', ')||'—'}</div></div>`+
+  `<div class="kpi"><div class="l">تشغيلات هذا الشهر</div><div class="v">${S.quota?S.quota.runs:'—'}</div></div>`;
+ const src=S.sources||{};$('#sources').innerHTML='<table><thead><tr><th>المصدر</th><th>آخر نجاح</th><th>الحالة</th><th>زمن</th><th>آخر خطأ</th></tr></thead><tbody>'+Object.entries(src).map(([n,s])=>`<tr><td>${n}</td><td>${ago(s.last_ok)}</td><td class="n">${s.not_modified?'304 cached':s.last_status??'—'}</td><td class="n">${s.ms??'—'} ms</td><td class="mute">${esc(s.last_error||'')}</td></tr>`).join('')+'</tbody></table>';
+ if(S.warnings&&S.warnings.length)$('#errs').innerHTML='<p class="mute">'+S.warnings.map(esc).join('<br>')+'</p>';
+ if(!P){$('#lineup').textContent='لا توجد توقعات بعد.';return}
+ const byId=Object.fromEntries(P.players.map(p=>[p.id,p]));
+ $('#lu-note').textContent=`· الفريق من ${P.squad_source} · البنك £${P.bank??'?'}m · تحويلات مجانية (تقدير) ${P.free_transfers_est??'?'} · نموذج ${P.model}`;
+ let li=0;const drawLU=()=>{const L=P.lineups[li];if(!L){$('#lineup').textContent='—';return}
+  const rows=[1,2,3,4].map(pos=>L.xi.filter(i=>byId[i]&&({GKP:1,DEF:2,MID:3,FWD:4})[byId[i].pos]===pos));
+  const card=i=>{const p=byId[i]||{n:i,b:[]};return `<div class="pl ${i===L.captain?'cap':''}"><b>${esc(p.n)}${i===L.captain?' (C)':i===L.vice?' (V)':''}</b>${esc(p.t||'')} · ${f1(p.b&&p.b[li])} xP${p.st&&p.st!=='a'?` · <span class="b-warn">${p.st}${p.ch!=null?' '+p.ch+'%':''}</span>`:''}</div>`};
+  $('#lineup').innerHTML=`<div class="pitch">${rows.reverse().map(r=>`<div class="row">${r.map(card).join('')}</div>`).join('')}</div><p class="mute">الخطة ${L.formation} · مجموع xP مع الكابتن ${f1(L.xp)} · الدكة: ${L.bench_n.map(esc).join('، ')}</p>`};
+ $('#lu-tabs').innerHTML=P.lineups.map((l,i)=>`<button class="${i?'':'on'}" data-i="${i}">GW${P.gws[i]}</button>`).join('');
+ $('#lu-tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{li=+b.dataset.i;$('#lu-tabs').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));drawLU()});drawLU();
+ const capRows=P.players.filter(p=>p.u1!=null&&(p.mine||p.b[0]>=4.5));
+ table($('#caps'),[{k:'n',h:'اللاعب',f:p=>esc(p.n)+(p.mine?' ●':'')},{k:'t',h:'الفريق'},{k:'b1',h:'xP',v:p=>p.b[0],n:1,f:p=>f1(p.b[0])},{k:'c1',h:'محافظ',v:p=>p.c[0],n:1,f:p=>f1(p.c[0])},{k:'u1',h:'P90',n:1},{k:'h1',h:'≥10 نقاط',n:1,f:p=>pc(p.h1)},{k:'cap20',h:'كابتن ≥20',n:1,f:p=>pc(p.cap20)},{k:'blank',h:'≤2 نقاط',n:1,f:p=>pc(p.blank)},{k:'sp',h:'احتمال البداية',n:1,f:p=>pc(p.sp)},{k:'own',h:'ملكية %',n:1}],capRows,'b1');
+ $('#tr-note').textContent='أسعار البيع تقديرية ('+P.selling_prices+'). المكسب = فرق xP لأفضل تشكيلة على 3 جولات.';
+ table($('#tr'),[{k:'out_n',h:'خروج'},{k:'in_n',h:'دخول'},{k:'gain',h:'مكسب xP',n:1},{k:'bank_after',h:'البنك بعدها',n:1}],P.transfers.best_per_out,'gain');
+ table($('#pairs'),[{k:'m',h:'التحويلين',v:x=>x.moves_n.map(m=>m.join(' ← ')).join(' + ')},{k:'gain',h:'مكسب',n:1},{k:'hit',h:'هيت',n:1},{k:'net',h:'صافي',n:1},{k:'bank_after',h:'البنك',n:1}],P.transfers.pairs,'net');
+ const A=(D.alerts||[]).slice().reverse();$('#alerts').innerHTML=A.length?A.slice(0,30).map(a=>`<div class="alert sev-${a.severity}"><b>[${a.severity}] ${esc(a.title)}</b> <span class="mute">${ago(a.sent_at)}</span><div>${esc(a.what)}</div><div class="mute">${esc(a.impact)} · ${esc(a.action)} · المصدر: ${esc(a.source)} · الثقة: ${esc(a.confidence)}</div></div>`).join(''):'<p class="mute">لا تنبيهات بعد.</p>';
+ const drawP=()=>{const q=$('#q').value.trim().toLowerCase(),ps=$('#pos').value,w=$('#who').value;
+  table($('#players'),[{k:'n',h:'اللاعب',f:p=>esc(p.n)+(p.mine?' ●':p.watch?' ◦':'')},{k:'t',h:'فريق'},{k:'pos',h:'مركز'},{k:'c',h:'£',n:1},{k:'st',h:'حالة',f:p=>p.st==='a'?'✓':`<span class="b-warn" title="${esc(p.news)}">${p.st}${p.ch!=null?' '+p.ch+'%':''}</span>`},{k:'b1',h:'xP1',v:p=>p.b[0],n:1,f:p=>f1(p.b[0])},{k:'b3',h:'xP3',v:p=>p.b.slice(0,3).reduce((a,b)=>a+b,0),n:1,f:p=>f1(p.b.slice(0,3).reduce((a,b)=>a+b,0))},{k:'b5',h:'xP5',v:p=>p.b.reduce((a,b)=>a+b,0),n:1,f:p=>f1(p.b.reduce((a,b)=>a+b,0))},{k:'c5',h:'محافظ5',v:p=>p.c.reduce((a,b)=>a+b,0),n:1,f:p=>f1(p.c.reduce((a,b)=>a+b,0))},{k:'u5',h:'P90 5',n:1},{k:'h5',h:'≥40/5',n:1,f:p=>pc(p.h5)},{k:'em',h:'دقائق متوقعة',n:1},{k:'conf',h:'ثقة'},{k:'own',h:'ملكية',n:1},{k:'pts',h:'نقاط',n:1}],
+  P.players.filter(p=>(!q||p.n.toLowerCase().includes(q)||String(p.t).toLowerCase().includes(q))&&(!ps||p.pos===ps)&&(!w||p[w])),'b5')};
+ ['#q','#pos','#who'].forEach(s=>$(s).oninput=drawP);drawP();
+ table($('#prices'),[{k:'ts',h:'وقت الرصد',f:r=>cairo(r.ts)},{k:'name',h:'اللاعب'},{k:'old',h:'قبل',n:1},{k:'new',h:'بعد',n:1}],D.prices||[],'ts');
+ const bd=P.blanks_doubles||{};$('#bd').innerHTML=Object.entries(bd).map(([g,x])=>`GW${g}: دبل ${x.doubles.join(', ')||'—'} · بلانك ${x.blanks.join(', ')||'—'}`).join('<br>');
+ const FX=P.fixtures||{},gws=P.gws;$('#fx').innerHTML='<thead><tr><th>الفريق</th>'+gws.map(g=>`<th>GW${g}</th>`).join('')+'</tr></thead><tbody>'+Object.keys(FX).sort().map(t=>'<tr><td>'+t+'</td>'+gws.map(g=>{const l=FX[t][g]||[];return l.length?`<td class="d${l[0][2]}">${l.map(o=>o[0]+(o[1]==='H'?' (H)':' (A)')).join(' + ')}</td>`:'<td class="d5">BLANK</td>'}).join('')+'</tr>').join('')+'</tbody>';
+ const V=D.validation||[];$('#val').innerHTML=V.length?'<table><thead><tr><th>GW</th><th>عدد</th><th>MAE</th><th>انحياز</th><th>توقع من</th></tr></thead><tbody>'+V.map(v=>`<tr><td>${v.gw}</td><td class="n">${v.n}</td><td class="n">${v.mae}</td><td class="n">${v.bias_actual_minus_proj}</td><td>${cairo(v.projection_ts)}</td></tr>`).join('')+'</tbody></table>':'<p class="mute">أول تقييم بعد انتهاء GW8 واعتماد بياناتها (لا يوجد توقع محفوظ قبل ديدلاين جولة سابقة).</p>';
+ const C=D.consistency||[];$('#cons').innerHTML=C.length?C.map(c=>`<div>${c.ok?'✅':'❌'} ${esc(c.check)} <span class="mute">${esc(c.detail)}</span></div>`).join(''):'<p class="mute">—</p>';
+}
+load();setInterval(load,5*60*1000);
+</script>
+</body>
+</html>
