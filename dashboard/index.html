@@ -103,6 +103,9 @@ tr.sel td{background:var(--chip);font-weight:700}
 .cbb{height:80px;background:var(--chip);border-radius:8px;position:relative;overflow:hidden}
 .cbb i{position:absolute;bottom:0;left:0;right:0;background:#963cff99;border-radius:8px 8px 0 0}.cbb i.hot{background:var(--neon)}
 .cbb em{position:absolute;left:0;right:0;border-top:2px dashed var(--mag)}
+.kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:12px}.kpis div{background:#ffffff18;border-radius:12px;padding:8px 10px}.kpis b{display:block;font-size:18px;font-family:Rubik,var(--font)}.kpis span{font-size:11px;color:#dcc9e3}
+tr.click{cursor:pointer}tr.on td{background:var(--chip)}
+.up{color:var(--ok)}.down{color:var(--bad)}
 </style>
 </head>
 <body>
@@ -116,6 +119,15 @@ tr.sel td{background:var(--chip);font-weight:700}
 <div id="banner"></div>
 
 <!-- PLAN: the deadline checklist -->
+<section class="view" id="v-login">
+  <div class="card hero" style="text-align:center"><img src="icon-192.png" alt="" style="width:72px;height:72px;border-radius:18px;margin:6px auto 8px;display:block">
+    <div style="font-size:22px;font-weight:800">FPL <span style="color:var(--neon)">Radar</span></div><div class="mute small" data-t="tagline"></div></div>
+  <div class="card"><h2 data-t="enterId">Enter your FPL Team ID</h2>
+    <input id="tid" inputmode="numeric" placeholder="e.g. 4969994" autocomplete="off">
+    <div class="bad small" id="login-err" style="margin-top:6px"></div>
+    <button class="btn" id="go-login" data-t="continue">Continue</button>
+    <details style="margin-top:12px"><summary data-t="findId">Where do I find my Team ID?</summary><p class="small" data-t="findIdTxt"></p></details></div>
+</section>
 <section class="view on" id="v-plan">
   <div class="card hero">
     <div class="mute small" id="dl-gw"></div>
@@ -155,6 +167,15 @@ tr.sel td{background:var(--chip);font-weight:700}
 </section>
 
 <!-- MORE -->
+<section class="view" id="v-profile">
+  <div class="card hero"><div class="mute small" data-t="welcome">Welcome</div><div style="font-size:24px;font-weight:800" id="pf-name">—</div><div class="mute small" id="pf-mgr"></div>
+    <div class="kpis" id="pf-kpis"></div></div>
+  <div class="card"><h2 data-t="leagues">Leagues</h2><div id="pf-leagues"></div></div>
+  <div class="card"><h2 data-t="rankChart">Overall rank by gameweek</h2><div id="pf-chart"></div></div>
+  <div class="card"><h2><span data-t="history">Season history</span><small data-t="tapGw">tap a gameweek</small></h2><div class="tbl"><table id="pf-hist"></table></div><div id="pf-gw"></div></div>
+  <div class="card"><h2 data-t="past">Past seasons</h2><div id="pf-past"></div></div>
+  <button class="btn sec" id="switch-team" data-t="switchTeam">Switch team</button>
+</section>
 <section class="view" id="v-more">
   <div class="card"><h2 data-t="ahead">My team, next 5 GWs</h2><div class="chips" id="gw-chips"></div><div class="pitch-wrap"><div id="pitch"></div></div><div id="benchrow" class="bench"></div><div class="legend" id="team-xp"></div></div>
   <div class="card"><h2><span data-t="bestMoves">Single-move alternatives</span><small data-t="h3">next 3 GWs</small></h2><div id="singles"></div><p class="mute small" data-t="sellNote"></p></div>
@@ -174,12 +195,13 @@ tr.sel td{background:var(--chip);font-weight:700}
   <button data-v="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3L4 5 2 10l3 1.5V21h14v-9.5L22 10l-2-5-4-2c-.7 1.8-2.2 3-4 3s-3.3-1.2-4-3z"/></svg><span data-t="tLab">Lineups</span></button>
   <button data-v="chips"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M8 7V5h8v2M12 11v4M10 13h4"/></svg><span data-t="tChips">Chips</span></button>
   <button data-v="pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span data-t="tPl">Players</span></button>
-  <button data-v="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg><span data-t="tMore">More</span></button>
+  <button data-v="profile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span data-t="tProfile">Profile</span></button>
 </nav>
 
+<script src="engine.js"></script>
 <script>
 const I18N={
-en:{status:'Status',tPlan:'GW plan',tLab:'Lineups',tChips:'Chips',tPl:'Players',tMore:'More',
+en:{tProfile:'Profile',tagline:'Plan every gameweek with data',enterId:'Enter your FPL Team ID',continue:'Continue',findId:'Where do I find my Team ID?',findIdTxt:'Open fantasy.premierleague.com → Points. The number in the address bar after /entry/ is your Team ID (e.g. …/entry/4969994/event/7).',loginBad:'Please enter a number.',loginErr:'Could not load that team. Check the ID and try again.',welcomeTo:'Welcome',welcome:'Welcome',leagues:'Leagues',rankChart:'Overall rank by gameweek',history:'Season history',tapGw:'tap a gameweek',past:'Past seasons',switchTeam:'Switch team',kPts:'Total points',kOR:'Overall rank',kGW:'GW points',kVal:'Team value',kBank:'Bank',kTr:'Transfers',gwCol:'GW',ptsCol:'Pts',benchCol:'Bench',trCol:'Trans.',orCol:'OR',gwrCol:'GW rank',chipCol:'Chip',ownerOnly:'Alerts are set up for the owner\'s team only.',season:'Season',rank:'Rank',estSell:'Selling prices partly estimated (players held since before the transfer log).',status:'Status',tPlan:'GW plan',tLab:'Lineups',tChips:'Chips',tPl:'Players',tMore:'More',
 st1:'Transfers',st2:'Starting XI & bench order',st3:'Captain',st4:'Chip',st5:'Do it in FPL',openTransfers:'Make transfers',openTeam:'Pick team',copyPlan:'Copy the whole plan',copied:'Copied ✓',
 flags:'Flagged players',allFit:'Everyone in your squad is available ✓',alerts:'Latest alerts',noAlerts:'No alerts yet.',
 deadline:'GW{g} deadline',passed:'Deadline passed',heroSum:'Plan: {n} · {xp} expected pts',heroNone:'no transfers',
@@ -200,7 +222,7 @@ ahead:'My team, next 5 GWs',bestMoves:'Single-move alternatives',h3:'next 3 GWs'
 health:'System health',plan:'Deadline alert schedule',planNote:'Times come from the official FPL deadline (UTC), shown in your device time zone. Reminders that would land 01:00–08:00 Cairo time are sent the evening before.',allAlerts:'All alerts',prices:'Observed price changes',fixtures:'Fixtures (FDR)',accuracy:'Model accuracy & checks',footer:'Public FPL data only · model numbers are estimates · no logins stored',
 updated:'updated {t}',data:'data {t}',nextAlert:'next: {l} · {t}',final:'Final check',moved:'moved earlier',allSent:'all reminders sent',none:'No data yet.',search:'Search player or club',allPos:'All positions',all:'All',mine:'My squad',watch:'Watchlist',sNext:'xP next GW',s5:'xP 5 GWs',sP90:'Ceiling P90',sPrice:'Price',sOwn:'Ownership',
 stale:'Data is stale — showing last good copy ({m} min old)',nodata:'Data unavailable',ok:'Healthy',lastIngest:'Last data pull',lastModel:'Last model run',lastAlert:'Last alert check',lastVal:'Last daily check',fails:'Consecutive failures',channels:'Alert channels',noPrices:'No price changes observed yet.',noDbl:'No doubles or blanks in the current horizon.',valNone:'First accuracy check after GW8 is finished and confirmed.',players:'players',bias:'bias',bench:'Bench',xpShort:'xP',p50:'median',p90:'P90',p60:'≥60',newVer:'A new version is available — tap to update',fixStale:'What to do: nothing — the pipeline retries automatically every 5 min. Figures shown are the last good copy. If this lasts more than 2 hours, check the alert issues on GitHub. Use the official FPL app for final checks.',fixFail:'What to do: FPL is probably updating (normal around deadlines and after matches). Data will recover automatically; you will get a "Pipeline recovered" alert.',fixOffline:'What to do: check your internet connection, then pull down / reopen the app.',retry:'Retry'},
-ar:{status:'الحالة',tPlan:'خطة الجولة',tLab:'التشكيلات',tChips:'الشيبس',tPl:'اللاعبين',tMore:'المزيد',
+ar:{tProfile:'البروفايل',tagline:'خطط لكل جولة بالبيانات',enterId:'اكتب رقم فريقك في FPL (Team ID)',continue:'كمّل',findId:'ألاقي رقم فريقي فين؟',findIdTxt:'افتح fantasy.premierleague.com ← Points. الرقم اللي بعد /entry/ في شريط العنوان هو رقم فريقك (مثلًا …/entry/4969994/event/7).',loginBad:'اكتب رقم بس.',loginErr:'مقدرتش أحمّل الفريق ده. اتأكد من الرقم وجرب تاني.',welcomeTo:'أهلًا',welcome:'أهلًا بيك',leagues:'الدوريات',rankChart:'الترتيب العام في كل جولة',history:'تاريخ الموسم',tapGw:'اضغط على جولة',past:'المواسم اللي فاتت',switchTeam:'غيّر الفريق',kPts:'مجموع النقاط',kOR:'الترتيب العام',kGW:'نقاط الجولة',kVal:'قيمة الفريق',kBank:'البنك',kTr:'التحويلات',gwCol:'الجولة',ptsCol:'نقاط',benchCol:'الدكة',trCol:'تحويلات',orCol:'الترتيب',gwrCol:'ترتيب الجولة',chipCol:'شيب',ownerOnly:'التنبيهات متظبطة لفريق صاحب التطبيق بس.',season:'الموسم',rank:'الترتيب',estSell:'أسعار البيع تقديرية جزئيًا (لاعيبة عندك من قبل سجل التحويلات).',status:'الحالة',tPlan:'خطة الجولة',tLab:'التشكيلات',tChips:'الشيبس',tPl:'اللاعبين',tMore:'المزيد',
 st1:'التحويلات',st2:'التشكيلة وترتيب الدكة',st3:'الكابتن',st4:'الشيب',st5:'نفّذ في FPL',openTransfers:'اعمل التحويلات',openTeam:'اختار التشكيلة',copyPlan:'انسخ الخطة كلها',copied:'اتنسخت ✓',
 flags:'لاعيبة عليها علامة',allFit:'كل لاعيبة فريقك متاحين ✓',alerts:'آخر التنبيهات',noAlerts:'مفيش تنبيهات لسه.',
 deadline:'ديدلاين GW{g}',passed:'الديدلاين عدى',heroSum:'الخطة: {n} · {xp} نقطة متوقعة',heroNone:'من غير تحويلات',
@@ -245,7 +267,7 @@ $('#lang').onclick=()=>{LANG=LANG==='ar'?'en':'ar';try{localStorage.setItem('fr-
 function go(v,anchor){document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));
  if(anchor){const el=$(anchor);if(el)setTimeout(()=>el.scrollIntoView({behavior:'smooth'}),50)}else scrollTo(0,0);try{localStorage.setItem('fr-tab2',v)}catch(e){}}
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.v));
-$('#sysbtn').onclick=()=>go('more','#sys');
+$('#sysbtn').onclick=()=>go('more');
 document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)go(g.dataset.go)});
 
 function tick(){const G=D&&D.gw;if(!G||!G.next_deadline)return;const ms=Date.parse(G.next_deadline)-Date.now();
@@ -269,9 +291,37 @@ function distBlock(dist,xp){if(!dist)return `<div class="xp num">${f1(xp)} <smal
  <div class="probs">${Object.entries(dist.prob).map(([k,v])=>`<span>${t('chance',{k})} <b class="num">${pc(v)}</b></span>`).join('')}</div>
  <div class="small mute" style="margin-top:4px">${t('dist')}</div>`}
 
-async function load(){try{const r=await fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'});D=await r.json()}catch(e){$('#upd').textContent='offline';$('#banner').innerHTML=`<div class="banner bad">⚠️ ${t('nodata')}<div class="small" style="font-weight:500;margin-top:4px">${t('fixOffline')}</div><button class="btn sec" onclick="location.reload()">${t('retry')}</button></div>`;return}
+let PROXY='',TEAM=null,PJ=null,BASE=null,TEAMDATA=null,OWNER=null;
+const prox=path=>fetch(PROXY+'/api'+path,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('HTTP '+r.status);return r.json()});
+function offline(){$('#upd').textContent='offline';$('#banner').innerHTML=`<div class="banner bad">⚠️ ${t('nodata')}<div class="small" style="font-weight:500;margin-top:4px">${t('fixOffline')}</div><button class="btn sec" onclick="location.reload()">${t('retry')}</button></div>`}
+async function load(){
+ let dash,pj,px;
+ try{[dash,pj,px]=await Promise.all([fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.json()),
+   fetch('data/players.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():null).catch(()=>null),
+   fetch('proxy.json?ts='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.json():{}).catch(()=>({}))])}catch(e){offline();return}
  checkVersion();
- D.byId=D.projection?Object.fromEntries(D.projection.players.map(p=>[p.id,p])):{};render()}
+ D=dash;PJ=pj;PROXY=(px&&px.proxy)||'';OWNER=(D.status&&D.status.owner)||4969994;BASE=D.projection;
+ try{TEAM=+localStorage.getItem('fr-team')||null}catch(e){}
+ if(!TEAM){showLogin();return}
+ await loadTeam()}
+async function loadTeam(){
+ $('#upd').textContent='…';
+ if(!PROXY){TEAMDATA=null}else{
+  try{const cur=(D.gw&&D.gw.current)||null;
+   const [entry,history,transfers]=await Promise.all([prox(`/entry/${TEAM}/`),prox(`/entry/${TEAM}/history/`),prox(`/entry/${TEAM}/transfers/`).catch(()=>[])]);
+   const ev=entry.current_event||cur;const picks=ev?await prox(`/entry/${TEAM}/event/${ev}/picks/`).catch(()=>null):null;
+   TEAMDATA={entry,history,transfers,picks}}catch(e){TEAMDATA={error:String(e.message||e)}}}
+ if(TEAMDATA&&TEAMDATA.error&&TEAM!==OWNER){showLogin(t('loginErr'));return}
+ if(TEAM!==OWNER&&TEAMDATA&&TEAMDATA.picks&&PJ&&BASE){D.projection=FREngine.buildForTeam(PJ,BASE,TEAMDATA)}else D.projection=BASE;
+ D.byId=D.projection?Object.fromEntries(D.projection.players.map(p=>[p.id,p])):{};
+ // make sure every id referenced anywhere has a row (rows come from the all-players table)
+ if(PJ){const all=FREngine.players(PJ),mine=new Set(D.projection?D.projection.squad:[]);for(const id in all)if(!D.byId[id])D.byId[id]={...all[id],mine:mine.has(+id)}}
+ hideLogin();render();renderProfile()}
+function showLogin(err){document.querySelectorAll('.view').forEach(x=>x.classList.remove('on'));$('#v-login').classList.add('on');$('#nav').style.display='none';
+ $('#login-err').textContent=err||'';$('#upd').textContent=t('welcomeTo')}
+function hideLogin(){$('#v-login').classList.remove('on');$('#nav').style.display='';if(!document.querySelector('.view.on'))go('plan')}
+function doLogin(id){id=parseInt(String(id).replace(/\D/g,''),10);if(!id){$('#login-err').textContent=t('loginBad');return}
+ TEAM=id;try{localStorage.setItem('fr-team',id)}catch(e){}go('plan');loadTeam()}
 
 async function checkVersion(){if(APP_V.startsWith('__'))return;try{const r=await fetch('version.json?ts='+Date.now(),{cache:'no-store'});const v=(await r.json()).v;
  if(v&&v!==APP_V){let n=0;try{n=+sessionStorage.getItem('fr-rl')||0}catch(e){}
@@ -284,7 +334,7 @@ function render(){const S=D.status||{},P=D.projection,G=D.gw||{};
  $('#banner').innerHTML=(S.freshness!=='current'||S.health==='failing')?`<div class="banner ${S.freshness==='stale'?'':'bad'}">⚠️ ${S.freshness==='stale'?t('stale',{m:S.data_age_minutes??'?'}):S.freshness==='current'?'':t('nodata')}<div class="small" style="font-weight:500;margin-top:4px">${S.health==='failing'?t('fixFail'):t('fixStale')}</div></div>`:'';
  $('#dl-gw').textContent=t('deadline',{g:G.next??'?'});$('#dl-local').textContent=when(G.next_deadline);tick();
  const A=(D.alerts||[]).slice().reverse(),al=a=>`<div class="al sev-${a.severity}"><b>${esc(a.title)}</b><div class="small">${esc(a.what)}</div><div class="mute small">${esc(a.action||'')} · ${ago(a.sent_at)}</div></div>`;
- $('#alerts-top').innerHTML=A.length?A.slice(0,3).map(al).join(''):`<div class="empty">${t('noAlerts')}</div>`;
+ $('#alerts-top').innerHTML=TEAM&&TEAM!==OWNER?`<div class="empty">${t('ownerOnly')}</div>`:A.length?A.slice(0,3).map(al).join(''):`<div class="empty">${t('noAlerts')}</div>`;
  $('#alerts-all').innerHTML=A.length?A.slice(0,40).map(al).join(''):`<div class="empty">—</div>`;
  const plan=S.deadline_plan||[],nx=plan.find(r=>Date.parse(r.at)>Date.now());
  $('#next-rem').textContent=nx?t('nextAlert',{l:nx.label==='final'?t('final'):nx.label,t:when(nx.at)}):t('allSent');
@@ -361,6 +411,36 @@ $('#copy').onclick=e=>{if(!D||!D.projection)return;const P=D.projection,pl=P.pla
  const txt=[`FPL Radar — GW${P.gws[0]}`,`${t('st1')}: `+(pl.moves.length?pl.moves.map(m=>`${m.out_n} → ${m.in_n}`).join(' | '):t('noMove')),
   `XI (${L.formation}): ${L.xi_n.join(', ')}`,`${t('bench')}: ${L.bench_n.map((n,k)=>(k?k+'. ':'GK ')+n).join(', ')}`,`${t('capRow')}: ${L.captain_n} · ${t('viceRow')}: ${L.vice_n}`,`${t('st4')}: ${now?now.name:t('chipNone')}`].join('\n');
  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>{e.target.textContent=t('copied');setTimeout(()=>e.target.textContent=t('copyPlan'),1500)}).catch(()=>prompt('',txt))};
+
+const fmtN=n=>n==null?'—':Number(n).toLocaleString(LOC());
+const CHIPN={wildcard:'WC',freehit:'FH',bboost:'BB','3xc':'TC',manager:'AM'};
+function renderProfile(){const T=TEAMDATA;if(!T||!T.entry){$('#pf-name').textContent=TEAM||'—';return}
+ const e=T.entry,h=T.history||{current:[],chips:[],past:[]};
+ $('#upd').textContent=`${t('welcomeTo')}, ${e.name}`;$('#pf-name').textContent=e.name;$('#pf-mgr').textContent=`${e.player_first_name||''} ${e.player_last_name||''} · ID ${e.id}`;
+ const last=h.current[h.current.length-1]||{};
+ $('#pf-kpis').innerHTML=[[t('kPts'),fmtN(e.summary_overall_points)],[t('kOR'),fmtN(e.summary_overall_rank)],[t('kGW'),`${fmtN(e.summary_event_points)} <small>(GW${e.current_event??'?'})</small>`],[t('kVal'),last.value!=null?'£'+(last.value/10).toFixed(1)+'m':'—'],[t('kBank'),last.bank!=null?'£'+(last.bank/10).toFixed(1)+'m':'—'],[t('kTr'),fmtN(h.current.reduce((s,r)=>s+(r.event_transfers||0),0))]]
+  .map(([k,v])=>`<div><span>${k}</span><b>${v}</b></div>`).join('');
+ const L=((e.leagues||{}).classic||[]).slice().sort((a,b)=>(a.league_type==='x')-(b.league_type==='x'));
+ $('#pf-leagues').innerHTML=L.map(l=>{const d=(l.entry_last_rank||0)-(l.entry_rank||0);return `<div class="row"><span>${esc(l.name)}</span><span class="v num">${fmtN(l.entry_rank)} ${d>0?`<span class="up">▲${fmtN(d)}</span>`:d<0?`<span class="down">▼${fmtN(-d)}</span>`:''}</span></div>`}).join('')||`<div class="empty">—</div>`;
+ // rank chart (log scale, best rank at top)
+ const pts=h.current.filter(r=>r.overall_rank);if(pts.length>1){const W=320,H=140,lg=v=>Math.log10(v),mn=lg(Math.min(...pts.map(r=>r.overall_rank))),mx=lg(Math.max(...pts.map(r=>r.overall_rank)));
+  const x=i=>10+i*(W-20)/(pts.length-1),y=v=>10+(mx===mn?0.5:(lg(v)-mn)/(mx-mn))*(H-30);
+  const path=pts.map((r,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(r.overall_rank).toFixed(1)}`).join('');
+  $('#pf-chart').innerHTML=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;height:auto"><path d="${path}" fill="none" stroke="var(--neon)" stroke-width="3" stroke-linejoin="round"/>${pts.map((r,i)=>`<circle cx="${x(i)}" cy="${y(r.overall_rank)}" r="3" fill="var(--neon)"/><text x="${x(i)}" y="${H-4}" font-size="9" text-anchor="middle" fill="currentColor" opacity=".6">${r.event}</text>`).join('')}</svg><div class="small mute num">${fmtN(pts[0].overall_rank)} → ${fmtN(pts[pts.length-1].overall_rank)}</div>`}else $('#pf-chart').innerHTML=`<div class="empty">—</div>`;
+ const chips={};(h.chips||[]).forEach(c=>chips[c.event]=CHIPN[c.name]||c.name);
+ $('#pf-hist').innerHTML=`<tr><th>${t('gwCol')}</th><th>${t('ptsCol')}</th><th>${t('benchCol')}</th><th>${t('trCol')}</th><th>${t('gwrCol')}</th><th>${t('orCol')}</th><th>${t('chipCol')}</th></tr>`+h.current.slice().reverse().map(r=>`<tr class="click" data-gw="${r.event}"><td class="num">${r.event}</td><td class="num"><b>${r.points}</b></td><td class="num">${r.points_on_bench}</td><td class="num">${r.event_transfers}${r.event_transfers_cost?` <span class="bad">-${r.event_transfers_cost}</span>`:''}</td><td class="num">${fmtN(r.rank)}</td><td class="num">${fmtN(r.overall_rank)}</td><td>${chips[r.event]||''}</td></tr>`).join('');
+ $('#pf-hist').querySelectorAll('tr.click').forEach(tr=>tr.onclick=()=>{$('#pf-hist').querySelectorAll('tr').forEach(x=>x.classList.toggle('on',x===tr));showGW(+tr.dataset.gw)});
+ $('#pf-past').innerHTML=(h.past||[]).slice().reverse().map(s=>`<div class="row"><span>${esc(s.season_name)}</span><span class="v num">${fmtN(s.total_points)} · ${t('rank')} ${fmtN(s.rank)}</span></div>`).join('')||`<div class="empty">—</div>`}
+async function showGW(g){const box=$('#pf-gw');box.innerHTML=`<div class="empty">…</div>`;
+ try{const [pk,live]=await Promise.all([prox(`/entry/${TEAM}/event/${g}/picks/`),prox(`/event/${g}/live/`)]);
+  const pts={};live.elements.forEach(e=>pts[e.id]=e.stats.total_points);
+  const xi=pk.picks.filter(x=>x.position<=11).map(x=>x.element),bench=pk.picks.filter(x=>x.position>11).map(x=>x.element);
+  const cap=(pk.picks.find(x=>x.is_captain)||{}).element,vice=(pk.picks.find(x=>x.is_vice_captain)||{}).element,mult={};pk.picks.forEach(x=>mult[x.element]=x.multiplier);
+  const o={cap,vice,val:p=>(pts[p.id]??0)*(mult[p.id]||1)};
+  box.innerHTML=`<h2 style="margin-top:12px">GW${g} · ${pk.entry_history.points} ${t('ptsCol')}${pk.active_chip?' · '+(CHIPN[pk.active_chip]||pk.active_chip):''}</h2>`+pitchHTML(xi,o)+benchHTML(bench,{...o,val:p=>pts[p.id]??0})}
+ catch(e){box.innerHTML=`<div class="empty">${t('nodata')}</div>`}}
+$('#go-login').onclick=()=>doLogin($('#tid').value);$('#tid').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin($('#tid').value)});
+$('#switch-team').onclick=()=>{try{localStorage.removeItem('fr-team')}catch(e){}TEAM=null;showLogin()};
 applyLang();try{const v=localStorage.getItem('fr-tab2');if(v&&$('#v-'+v))go(v)}catch(e){}
 load();setInterval(load,5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)load()});
 </script>

@@ -154,7 +154,7 @@ def project(players, fmap, fx, gws, cfg, today: date, squad_ids=()):
                        u5=round(float(np.percentile(s5, 90)), 1), mc1=round(float(g1.mean()), 2),
                        h1=round(float((g1 >= 10).mean()), 3), h3=round(float((s3 >= 25).mean()), 3),
                        h5=round(float((s5 >= 40).mean()), 3), cap20=round(float((2 * g1 >= 20).mean()), 3),
-                       blank=round(float((g1 <= 2).mean()), 3))
+                       blank=round(float((g1 <= 2).mean()), 3), sd1=round(float(g1.std()), 2))
         q0 = qb[0][0] if qb[0] else None
         rec["sp"] = round(q0["pr"], 2) if q0 else 0.0
         rec["em"] = round(q0["pr"] * q0["mps"] + 0.07 * 20, 0) if q0 else 0.0

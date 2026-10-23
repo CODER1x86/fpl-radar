@@ -427,6 +427,19 @@ def write_public(ctx, d, proj_out):
                 "elite": elite, "experts": read_json(p("experts", "latest.json")),
                 "plan": plan_pub(lp.get("plan"), tname), "chips": lp.get("chips"),
                 "scenarios": [{**s, "xi_n": [tname(i) for i in s["xi"]]} for s in lp.get("scenarios") or []]}
+    if lp:  # compact table of ALL projected players: lets the app plan for any team id in the browser
+        P_ = lp["projections"]
+        allrows = []
+        for i, rr in P_.items():
+            i = int(i)
+            q = pl.get(i)
+            if not q:
+                continue
+            allrows.append([i, q["name"], teams.get(q["team"], q["team"]), q["pos"], q["cost"], q["status"], q["chance"],
+                            q["own"], rr["b"], rr.get("u1"), rr.get("h1"), rr.get("sp"), rr.get("sd1"), q["news"], q["pts"]])
+        write_json(p("public", "players.json"), {"ts": lp["ts"], "gws": lp["gws"], "cols": ["id", "n", "t", "pos", "c", "st",
+                   "ch", "own", "b", "u1", "h1", "sp", "sd1", "news", "pts"], "rows": allrows,
+                   "teams": {str(k): v for k, v in teams.items()}})
     gwj = d["gw"] if d else read_json(p("latest", "gw.json"), {})
     alerts = read_jsonl(p("state", "alerts.jsonl"))[-60:]
     val = [read_json(p("validation", f"gw{g}.json")) for g in (read_json(p("validation", "scored.json"), []) or [])]
@@ -439,6 +452,7 @@ def write_public(ctx, d, proj_out):
                                       "consecutive_failures", "last_error", "health", "quota", "notify_channels",
                                       "last_delivery", "warnings", "deadline_plan", "next_deadline_text")}
     status["sources"] = st.get("sources")
+    status["owner"] = cfg["manager"]["id"]
     status["generated_at"] = iso(ctx.now)
     status["run_url"] = os.environ.get("WC_RUN_URL")
     write_json(p("public", "status.json"), status, compact=False)
