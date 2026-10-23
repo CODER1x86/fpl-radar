@@ -73,7 +73,8 @@ jobs:
           MODE="${{ inputs.mode || 'auto' }}"
           if [ "${{ github.event.schedule }}" = "23 3 * * *" ]; then MODE=validate; fi
           FLAGS=""; [ "${{ inputs.force_model }}" = "true" ] && FLAGS="--force-model"
-          set +e; python -m wc.run "$MODE" $FLAGS; rc=$?; set -e
+          set +e; python -m wc.run "$MODE" $FLAGS 2>&1 | tee run.log; rc=${PIPESTATUS[0]}; set -e
+          echo "::notice::$(grep -E '^\[20' run.log | tail -1 | cut -c1-900)"
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
           # rc 2 = sources failing: data branch + last-known-good page are still published, job marked failed at the end
 
@@ -81,17 +82,24 @@ jobs:
         if: always()
         run: |
           cd data
+          echo "::notice::data dir: $(git rev-parse --abbrev-ref HEAD 2>&1) $(git log -1 --format=%h 2>&1) remote=$(git remote -v | head -1 | sed 's/x-access-token:[^@]*@//')"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
-          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          if git diff --cached --quiet; then echo "::notice::no data changes"; exit 0; fi
           CHANGED=$(git diff --cached --name-only | grep -v -E '^state/(status\.json|runs\.jsonl)$' || true)
           MIN=$(date -u +%M)
           if [ -z "$CHANGED" ] && [ $((10#$MIN % 15)) -ge 5 ] && [ "${{ steps.pipe.outputs.rc }}" = "0" ]; then
-            echo "only heartbeat changed — committing every 15 min to limit repo growth"; git reset -q; exit 0
+            echo "::notice::heartbeat only — skipped (committed every 15 min)"; git reset -q; exit 0
           fi
           git commit -q -m "data: $(date -u +%Y-%m-%dT%H:%MZ) ${{ inputs.mode || 'auto' }}"
-          for i in 1 2 3; do git push -q origin HEAD:data && break || { sleep $((i*5)); git pull -q --rebase origin data || true; }; done
+          ok=0
+          for i in 1 2 3; do
+            if git push origin HEAD:data 2>push.err; then ok=1; break; fi
+            echo "::warning::push attempt $i failed: $(tail -2 push.err | tr '\n' ' ')"
+            sleep $((i*5)); git pull -q --rebase origin data 2>>push.err || true
+          done
+          [ "$ok" = 1 ] && echo "::notice::data committed: $(echo "$CHANGED" | wc -l) files" || { echo "::error::could not push data branch"; exit 1; }
 
       - name: Save working cache
         if: always()
