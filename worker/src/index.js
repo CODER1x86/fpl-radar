@@ -23,7 +23,19 @@ function cors(origin, env) {
   };
 }
 
+async function kick(env) {
+  if (!env.GH_TOKEN) return "no GH_TOKEN";
+  const r = await fetch("https://api.github.com/repos/CODER1x86/fpl-radar/actions/workflows/pipeline.yml/dispatches", {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${env.GH_TOKEN}`, "Accept": "application/vnd.github+json",
+               "User-Agent": "fpl-radar-cron", "Content-Type": "application/json" },
+    body: JSON.stringify({ ref: "main", inputs: { mode: "auto" } }),
+  });
+  return `dispatch ${r.status}`;
+}
+
 export default {
+  async scheduled(event, env, ctx) { ctx.waitUntil(kick(env).then(s => console.log(s))); },
   async fetch(req, env, ctx) {
     const url = new URL(req.url);
     const origin = req.headers.get("Origin") || "";

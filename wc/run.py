@@ -450,7 +450,7 @@ def write_public(ctx, d, proj_out):
     status = {k: st.get(k) for k in ("last_ingest_ok", "last_ingest_attempt", "last_model_ok", "last_alert_check",
                                       "last_validate_ok", "data_observed_at", "freshness", "data_age_minutes",
                                       "consecutive_failures", "last_error", "health", "quota", "notify_channels",
-                                      "last_delivery", "warnings", "deadline_plan", "next_deadline_text")}
+                                      "last_delivery", "warnings", "deadline_plan", "next_deadline_text", "push_devices")}
     status["sources"] = st.get("sources")
     status["owner"] = cfg["manager"]["id"]
     status["generated_at"] = iso(ctx.now)
@@ -516,6 +516,17 @@ def main(argv=None):
         print(export())
         return 0
 
+    # web push: publish the VAPID public key and pick up new device registrations (owner-only GitHub issues)
+    try:
+        from . import webpush as WP
+        WP.load_or_create_vapid()
+        if os.environ.get("GITHUB_TOKEN") and not ctx.dry:
+            n = WP.register_from_issues()
+            if n:
+                ctx.events.append(f"web push: {n} device(s) registered")
+        ctx.status["push_devices"] = len(WP.subscriptions())
+    except Exception as e:
+        ctx.warnings.append(f"webpush: {e}")
     ctx.status["last_ingest_attempt"] = iso(now)
     d, proj_out, fatal = None, None, None
     try:

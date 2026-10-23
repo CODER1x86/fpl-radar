@@ -38,6 +38,12 @@ def channels():
         ch.append("ntfy")
     if os.environ.get("TELEGRAM_BOT_TOKEN") and os.environ.get("TELEGRAM_CHAT_ID"):
         ch.append("telegram")
+    try:
+        from . import webpush
+        if webpush.subscriptions():
+            ch.append("webpush")
+    except Exception:
+        pass
     return ch
 
 
@@ -72,6 +78,18 @@ def send(alerts, dash="", test=False, dry=False):
                               {"Title": title[:200].encode("ascii", "ignore").decode(), "Priority": PRIO[top["severity"]],
                                "Tags": "soccer", "Markdown": "yes", **({"Click": dash} if dash else {})})
                 recs.append({"channel": ch, "ok": 200 <= st < 300, "status": st})
+            elif ch == "webpush":
+                from . import webpush
+                first = alerts[0]
+                body = (first.get("what") or "")[:180]
+                if first.get("action"):
+                    body += " → " + first["action"][:120]
+                if len(alerts) > 1:
+                    body += f" (+{len(alerts) - 1} more)"
+                res = webpush.broadcast({"title": ("[TEST] " if test else "") + first["title"][:120], "body": body,
+                                         "url": dash or "./", "tag": first["key"][:60]},
+                                        urgency="high" if top["severity"] in ("critical", "high") else "normal")
+                recs.append({"channel": ch, "ok": any(200 <= r["status"] < 300 for r in res), "results": res})
             elif ch == "telegram":
                 tok = os.environ["TELEGRAM_BOT_TOKEN"]
                 st, _ = _post(f"https://api.telegram.org/bot{tok}/sendMessage",
