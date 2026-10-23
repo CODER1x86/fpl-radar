@@ -102,32 +102,120 @@ def detect(prev, cur, teams, squad, watch, gw, now, cfg, prev_dec=None, dec=None
                                       source="FPL official API (fixtures)", observed=obs,
                                       impact="chip planning (Bench Boost / Free Hit / Triple Captain)",
                                       action="Re-plan chips and transfers", deadline=dl))
-    # deadline reminders
-    if hrs is not None:
-        for w in sorted(cfg["alerts"]["deadline_warn_hours"]):
-            if 0 < hrs <= w:
-                out.append(_alert(f"deadline|{gw['next']}|{w}", "high" if w <= 3 else "medium", "deadline",
-                                  f"GW{gw['next']} deadline in {hrs:.1f}h",
-                                  f"Deadline {gw['next_deadline']} UTC; local "
-                                  f"{local(parse_iso(gw['next_deadline']), cfg['manager']['timezone']):%a %d %b %H:%M}",
-                                  source="FPL official API (events)", observed=obs, impact="all decisions",
-                                  action=(f"Model: captain {dec.get('captain_name')}, top move {dec.get('top_transfer') or 'roll'}"
-                                          if dec else "Review team"), deadline=dl))
-                break
+    # deadline reminders — planned from the real (UTC) deadline of THIS gameweek
+    plan = deadline_plan(gw.get("next"), gw.get("next_deadline"), now, cfg)
+    due = [r for r in plan if parse_iso(r["at"]) <= now < parse_iso(gw["next_deadline"])]
+    if due:
+        r = due[-1]  # only the most recent due reminder (a delayed run never sends a backlog)
+        flagged = [f"{cur[i]['name']} ({cur[i]['status']}{' ' + str(cur[i]['chance']) + '%' if cur[i]['chance'] is not None else ''})"
+                   for i in squad if i in cur and cur[i]["status"] != "a"]
+        sev = r["severity"]
+        if r["label"] == "final" and flagged:
+            sev = "critical"
+        out.append(_alert(
+            f"deadline|{gw['next']}|{gw['next_deadline']}|{r['label']}", sev, "deadline",
+            f"GW{gw['next']} deadline in {_fmt_left(hrs)} — {when_text(gw['next_deadline'], cfg)}",
+            ("Final check before the deadline. " if r["label"] == "final" else "") +
+            (f"Flagged in your squad: {', '.join(flagged)}. " if flagged else "No flagged players in your squad. ") +
+            (f"Model: captain {dec.get('captain_name')}, top move {dec.get('top_transfer') or 'roll the transfer'}"
+             f"{' (+' + str(dec.get('top_transfer_gain')) + ' xP over 3 GWs)' if dec and dec.get('top_transfer') else ''}."
+             if dec else ""),
+            source="FPL official API (events.deadline_time, UTC)", observed=obs, impact="all GW decisions",
+            action=r["action"], deadline=dl,
+            confidence="Deadline: official. Recommendations: model output"))
     out.sort(key=lambda a: SEV_ORDER[a["severity"]])
     return out
 
 
-def dedup_and_schedule(alerts, state, now, cfg):
-    """Returns (send_now, held, state). state = {'sent': {key: ts}, 'held': [alerts]}."""
+# ------------------------------------------------------------------ deadline-aware timing
+def _fmt_left(hrs):
+    if hrs is None:
+        return "?"
+    h, m = int(hrs), int(round((hrs - int(hrs)) * 60))
+    return f"{h}h {m:02d}m" if h < 48 else f"{hrs / 24:.1f} days"
+
+
+def when_text(deadline_iso, cfg):
+    """Deadline in UTC plus the owner's zone and UK time, all via IANA tz data (DST-correct for that date)."""
+    d = parse_iso(deadline_iso)
+    tz = cfg["manager"]["timezone"]
+    return (f"{local(d, tz):%a %d %b %H:%M} {local(d, tz).tzname()} ({tz}) · "
+            f"{local(d, 'Europe/London'):%H:%M} {local(d, 'Europe/London').tzname()} UK · {d:%H:%M} UTC")
+
+
+def in_quiet(dt, cfg):
+    h = local(dt, cfg["manager"]["timezone"]).hour
+    qs, qe = cfg["alerts"]["quiet_start_hour"], cfg["alerts"]["quiet_end_hour"]
+    return (qs <= h < qe) if qs < qe else (h >= qs or h < qe)
+
+
+def _before_quiet(dt, cfg):
+    """Latest moment before the quiet window that contains dt (owner's local time, DST-aware)."""
+    from datetime import datetime as _dt, timedelta as _td
+    from zoneinfo import ZoneInfo
+    tz = ZoneInfo(cfg["manager"]["timezone"])
+    loc = dt.astimezone(tz)
+    qs = cfg["alerts"]["quiet_start_hour"]
+    start_day = loc.date() if loc.hour >= qs else (loc - _td(days=1)).date()
+    start = _dt(start_day.year, start_day.month, start_day.day, qs, 0, tzinfo=tz)
+    return (start - _td(minutes=cfg["alerts"]["deadline"]["pre_quiet_minutes"])).astimezone(dt.tzinfo)
+
+
+def deadline_plan(gw_id, deadline_iso, now, cfg):
+    """Reminder schedule for one gameweek, computed from its real UTC deadline.
+
+    - offsets come from config (e.g. 48h, 24h, 6h, 2h, final 75m);
+    - a reminder that would land in quiet hours is moved to just before quiet hours start (the evening before);
+    - reminders that collapse onto each other are merged (the later, more urgent one is kept);
+    - the deadline itself always comes from the API, so a moved deadline produces a new plan automatically."""
+    d = parse_iso(deadline_iso)
+    if not d or not gw_id:
+        return []
+    c = cfg["alerts"]["deadline"]
+    rows = []
+    for h in c["reminder_hours"]:
+        at = d - timedelta(hours=h)
+        label = f"T-{h:g}h"
+        sev = "medium" if h >= 24 else "high"
+        action = ("Plan transfers / chips; watch press conferences" if h >= 24 else
+                  "Lock in transfers; check press-conference news" if h >= 4 else
+                  "Final team check: transfers, captain, bench order")
+        rows.append({"label": label, "target": at, "severity": sev, "action": action})
+    fm = c["final_check_minutes"]
+    rows.append({"label": "final", "target": d - timedelta(minutes=fm), "severity": "high",
+                 "action": "Last chance: confirm XI, captain/vice, bench order and transfers"})
+    plan = []
+    for r in sorted(rows, key=lambda r: r["target"]):
+        at, moved = r["target"], False
+        if in_quiet(at, cfg):
+            at, moved = _before_quiet(at, cfg), True
+        plan.append({**r, "at": at, "moved": moved})
+    merged = []
+    gap = timedelta(minutes=c["merge_within_minutes"])
+    for r in sorted(plan, key=lambda r: r["at"]):
+        if merged and r["at"] - merged[-1]["at"] < gap:
+            merged[-1] = r if SEV_ORDER[r["severity"]] <= SEV_ORDER[merged[-1]["severity"]] else merged[-1]
+            continue
+        merged.append(r)
+    return [{"gw": gw_id, "label": r["label"], "at": iso(r["at"]), "target": iso(r["target"]), "moved": r["moved"],
+             "severity": r["severity"], "action": r["action"],
+             "local": f"{local(r['at'], cfg['manager']['timezone']):%a %d %b %H:%M %Z}"} for r in merged
+            if r["at"] < d]
+
+
+def dedup_and_schedule(alerts, state, now, cfg, next_deadline=None):
+    """Returns (send_now, held, state). state = {'sent': {key: ts}, 'held': [alerts]}.
+    Quiet hours (owner's local time, DST-aware) hold medium/info alerts — except in the run-up to a deadline,
+    when everything is sent immediately."""
     sent = state.setdefault("sent", {})
     held = state.setdefault("held", [])
     horizon = timedelta(hours=cfg["alerts"]["dedup_hours"])
     for k in [k for k, t in sent.items() if now - parse_iso(t) > timedelta(days=14)]:
         del sent[k]
-    hour = local(now, cfg["manager"]["timezone"]).hour
-    qs, qe = cfg["alerts"]["quiet_start_hour"], cfg["alerts"]["quiet_end_hour"]
-    quiet = (qs <= hour < qe) if qs < qe else (hour >= qs or hour < qe)
+    quiet = in_quiet(now, cfg)
+    d = parse_iso(next_deadline)
+    if quiet and d and timedelta(0) < d - now <= timedelta(hours=cfg["alerts"]["deadline"]["quiet_override_hours"]):
+        quiet = False
     fresh = []
     keys = set()
     for a in alerts:

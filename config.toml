@@ -46,8 +46,17 @@ quiet_start_hour = 1   # local time; non-critical alerts are held into a digest 
 quiet_end_hour = 8
 ownership_threshold = 15.0   # % selected_by to alert on status/price changes of non-squad players
 dedup_hours = 72
-deadline_warn_hours = [24, 3]
-dashboard_url = ""   # filled by the deploy step when a verified Pages URL exists
+dashboard_url = "https://coder1x86.github.io/fpl-radar/"
+
+# Deadline-aware timing. Everything is computed from the API's UTC deadline_time of the specific gameweek,
+# so it follows rescheduled/irregular deadlines and is independent of where you are. Local display and quiet
+# hours use the IANA zone in [manager].timezone (DST handled by tz data, e.g. Egypt and UK clock changes).
+[alerts.deadline]
+reminder_hours = [48, 24, 6, 2]
+final_check_minutes = 75
+pre_quiet_minutes = 30        # a reminder falling in quiet hours is sent this long before quiet hours start
+merge_within_minutes = 40     # reminders closer than this are merged into the more urgent one
+quiet_override_hours = 12     # inside this window before a deadline, quiet hours are ignored for all alerts
 
 [model]
 horizon = 5

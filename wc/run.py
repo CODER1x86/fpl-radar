@@ -364,7 +364,7 @@ def write_public(ctx, d, proj_out):
     status = {k: st.get(k) for k in ("last_ingest_ok", "last_ingest_attempt", "last_model_ok", "last_alert_check",
                                       "last_validate_ok", "data_observed_at", "freshness", "data_age_minutes",
                                       "consecutive_failures", "last_error", "health", "quota", "notify_channels",
-                                      "last_delivery", "warnings")}
+                                      "last_delivery", "warnings", "deadline_plan", "next_deadline_text")}
     status["sources"] = st.get("sources")
     status["generated_at"] = iso(ctx.now)
     status["run_url"] = os.environ.get("WC_RUN_URL")
@@ -435,6 +435,19 @@ def main(argv=None):
         found = AL.detect(d["prev"], d["players"], d["teams"], d["squad"], cfg["watchlist"]["ids"], d["gw"], now,
                           cfg, prev_dec, proj_out["decision"] if proj_out else read_json(p("latest", "decision.json")),
                           prev_bd, bd)
+        known = ctx.status.get("deadlines") or {}
+        for g, dlt in d["gw"]["deadlines"].items():
+            old_dl = known.get(str(g))
+            if old_dl and old_dl != dlt and parse_iso(dlt) > now:
+                found.append(AL._alert(f"deadline-moved|{g}|{dlt}", "high", "deadline",
+                                       f"GW{g} deadline changed: now {AL.when_text(dlt, cfg)}",
+                                       f"Previously {AL.when_text(old_dl, cfg)}", source="FPL official API (events)",
+                                       observed=iso(now), impact="reminder schedule re-planned automatically",
+                                       action="Note the new deadline", deadline=None))
+        ctx.status["deadlines"] = {str(g): v for g, v in d["gw"]["deadlines"].items()}
+        ctx.status["deadline_plan"] = AL.deadline_plan(d["gw"].get("next"), d["gw"].get("next_deadline"), now, cfg)
+        ctx.status["next_deadline_text"] = (AL.when_text(d["gw"]["next_deadline"], cfg)
+                                            if d["gw"].get("next_deadline") else None)
         if bd is not None:
             ctx.status["blanks_doubles"] = {str(k): v for k, v in bd.items()}
         if ctx.status.get("consecutive_failures", 0) >= 2:
@@ -443,7 +456,7 @@ def main(argv=None):
                                    f"(last error: {ctx.status.get('last_error')})", source="pipeline monitor",
                                    observed=iso(now), confidence="High"))
         st = read_json(p("state", "alerts.json"), {}) or {}
-        send_now, held, st = AL.dedup_and_schedule(found, st, now, cfg)
+        send_now, held, st = AL.dedup_and_schedule(found, st, now, cfg, d["gw"].get("next_deadline"))
         if send_now:
             recs = NT.send(send_now, dash, dry=ctx.dry)
             ok = any(r["ok"] for r in recs) if recs else False

@@ -2,7 +2,7 @@ name: radar-pipeline
 
 on:
   schedule:
-    - cron: "*/10 * * * *"     # ingest + alerts (GitHub may delay scheduled runs under load)
+    - cron: "*/5 * * * *"      # ingest + alerts every 5 min (GitHub minimum; runs may be delayed under load)
     - cron: "23 3 * * *"       # daily full validation (06:23 Cairo)
   workflow_dispatch:
     inputs:

@@ -37,6 +37,7 @@ th{color:var(--mute);font-weight:600;cursor:pointer;position:sticky;top:0;backgr
 <main>
 <div id="banner"></div>
 <section class="card"><h2>صحة النظام</h2><div class="grid" id="health"></div><div id="sources" style="margin-top:10px"></div><div id="errs"></div></section>
+<section class="card"><h2>الديدلاين وجدول التنبيهات</h2><div id="dlt" class="mute"></div><div class="scroll"><table id="plan"></table></div></section>
 <section class="card"><h2>التشكيلة المقترحة (نموذج) <span class="mute" id="lu-note"></span></h2><div class="tabs" id="lu-tabs"></div><div id="lineup"></div></section>
 <section class="card"><h2>الكابتن</h2><div class="scroll"><table id="caps"></table></div></section>
 <section class="card"><h2>التحويلات المقترحة (أفق 3 جولات، baseline)</h2><div id="tr-note" class="mute"></div><div class="scroll"><table id="tr"></table></div><h2 style="margin-top:12px">ثنائيات</h2><div class="scroll"><table id="pairs"></table></div></section>
@@ -69,6 +70,8 @@ async function load(){
   `<div class="kpi"><div class="l">تشغيلات هذا الشهر</div><div class="v">${S.quota?S.quota.runs:'—'}</div></div>`;
  const src=S.sources||{};$('#sources').innerHTML='<table><thead><tr><th>المصدر</th><th>آخر نجاح</th><th>الحالة</th><th>زمن</th><th>آخر خطأ</th></tr></thead><tbody>'+Object.entries(src).map(([n,s])=>`<tr><td>${n}</td><td>${ago(s.last_ok)}</td><td class="n">${s.not_modified?'304 cached':s.last_status??'—'}</td><td class="n">${s.ms??'—'} ms</td><td class="mute">${esc(s.last_error||'')}</td></tr>`).join('')+'</tbody></table>';
  if(S.warnings&&S.warnings.length)$('#errs').innerHTML='<p class="mute">'+S.warnings.map(esc).join('<br>')+'</p>';
+ $('#dlt').textContent=(S.next_deadline_text||'')+' — كل المواعيد محسوبة من توقيت الديدلاين الرسمي (UTC) ومحوّلة بتوقيت القاهرة مع التوقيت الصيفي/الشتوي.';
+ table($('#plan'),[{k:'label',h:'التنبيه'},{k:'local',h:'موعد الإرسال (القاهرة)',n:1},{k:'moved',h:'ملاحظة',f:r=>r.moved?'اتقدّم عشان ميجيش في ساعات النوم':''},{k:'severity',h:'الأولوية'},{k:'st',h:'الحالة',f:r=>Date.parse(r.at)<=Date.now()?'✓ مستحق':'قادم'},{k:'action',h:'المطلوب'}],S.deadline_plan||[],'at');
  if(!P){$('#lineup').textContent='لا توجد توقعات بعد.';return}
  const byId=Object.fromEntries(P.players.map(p=>[p.id,p]));
  $('#lu-note').textContent=`· الفريق من ${P.squad_source} · البنك £${P.bank??'?'}m · تحويلات مجانية (تقدير) ${P.free_transfers_est??'?'} · نموذج ${P.model}`;
