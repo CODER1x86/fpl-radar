@@ -1,7 +1,92 @@
 {
- "ts": "2026-10-23T01:00:21Z",
+ "ts": "2026-10-23T05:33:47Z",
  "gw": 8,
- "kind": "shortlist",
+ "xi": [
+  {
+   "id": 1,
+   "name": "Raya",
+   "mentions": 2
+  },
+  {
+   "id": 8,
+   "name": "Calafiori",
+   "mentions": 2
+  },
+  {
+   "id": 334,
+   "name": "Muharemović",
+   "mentions": 2
+  },
+  {
+   "id": 31,
+   "name": "Konsa",
+   "mentions": 2
+  },
+  {
+   "id": 173,
+   "name": "Thomas",
+   "mentions": 2
+  },
+  {
+   "id": 480,
+   "name": "Gibbs-White",
+   "mentions": 2
+  },
+  {
+   "id": 68,
+   "name": "Tavernier",
+   "mentions": 2
+  },
+  {
+   "id": 40,
+   "name": "Rogers",
+   "mentions": 2
+  },
+  {
+   "id": 411,
+   "name": "Haaland",
+   "mentions": 3
+  },
+  {
+   "id": 165,
+   "name": "João Pedro",
+   "mentions": 2
+  },
+  {
+   "id": 346,
+   "name": "Calvert-Lewin",
+   "mentions": 2
+  }
+ ],
+ "captain_id": 411,
+ "notes": "4-3-3 consensus: Raya; Calafiori, Muharemovic, Konsa, B.Thomas; Gibbs-White, Tavernier, Rogers; Haaland, Joao Pedro, Calvert-Lewin. Captain Haaland (AllAboutFPL; FFS says fit to start) - main disagreement: FF Hub AI captains Palmer (5.9 xP) on Haaland doubt; reader polls lean Joao Pedro. FFS final Scout Picks & PL Scout Selection not yet published/readable at 05:40 UTC.",
+ "sources": [
+  {
+   "name": "AllAboutFPL - GW8 Scout Picks (full XI, C Haaland)",
+   "url": "https://allaboutfpl.com/2026/10/fpl-gw8-scout-picks-based-on-stats-analysis-and-matchups/",
+   "published": "2026-10-22"
+  },
+  {
+   "name": "Fantasy Football Scout - GW8 early Scout Picks (15-man bus team)",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-early-scout-picks-arsenal-trio-two-double-ups",
+   "published": "2026-10-21"
+  },
+  {
+   "name": "Fantasy Football Hub - GW8 captain (Palmer)",
+   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-captain-gameweek-8-article-26-27",
+   "published": "2026-10-22"
+  },
+  {
+   "name": "FPL Focal - GW8 team selection (partial: Raya, Konsa, Thiaw, De Cuyper)",
+   "url": "https://fpl.page/article/fpl-gw8-team-selection-2627",
+   "published": "2026-10-22"
+  },
+  {
+   "name": "The Scout (premierleague.com) - GW8 transfer radar (Doku, Schade, Evanilson, B.Thomas)",
+   "url": "https://www.premierleague.com/en/news/4744220/the-scouts-fpl-gameweek-8-transfer-radar",
+   "published": "2026-10-21"
+  }
+ ],
  "squad": [
   {
    "id": 82,
@@ -92,16 +177,6 @@
    "name": "Calvert-Lewin",
    "pos": "FWD",
    "mentions": 1
-  }
- ],
- "xi": [],
- "captain_id": null,
- "notes": "Fantasy Football Scout early GW8 Scout Picks shortlist (15). Final XI and captain are published on Friday; the app picks the best XI from this shortlist with the model.",
- "sources": [
-  {
-   "name": "Fantasy Football Scout — GW8 early Scout Picks",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-early-scout-picks-arsenal-trio-two-double-ups",
-   "published": "2026-10-21"
   }
  ]
 }
