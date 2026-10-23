@@ -1,0 +1,122 @@
+{
+ "sources": {
+  "bootstrap": {
+   "last_ok": "2026-10-23T00:03:18Z",
+   "last_status": 200,
+   "ms": 151,
+   "bytes": 1785915,
+   "not_modified": false,
+   "attempts": 1,
+   "last_error": null
+  },
+  "fixtures": {
+   "last_ok": "2026-10-23T00:03:18Z",
+   "last_status": 200,
+   "ms": 22,
+   "bytes": 278235,
+   "not_modified": false,
+   "attempts": 1,
+   "last_error": null
+  },
+  "picks": {
+   "last_ok": "2026-10-23T00:03:18Z",
+   "last_status": 200,
+   "ms": 109,
+   "bytes": 1868,
+   "not_modified": false,
+   "attempts": 1,
+   "last_error": null
+  },
+  "history": {
+   "last_ok": "2026-10-23T00:03:18Z",
+   "last_status": 200,
+   "ms": 103,
+   "bytes": 2466,
+   "not_modified": false,
+   "attempts": 1,
+   "last_error": null
+  }
+ },
+ "notify_channels": [
+  "github_issue"
+ ],
+ "last_ingest_attempt": "2026-10-23T00:03:18Z",
+ "fixtures_last_ok": "2026-10-23T00:03:18Z",
+ "picks_last_ok": "2026-10-23T00:03:18Z",
+ "history_last_ok": "2026-10-23T00:03:18Z",
+ "market_last": "2026-10-23T00:03:18Z",
+ "raw_last": "2026-10-23T00:03:18Z",
+ "last_ingest_ok": "2026-10-23T00:03:18Z",
+ "data_observed_at": "2026-10-23T00:03:18Z",
+ "last_archive": "2026-10-23T00:03:18Z",
+ "last_model_ok": "2026-10-23T00:03:18Z",
+ "model_inputs_hash": "d1ea1fc4b6d41185",
+ "blanks_doubles": {
+  "8": {
+   "doubles": [],
+   "blanks": []
+  },
+  "9": {
+   "doubles": [],
+   "blanks": []
+  },
+  "10": {
+   "doubles": [],
+   "blanks": []
+  },
+  "11": {
+   "doubles": [],
+   "blanks": []
+  },
+  "12": {
+   "doubles": [],
+   "blanks": []
+  }
+ },
+ "last_alert_check": "2026-10-23T00:03:18Z",
+ "consistency": [
+  {
+   "check": "squad has 15 known players",
+   "ok": true,
+   "detail": "15 ids"
+  },
+  {
+   "check": "≤3 per club",
+   "ok": true,
+   "detail": "{5: 2, 1: 1, 7: 1, 8: 1, 16: 3, 14: 1, 15: 1, 13: 1, 6: 1, 19: 1, 12: 2}"
+  },
+  {
+   "check": "fixtures cover GW1..38",
+   "ok": true,
+   "detail": "38 GWs"
+  },
+  {
+   "check": "380 fixtures total",
+   "ok": true,
+   "detail": "380"
+  },
+  {
+   "check": "projections within [0,40]",
+   "ok": true,
+   "detail": "0 out of range"
+  },
+  {
+   "check": "projection age < 24h",
+   "ok": true,
+   "detail": "0.0h"
+  }
+ ],
+ "last_validate_ok": "2026-10-23T00:03:18Z",
+ "consecutive_failures": 0,
+ "warnings": [],
+ "health": "ok",
+ "quota": {
+  "month": "2026-10",
+  "runs": 1,
+  "est_billable_minutes": 1,
+  "private_repo_allowance": 2000,
+  "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
+ },
+ "freshness": "current",
+ "data_age_minutes": 0.0
+}
