@@ -137,7 +137,7 @@ def project(players, fmap, fx, gws, cfg, today: date, squad_ids=()):
     rng = np.random.default_rng(mc.get("seed", 8))
     ns = int(mc.get("simulations", 6000))
     squad = set(squad_ids)
-    res = {}
+    res, sims = {}, {}
     for i, p in players.items():
         if p["pos"] not in GP:
             continue
@@ -149,6 +149,7 @@ def project(players, fmap, fx, gws, cfg, today: date, squad_ids=()):
         if p["mins"] > 0 and (i in squad or sum(b) >= 8 or p["own"] >= 5):
             sim = simulate(qb, ns, rng)
             g1, s3, s5 = sim[:, 0], sim[:, :3].sum(1), sim.sum(1)
+            sims[i] = g1
             rec.update(u1=round(float(np.percentile(g1, 90)), 1), u3=round(float(np.percentile(s3, 90)), 1),
                        u5=round(float(np.percentile(s5, 90)), 1), mc1=round(float(g1.mean()), 2),
                        h1=round(float((g1 >= 10).mean()), 3), h3=round(float((s3 >= 25).mean()), 3),
@@ -162,7 +163,7 @@ def project(players, fmap, fx, gws, cfg, today: date, squad_ids=()):
                        "Low" if p["mins"] < 270 or p["status"] in ("i", "s", "u", "n") else "Medium")
         rec["ovr"] = ovr[i]["source"] if i in ovr else None
         res[i] = rec
-    return res
+    return res, sims
 
 
 # ------------------------------------------------------------------ squad decisions
@@ -261,6 +262,49 @@ def transfer_search(squad, players, proj, bank, sell, n=3, top=40, ft=1):
     pairs.sort(key=lambda s: -s["net"])
     return {"horizon": n, "current_value": round(cur_val, 2), "best_per_out": ranked[:15], "singles": singles[:25],
             "pairs": pairs[:10]}
+
+
+def dream_team(players, proj, k=0, per_pos=25, max_club=3):
+    """Highest-xP valid XI for GW index k (formation rules, max 3 per club, no budget limit)."""
+    pool = {pos: sorted((i for i in proj if players.get(i, {}).get("pos") == pos and players[i]["status"] not in ("u", "n")),
+                        key=lambda i: -proj[i]["b"][k])[:per_pos] for pos in (1, 2, 3, 4)}
+    best = None
+    for d, m, f in FORMS:
+        need = {1: 1, 2: d, 3: m, 4: f}
+        cand = sorted((i for pos in pool for i in pool[pos]), key=lambda i: -proj[i]["b"][k])
+        got, clubs = {1: [], 2: [], 3: [], 4: []}, {}
+        for i in cand:
+            pos, t = players[i]["pos"], players[i]["team"]
+            if len(got[pos]) < need[pos] and clubs.get(t, 0) < max_club:
+                got[pos].append(i)
+                clubs[t] = clubs.get(t, 0) + 1
+        xi = got[1] + got[2] + got[3] + got[4]
+        if len(xi) != 11:
+            continue
+        v = sum(proj[i]["b"][k] for i in xi)
+        if best is None or v > best[0]:
+            best = (v, xi, f"{d}-{m}-{f}")
+    if not best:
+        return None
+    v, xi, form = best
+    cap = max(xi, key=lambda i: proj[i]["b"][k])
+    return {"xi": xi, "formation": form, "captain": cap, "xp": round(v + proj[cap]["b"][k], 2),
+            "cost": round(sum(players[i]["cost"] for i in xi), 1)}
+
+
+def team_distribution(xi, captain, proj, sims, k=0, thresholds=(40, 50, 60, 70, 80)):
+    """Distribution of a lineup's GW points from the per-player Monte-Carlo draws (captain doubled).
+    Players are simulated independently, so the spread is somewhat understated (no team/match correlation)."""
+    n = len(next(iter(sims.values()))) if sims else 0
+    if not n:
+        return None
+    tot = np.zeros(n)
+    for i in xi + [captain]:
+        tot += sims[i] if i in sims else proj.get(i, {"b": [0] * (k + 1)})["b"][k]
+    return {"mean": round(float(tot.mean()), 1), "p10": round(float(np.percentile(tot, 10)), 0),
+            "p50": round(float(np.percentile(tot, 50)), 0), "p90": round(float(np.percentile(tot, 90)), 0),
+            "prob": {str(t): round(float((tot >= t).mean()), 3) for t in thresholds},
+            "note": "independent-player simulation; real spread is wider"}
 
 
 def free_transfers(history: dict | None, upto_gw: int) -> int | None:

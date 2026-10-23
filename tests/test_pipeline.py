@@ -271,3 +271,19 @@ def test_deadline_moved_alert(env, monkeypatch):
     al = [json.loads(l) for l in open(d / "state" / "alerts.jsonl")]
     mv = [a for a in al if a["key"].startswith("deadline-moved|9|")]
     assert len(mv) == 1 and "15:30 EET" in mv[0]["title"]
+
+
+def test_best_xi_distribution_and_elite(env):
+    fake, d = env
+    R.main(["auto", "--dry-notify"])
+    pr = json.loads((d / "public" / "dashboard.json").read_text())["projection"]
+    dr = pr["dream"]
+    assert len(dr["xi"]) == 11 and dr["captain"] in dr["xi"] and dr["xp"] > pr["lineups"][0]["xp"]
+    from collections import Counter
+    teams = Counter(p["t"] for p in pr["players"] if p["id"] in dr["xi"])
+    assert max(teams.values()) <= 3
+    dist = pr["lineups"][0]["dist"]
+    assert dist["p10"] <= dist["p50"] <= dist["p90"] and 0 <= dist["prob"]["60"] <= dist["prob"]["40"] <= 1
+    el = pr["elite"]
+    assert el["sample"] == 12 and el["players"][0]["id"] == 411 and el["players"][0]["eo"] == 200.0
+    assert len(el["template"]["xi"]) == 11

@@ -13,6 +13,7 @@ import traceback
 from datetime import timedelta
 
 from . import alerts as AL
+from . import elite as EL
 from . import model as M
 from . import normalize as N
 from . import notify as NT
@@ -184,7 +185,7 @@ def run_model(ctx, d):
         return None
     gws = [g for g in range(gw["next"], min(38, gw["next"] + cfg["model"]["horizon"] - 1) + 1)]
     fmap = N.fixture_map(d["fx"], gws)
-    proj = M.project(d["players"], fmap, d["fx"], gws, cfg, ctx.now.date(), d["squad"])
+    proj, sims = M.project(d["players"], fmap, d["fx"], gws, cfg, ctx.now.date(), d["squad"])
     sell = {int(k): v for k, v in cfg["squad"]["selling_price_estimates"].items()}
     plr = d["players"]
     lineups = []
@@ -199,6 +200,11 @@ def run_model(ctx, d):
     caps = sorted((i for i in d["squad"] if i in proj), key=lambda i: -proj[i]["b"][0])[:6]
     cap_pool = sorted((i for i in proj if proj[i].get("u1") is not None), key=lambda i: -proj[i]["b"][0])[:15]
     l0 = lineups[0] or {}
+    dream = M.dream_team(plr, proj, 0)
+    if l0:
+        l0["dist"] = M.team_distribution(l0["xi"], l0["captain"], proj, sims)
+    if dream:
+        dream["dist"] = M.team_distribution(dream["xi"], dream["captain"], proj, sims)
     dec = {"gw": gws[0], "model": M.VERSION, "captain": l0.get("captain"),
            "captain_name": plr[l0["captain"]]["name"] if l0.get("captain") else None,
            "captain_xp": proj[l0["captain"]]["b"][0] if l0.get("captain") else None,
@@ -216,7 +222,7 @@ def run_model(ctx, d):
            "squad": d["squad"], "squad_source": d["squad_src"], "bank": d["bank"], "free_transfers_est": ft,
            "selling_prices": "estimates from config (real values need the owner's signed-in session)",
            "projections": proj, "lineups": lineups, "transfers": tr, "captain_squad": caps, "captain_pool": cap_pool,
-           "blanks_doubles": bd, "fixtures": {g: fmap[g] for g in gws}, "decision": dec,
+           "blanks_doubles": bd, "fixtures": {g: fmap[g] for g in gws}, "decision": dec, "dream": dream,
            "overrides": {k: v["source"] for k, v in M.active_overrides(cfg, ctx.now.date()).items()}}
     hrs = (datetime_from(gw["next_deadline"]) - ctx.now).total_seconds() / 3600 if gw.get("next_deadline") else 99
     archive = ctx.due("last_archive", 24 * 60 - 5) or (0 < hrs <= cfg["intervals"]["archive_deadline_hours"]
@@ -319,7 +325,11 @@ def write_public(ctx, d, proj_out):
     st["data_age_minutes"] = round(age, 1) if age is not None else None
     slim = None
     if lp:
-        keep = set(lp["squad"]) | set(cfg["watchlist"]["ids"]) | set(lp["captain_pool"])
+        elite = read_json(p("latest", "elite.json"))
+        dream = lp.get("dream") or {}
+        keep = (set(lp["squad"]) | set(cfg["watchlist"]["ids"]) | set(lp["captain_pool"]) | set(dream.get("xi", []))
+                | {r["id"] for r in (elite or {}).get("players", [])[:40]}
+                | set(((elite or {}).get("template") or {}).get("xi", [])))
         ranked = sorted(lp["projections"].items(), key=lambda kv: -sum(kv[1]["b"]))
         top = [int(i) for i, _ in ranked[:150]]
         ids = list(dict.fromkeys(list(keep) + top))
@@ -353,7 +363,9 @@ def write_public(ctx, d, proj_out):
                               "pairs": [{**x, "moves_n": [[tname(a), tname(b)] for a, b in x["moves"]]} for x in tr["pairs"]]},
                 "blanks_doubles": {g: {k: [teams.get(t, t) for t in v] for k, v in x.items()}
                                    for g, x in lp["blanks_doubles"].items()},
-                "fixtures": fxt, "decision": lp["decision"], "overrides": lp["overrides"]}
+                "fixtures": fxt, "decision": lp["decision"], "overrides": lp["overrides"],
+                "dream": ({**dream, "xi_n": [tname(i) for i in dream["xi"]]} if dream else None),
+                "elite": elite, "experts": read_json(p("experts", "latest.json"))}
     gwj = d["gw"] if d else read_json(p("latest", "gw.json"), {})
     alerts = read_jsonl(p("state", "alerts.jsonl"))[-60:]
     val = [read_json(p("validation", f"gw{g}.json")) for g in (read_json(p("validation", "scored.json"), []) or [])]
@@ -415,6 +427,19 @@ def main(argv=None):
     d, proj_out, fatal = None, None, None
     try:
         d = ingest(ctx)
+        # elite-manager template (top of the overall league), every 6 h or when a new GW's picks become public
+        cur = d["gw"].get("current")
+        if cur and (ctx.due("elite_last", 360) or ctx.status.get("elite_gw") != cur):
+            try:
+                el = EL.build(ctx, d["players"], cur)
+                if el:
+                    write_json(p("latest", "elite.json"), el)
+                    write_json(p("history", "elite", f"gw{cur}.json"), el)
+                    ctx.status["elite_last"], ctx.status["elite_gw"] = iso(now), cur
+                    ctx.src_ok("elite", {"status": 200, "attempts": 1})
+            except Exception as e:  # optional source: never fails the run
+                ctx.status["sources"].setdefault("elite", {})["last_error"] = f"{iso(now)} {e}"
+                ctx.warnings.append(f"elite: {e}")
         mh = material_hash(d["players"], d["fx"], d["squad"])
         hrs = None
         if d["gw"].get("next_deadline"):

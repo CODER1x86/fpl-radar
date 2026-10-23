@@ -65,6 +65,12 @@ def picks():
             "entry_history": {"bank": 1, "value": 1003, "event": 7}}
 
 
+def elite_picks():
+    ids = [1, 4, 8, 5, 115, 427, 124, 13, 40, 411, 165, 68, 330, 173, 346]   # synthetic test template
+    return {"active_chip": None, "picks": [{"element": e, "position": k + 1, "multiplier": (2 if e == 411 else 1) if k < 11 else 0,
+                                            "is_captain": e == 411} for k, e in enumerate(ids)]}
+
+
 def history():
     return {"current": [{"event": g, "event_transfers": 1 if g in (3, 5) else 0} for g in range(1, 8)], "chips": []}
 
@@ -97,7 +103,13 @@ class Fake:
                     self.wfile.write(b); return
                 body = {"/bootstrap-static/": lambda: fake.boot, "/fixtures/": lambda: fake.fx,
                         "/entry/4969994/event/7/picks/": picks, "/entry/4969994/history/": history,
-                        "/event/7/live/": lambda: live(fake.boot)}.get(path)
+                        "/event/7/live/": lambda: live(fake.boot),
+                        "/leagues-classic/314/standings/?page_standings=1": lambda: {"standings": {"results": [
+                            {"entry": 1000 + k, "rank": k + 1} for k in range(12)]}},
+                        "/leagues-classic/314/standings/?page_standings=2": lambda: {"standings": {"results": []}},
+                        }.get(path)
+                if body is None and path.startswith("/entry/10") and path.endswith("/event/7/picks/"):
+                    body = elite_picks
                 if not body:
                     self.send_response(404); self.end_headers(); return
                 raw = json.dumps(body()).encode()
