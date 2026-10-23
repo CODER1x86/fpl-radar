@@ -21,3 +21,9 @@
 {"ts":"2026-10-23T14:26:41Z","id":499,"name":"Pedro Porro","from":["i",0],"to":["a",100],"news":"","news_added":"2026-09-19T12:00:08.823872Z"}
 {"ts":"2026-10-23T14:26:41Z","id":502,"name":"Robertson","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-19T22:30:08.861525Z"}
 {"ts":"2026-10-23T14:26:41Z","id":506,"name":"Udogie","from":["d",75],"to":["i",0],"news":"Knee injury - Unknown return date","news_added":"2026-10-19T22:30:08.875960Z"}
+{"ts":"2026-10-23T18:37:08Z","id":53,"name":"Manzambi","from":["d",50],"to":["d",75],"news":"Calf injury - 75% chance of playing","news_added":"2026-10-17T19:30:09.768277Z"}
+{"ts":"2026-10-23T18:37:08Z","id":222,"name":"Strand Larsen","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-23T17:00:09.672494Z"}
+{"ts":"2026-10-23T18:37:08Z","id":343,"name":"James","from":["d",50],"to":["a",100],"news":"","news_added":"2026-10-08T14:00:11.803126Z"}
+{"ts":"2026-10-23T18:37:08Z","id":421,"name":"Heaven","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-20T20:00:09.902224Z"}
+{"ts":"2026-10-23T18:37:08Z","id":634,"name":"Fernandez-Pardo","from":["a",null],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-10-23T14:30:10.429365Z"}
+{"ts":"2026-10-23T18:37:08Z","id":515,"name":"Maddison","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-23T14:30:10.270986Z"}
