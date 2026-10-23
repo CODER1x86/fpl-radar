@@ -113,13 +113,11 @@ jobs:
 
       - uses: actions/upload-pages-artifact@v3
         if: always()
-        continue-on-error: true   # Pages must be enabled once in repo settings (Source: GitHub Actions)
         with:
           path: site
 
       - id: deploy
         if: always()
-        continue-on-error: true
         uses: actions/deploy-pages@v4
 
       - name: Fail visibly if sources failed
