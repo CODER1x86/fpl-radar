@@ -116,6 +116,9 @@ jobs:
         run: |
           mkdir -p site/data
           cp dashboard/* site/
+          V="${GITHUB_SHA::8}"
+          sed -i "s/__APP_VERSION__/$V/" site/index.html
+          echo "{\"v\":\"$V\"}" > site/version.json
           cp data/public/*.json site/data/ 2>/dev/null || echo '{"status":{"health":"failing","freshness":"none"}}' > site/data/dashboard.json
           touch site/.nojekyll
 

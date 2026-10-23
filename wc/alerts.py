@@ -82,12 +82,12 @@ def detect(prev, cur, teams, squad, watch, gw, now, cfg, prev_dec=None, dec=None
                               source=f"Model {dec.get('model')}", observed=obs, impact="your captaincy",
                               action="Review captain before deadline", deadline=dl,
                               confidence="Model output — medium"))
-        a, b = prev_dec.get("top_transfer"), dec.get("top_transfer")
-        if b and a != b and dec.get("top_transfer_gain", 0) >= 2.0:
-            out.append(_alert(f"transfer|{gw.get('next')}|{b}", "medium", "model", f"Top transfer now: {b}",
-                              f"3-GW baseline gain +{dec.get('top_transfer_gain')} (was: {a or 'none'})",
-                              source=f"Model {dec.get('model')}", observed=obs, impact="transfer plan",
-                              action="Compare with your planned moves", deadline=dl,
+        if dec.get("plan_key") and prev_dec.get("plan_key") and dec["plan_key"] != prev_dec["plan_key"]:
+            out.append(_alert(f"plan|{gw.get('next')}|{dec['plan_key']}", "high" if hrs is not None and hrs < 48 else "medium",
+                              "plan", f"GW{gw.get('next')} plan updated — new best final team",
+                              dec.get("plan_text", ""), source=f"Model {dec.get('model')} (re-run after new data)",
+                              observed=obs, impact="your transfers / XI / bench / captain",
+                              action="Apply the updated plan in the FPL app (open FPL Radar → GW plan)", deadline=dl,
                               confidence="Model output — medium"))
     # doubles / blanks newly visible
     if prev_bd is not None and bd is not None:
@@ -121,8 +121,8 @@ def detect(prev, cur, teams, squad, watch, gw, now, cfg, prev_dec=None, dec=None
              f"{' (+' + str(dec.get('top_transfer_gain')) + ' xP over 3 GWs)' if dec and dec.get('top_transfer') else ''}."
              if dec else ""),
             source="FPL official API (events.deadline_time, UTC)", observed=obs, impact="all GW decisions",
-            action=r["action"], deadline=dl,
-            confidence="Deadline: official. Recommendations: model output"))
+            action=r["action"] + (f". Current best plan — {dec.get('plan_text')}" if dec and dec.get("plan_text") else ""),
+            deadline=dl, confidence="Deadline: official. Recommendations: model output"))
     out.sort(key=lambda a: SEV_ORDER[a["severity"]])
     return out
 

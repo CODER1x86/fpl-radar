@@ -287,3 +287,17 @@ def test_best_xi_distribution_and_elite(env):
     el = pr["elite"]
     assert el["sample"] == 12 and el["players"][0]["id"] == 411 and el["players"][0]["eo"] == 200.0
     assert len(el["template"]["xi"]) == 11
+
+
+def test_news_triggers_plan_update_alert(env, monkeypatch):
+    fake, d = env
+    monkeypatch.setenv("WC_NOW", "2026-10-23T09:00:00Z")      # 12:00 Cairo, 8.5 h before the GW8 deadline
+    R.main(["auto", "--dry-notify"])
+    fake.mutate(411, status="i", chance_of_playing_next_round=0, news="Hamstring injury - Unknown return date")
+    monkeypatch.setenv("WC_NOW", "2026-10-23T09:10:00Z")
+    R.main(["auto", "--dry-notify"])
+    al = [json.loads(l) for l in open(d / "state" / "alerts.jsonl")]
+    inj = [a for a in al if a["type"] == "availability" and a["player"] == "Haaland"]
+    plan = [a for a in al if a["type"] == "plan"]
+    assert inj and inj[0]["severity"] == "critical"
+    assert plan and "Captain" in plan[0]["what"] and "Haaland, " not in plan[0]["what"].split("XI")[1].split("Bench")[0]

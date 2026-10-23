@@ -253,6 +253,14 @@ def run_model(ctx, d):
            "captain_name": plr[l0["captain"]]["name"] if l0.get("captain") else None,
            "captain_xp": proj[l0["captain"]]["b"][0] if l0.get("captain") else None,
            "vice": l0.get("vice"), "formation": l0.get("formation")}
+    if pl0:
+        nm = lambda i: plr[i]["name"] if i in plr else str(i)
+        moves_txt = "; ".join(f"{nm(m['out'])} -> {nm(m['in'])}" for m in plan["moves"]) or "no transfer (roll)"
+        dec["plan_text"] = (f"Transfers: {moves_txt}. XI ({pl0['formation']}): {', '.join(nm(i) for i in pl0['xi'])}. "
+                            f"Bench: {', '.join(nm(i) for i in pl0['bench'])}. Captain {nm(pl0['captain'])}, vice {nm(pl0['vice'])}.")
+        dec["plan_key"] = digest([[m["out"], m["in"]] for m in plan["moves"]] + [sorted(pl0["xi"]), pl0["bench"],
+                                                                                pl0["captain"], pl0["vice"]])
+        dec["plan_ins"] = [m["in"] for m in plan["moves"]]
     if plan["moves"]:
         dec["top_transfer"] = " + ".join(f"{plr[m['out']]['name']} -> {plr[m['in']]['name']}" for m in plan["moves"])
         dec["top_transfer_gain"] = plan["net"]
@@ -515,7 +523,7 @@ def main(argv=None):
         hrs = None
         if d["gw"].get("next_deadline"):
             hrs = (parse_iso(d["gw"]["next_deadline"]) - now).total_seconds() / 3600
-        gap = cfg["intervals"]["model_min_gap_minutes"]
+        gap = cfg["intervals"]["model_min_gap_minutes"] if (hrs is None or hrs > 24) else 5   # faster near deadline
         need = (a.force_model or a.mode == "validate" or read_json(p("latest", "projection.json.gz")) is None or ctx.due("last_model_ok", cfg["intervals"]["model_max_age_minutes"])
                 or (mh != ctx.status.get("model_inputs_hash") and ctx.due("last_model_ok", gap)))
         if need:
@@ -528,7 +536,9 @@ def main(argv=None):
         # alerts
         prev_bd = ctx.status.get("blanks_doubles")
         bd = proj_out["blanks_doubles"] if proj_out else None
-        found = AL.detect(d["prev"], d["players"], d["teams"], d["squad"], cfg["watchlist"]["ids"], d["gw"], now,
+        cur_dec = proj_out["decision"] if proj_out else read_json(p("latest", "decision.json")) or {}
+        watch_ids = list(cfg["watchlist"]["ids"]) + list(cur_dec.get("plan_ins") or [])
+        found = AL.detect(d["prev"], d["players"], d["teams"], d["squad"], watch_ids, d["gw"], now,
                           cfg, prev_dec, proj_out["decision"] if proj_out else read_json(p("latest", "decision.json")),
                           prev_bd, bd)
         known = ctx.status.get("deadlines") or {}
