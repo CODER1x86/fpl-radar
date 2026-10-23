@@ -1,0 +1,107 @@
+{
+ "ts": "2026-10-23T01:00:21Z",
+ "gw": 8,
+ "kind": "shortlist",
+ "squad": [
+  {
+   "id": 82,
+   "name": "Kelleher",
+   "pos": "GKP",
+   "mentions": 1
+  },
+  {
+   "id": 385,
+   "name": "Trafford",
+   "pos": "GKP",
+   "mentions": 1
+  },
+  {
+   "id": 8,
+   "name": "Calafiori",
+   "pos": "DEF",
+   "mentions": 1
+  },
+  {
+   "id": 334,
+   "name": "Muharemović",
+   "pos": "DEF",
+   "mentions": 1
+  },
+  {
+   "id": 31,
+   "name": "Konsa",
+   "pos": "DEF",
+   "mentions": 1
+  },
+  {
+   "id": 87,
+   "name": "Ajer",
+   "pos": "DEF",
+   "mentions": 1
+  },
+  {
+   "id": 173,
+   "name": "Thomas",
+   "pos": "DEF",
+   "mentions": 1
+  },
+  {
+   "id": 480,
+   "name": "Gibbs-White",
+   "pos": "MID",
+   "mentions": 1
+  },
+  {
+   "id": 68,
+   "name": "Tavernier",
+   "pos": "MID",
+   "mentions": 1
+  },
+  {
+   "id": 94,
+   "name": "Schade",
+   "pos": "MID",
+   "mentions": 1
+  },
+  {
+   "id": 453,
+   "name": "Barnes",
+   "pos": "MID",
+   "mentions": 1
+  },
+  {
+   "id": 40,
+   "name": "Rogers",
+   "pos": "MID",
+   "mentions": 1
+  },
+  {
+   "id": 411,
+   "name": "Haaland",
+   "pos": "FWD",
+   "mentions": 1
+  },
+  {
+   "id": 165,
+   "name": "João Pedro",
+   "pos": "FWD",
+   "mentions": 1
+  },
+  {
+   "id": 346,
+   "name": "Calvert-Lewin",
+   "pos": "FWD",
+   "mentions": 1
+  }
+ ],
+ "xi": [],
+ "captain_id": null,
+ "notes": "Fantasy Football Scout early GW8 Scout Picks shortlist (15). Final XI and captain are published on Friday; the app picks the best XI from this shortlist with the model.",
+ "sources": [
+  {
+   "name": "Fantasy Football Scout — GW8 early Scout Picks",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-early-scout-picks-arsenal-trio-two-double-ups",
+   "published": "2026-10-21"
+  }
+ ]
+}
