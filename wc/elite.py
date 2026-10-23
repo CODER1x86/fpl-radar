@@ -54,6 +54,8 @@ def build(ctx, players, current_gw, n_target=100, pause=0.25):
                    for i in own if i in players), key=lambda r: -r["eo"])
     pseudo = {r["id"]: {"b": [r["own"] + r["eo"] / 1000]} for r in rows}   # most-owned XI (EO breaks ties)
     tmpl = M.dream_team(players, pseudo, 0, per_pos=30)
+    if tmpl:
+        tmpl["captain"] = max(tmpl["xi"], key=lambda i: capt.get(i, 0))   # most-captained, not most-owned
     return {"ts": iso(ctx.now), "gw": current_gw, "sample": ok, "league": "Overall (top %d)" % len(entries),
             "players": rows[:60], "template": tmpl, "chips": chips,
             "note": "Picks are public only after a deadline, so this is the elite template at the last deadline."}
