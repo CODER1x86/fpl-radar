@@ -21,7 +21,7 @@ GitHub Pages is available on the Free plan only for public repos; scheduled work
 with no repository activity (data commits count as activity).
 
 ## Decision
-- **Compute & scheduler:** GitHub Actions workflow `radar-pipeline` every 10 minutes + daily validation at 03:23 UTC + manual dispatch.
+- **Compute & scheduler:** GitHub Actions workflow `radar-pipeline` every 5 minutes + daily validation at 03:23 UTC + manual dispatch.
 - **Storage:** `data` branch (versioned, append-only history: prices, status/news changes, hourly market snapshots,
   decisions, alerts, run log, archived projections, forecast-vs-actual). Volatile working state (raw responses,
   last-known-good normalised snapshot, public JSON) in the Actions cache, restored each run.
@@ -34,13 +34,16 @@ with no repository activity (data commits count as activity).
 ## Polling
 | Data | Interval |
 |---|---|
-| bootstrap-static (prices, status, news, ownership, transfers) | every run (~10 min), conditional request |
+| bootstrap-static (prices, status, news, ownership, transfers) | every run (~5 min), conditional request |
 | fixtures | every 3 h |
 | public picks + history | every 6 h, and on gameweek change |
 | market snapshot written to history | hourly |
 | model recalculation | when material inputs change (≥15 min apart) or hourly |
 | full validation + forecast-vs-actual | daily |
 Real latency = schedule delay (GitHub documents delays under load) + ~1 min run.
+
+## Deadline-aware alert timing
+Reminders are planned per gameweek from the API deadline_time (UTC): T-48h, T-24h, T-6h, T-2h and a final check at T-75m. Reminders that would land in quiet hours (01:00-08:00 owner time) move to 30 min before quiet hours start; within 12 h of a deadline quiet hours are ignored for all alerts. Local times use IANA tz data (Africa/Cairo, Europe/London), so DST changes (UK 25 Oct, Egypt night of 29/30 Oct 2026) are applied per date. A changed deadline triggers an alert and a new plan. A delayed run sends only the latest due reminder, never a backlog.
 
 ## Failure recovery
 Timeouts, 4 retries with exponential backoff + jitter, Retry-After honoured, non-JSON “game updating” pages rejected,

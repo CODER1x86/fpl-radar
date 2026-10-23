@@ -11,7 +11,7 @@
 | Decision log + analysis UI | claude.ai Command Center artifact (unchanged) |
 
 ## Schedules
-- `radar-pipeline` every 10 min (`*/10 * * * *`), daily validation `23 3 * * *` (UTC), manual `workflow_dispatch`.
+- `radar-pipeline` every 5 min (`*/5 * * * *`), daily validation `23 3 * * *` (UTC), manual `workflow_dispatch`.
 - Claude scheduled task "WildCard.exe daily FPL brief (cloud)" 08:31 Cairo: reads the data branch, adds news research, republishes the artifact.
 - Scheduled workflows run only on the default branch and may be delayed by GitHub under load; in public repos they are
   disabled after 60 days with no repository activity (data commits prevent this).
@@ -47,10 +47,10 @@ The squad itself is read from the public picks endpoint (team as of the last dea
 
 ## Retention / growth control
 Raw bootstrap: one per day (~170 KB gz). Market snapshots hourly, compressed per day. Projections archived daily plus
-hourly in the last 3 h before each deadline. Heartbeat-only changes are committed hourly, not every run.
+hourly in the last 3 h before each deadline. Heartbeat-only changes are committed every 15 min, not every run.
 
 ## Known limitations
 - Prices/ownership/news are from the official API only; press-conference news is added by the daily Claude task, not the pipeline.
 - Real selling prices, bank changes made after the last deadline, and pending transfers are private to the signed-in owner; the pipeline uses estimates and the team at the last deadline.
-- "Real-time" means every ~10 min, subject to GitHub schedule delays.
+- "Real-time" means every ~5 min, subject to GitHub schedule delays.
 - Price-change *predictions* are not produced; only observed changes and net-transfer counts.
