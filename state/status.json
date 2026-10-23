@@ -118,5 +118,16 @@
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
  "freshness": "current",
- "data_age_minutes": 0.0
+ "data_age_minutes": 0.0,
+ "last_delivery": {
+  "ts": "2026-10-23T00:05:15Z",
+  "test": true,
+  "records": [
+   {
+    "channel": "github_issue",
+    "ok": true,
+    "status": 201
+   }
+  ]
+ }
 }
