@@ -148,12 +148,17 @@
       return row; }) };
   }
   // Build a projection object with the same shape the UI already renders for the owner's server-side plan.
-  function buildForTeam(pj, base, team) {
+  function buildForTeam(pj, base, team, done = []) {
     const P = players(pj), gws = pj.gws, W = [1, 0.9, 0.8, 0.7, 0.6].slice(0, gws.length);
-    const squad = team.picks.picks.map(x => x.element).filter(i => P[i]);
-    const bank = team.picks.entry_history.bank / 10, ft = freeTransfers(team.history, gws[0]);
-    const { out: sell, est } = sellingPrices(squad, team.transfers, P);
-    const plan = planTransfers(squad, P, bank, sell, ft ?? 1, W);
+    const squad0 = team.picks.picks.map(x => x.element).filter(i => P[i]);
+    let bank = team.picks.entry_history.bank / 10; const ft0 = freeTransfers(team.history, gws[0]) ?? 1;
+    const { out: sell, est } = sellingPrices(squad0, team.transfers, P);
+    // apply transfers the manager says he already made this gameweek (not public until the deadline)
+    let squad = squad0.slice(); const applied = [];
+    for (const [o, i] of done) { if (!squad.includes(o) || squad.includes(i) || !P[i]) continue;
+      bank = bank + (sell[o] ?? P[o].c) - P[i].c; squad = squad.filter(x => x !== o).concat(i); sell[i] = P[i].c; applied.push({ out: o, in: i }); }
+    const ft = Math.max(0, ft0 - applied.length), hitsDone = Math.max(0, applied.length - ft0);
+    const plan = planTransfers(squad, P, bank, sell, ft, W, 1.5, 4, ft + 1);
     const nm = i => P[i] ? P[i].n : String(i);
     const lus = gws.map((g, k) => { const r = bestXI(plan.squad, P, k); if (r) Object.assign(r, { gw: g, xi_n: r.xi.map(nm), bench_n: r.bench.map(nm), captain_n: nm(r.captain), vice_n: nm(r.vice) }); return r; });
     if (lus[0]) lus[0].dist = dist(lus[0].xi, lus[0].captain, P);
@@ -169,7 +174,8 @@
       Object.assign(scen('experts', g('experts').xi, g('experts').captain) || {}, { from_shortlist: g('experts').from_shortlist })].filter(s => s && s.xi);
     const mine = new Set(squad), rows = Object.values(P).map(p => ({ ...p, c: p.c, mine: mine.has(p.id), watch: false }));
     return { ...base, players: rows, squad, bank, free_transfers_est: ft, selling_estimated: Object.values(est).some(Boolean),
-      lineups: cur, plan: { ...plan, moves: plan.moves.map(m => ({ ...m, out_n: nm(m.out), in_n: nm(m.in) })),
+      lineups: cur, plan: { ...plan, done: applied.map(m => ({ ...m, out_n: nm(m.out), in_n: nm(m.in) })), hits_done: hitsDone, ft_start: ft0,
+        bank_now: +bank.toFixed(1), moves: plan.moves.map(m => ({ ...m, out_n: nm(m.out), in_n: nm(m.in) })),
         stop: plan.stop && plan.stop.next_out ? { ...plan.stop, next_out_n: nm(plan.stop.next_out), next_in_n: nm(plan.stop.next_in) } : plan.stop, lineups: lus },
       chips: chipsPlan(plan.squad, P, gws, team.history, plan.bank_after, plan.selling, W), scenarios,
       transfers: { horizon: 5, best_per_out: plan.bestPerOut.slice(0, 15).map(s => ({ ...s, out_n: nm(s.out), in_n: nm(s.in) })), pairs: [] } };
