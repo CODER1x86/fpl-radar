@@ -107,7 +107,7 @@ jobs:
         if: always()
         run: |
           mkdir -p site/data
-          cp dashboard/index.html site/
+          cp dashboard/* site/
           cp data/public/*.json site/data/ 2>/dev/null || echo '{"status":{"health":"failing","freshness":"none"}}' > site/data/dashboard.json
           touch site/.nojekyll
 
