@@ -199,20 +199,63 @@ def run_model(ctx, d):
     tr = M.transfer_search(d["squad"], plr, proj, bank, sell, n=3, ft=ft or 1)
     caps = sorted((i for i in d["squad"] if i in proj), key=lambda i: -proj[i]["b"][0])[:6]
     cap_pool = sorted((i for i in proj if proj[i].get("u1") is not None), key=lambda i: -proj[i]["b"][0])[:15]
+    weights = cfg["model"].get("plan_weights", [1.0, 0.9, 0.8, 0.7, 0.6])[:len(gws)]
+    plan = M.plan_transfers(d["squad"], plr, proj, bank, sell, ft if ft is not None else 1, weights,
+                            roll_value=cfg["model"].get("roll_value", 1.5))
+    after = plan["squad"]
+    plan_lineups = []
+    for k, g in enumerate(gws):
+        r = M.best_xi(after, plr, lambda i, k=k: proj[i]["b"][k] if i in proj else 0.0)
+        if r:
+            r["gw"] = g
+        plan_lineups.append(r)
+    if plan_lineups[0]:
+        plan_lineups[0]["dist"] = M.team_distribution(plan_lineups[0]["xi"], plan_lineups[0]["captain"], proj, sims)
+    plan["lineups"] = plan_lineups
+    chips = M.chips_plan(after, plr, proj, gws, d["history"], plan["bank_after"], plan["selling"], weights)
     l0 = lineups[0] or {}
     dream = M.dream_team(plr, proj, 0)
     if l0:
         l0["dist"] = M.team_distribution(l0["xi"], l0["captain"], proj, sims)
     if dream:
         dream["dist"] = M.team_distribution(dream["xi"], dream["captain"], proj, sims)
+    scen = []
+    pl0 = plan_lineups[0] or {}
+    for key, xi, cap in (("plan", pl0.get("xi", []), pl0.get("captain")), ("current", l0.get("xi", []), l0.get("captain")),
+                         ("model", (dream or {}).get("xi", []), None)):
+        s = M.scenario(key, xi, plr, proj, sims, d["squad"], cap)
+        if s:
+            scen.append(s)
+    fhxi = M.budget_xi(plr, proj, 0, (bank or 0) + sum(sell.get(i, plr[i]["cost"]) for i in d["squad"]) - 16.5)
+    if fhxi:
+        s = M.scenario("budget", fhxi["xi"], plr, proj, sims, d["squad"])
+        if s:
+            scen.append(s)
+    el = read_json(p("latest", "elite.json"))
+    if el and el.get("template"):
+        s = M.scenario("elite", el["template"]["xi"], plr, proj, sims, d["squad"], el["template"].get("captain"))
+        if s:
+            s["source_gw"] = el["gw"]
+            scen.append(s)
+    ex = read_json(p("experts", "latest.json"))
+    if ex and ex.get("gw") == gws[0]:
+        ids = [x["id"] for x in ex.get("xi") or [] if x.get("id") in plr]
+        if not ids and ex.get("squad"):
+            r0 = M.best_xi([x["id"] for x in ex["squad"] if x.get("id") in plr], plr,
+                           lambda i: proj[i]["b"][0] if i in proj else 0.0)
+            ids = r0["xi"] if r0 else []
+        s = M.scenario("experts", ids, plr, proj, sims, d["squad"], ex.get("captain_id"))
+        if s:
+            s["from_shortlist"] = not ex.get("xi")
+            scen.append(s)
+    l0 = pl0 or l0
     dec = {"gw": gws[0], "model": M.VERSION, "captain": l0.get("captain"),
            "captain_name": plr[l0["captain"]]["name"] if l0.get("captain") else None,
            "captain_xp": proj[l0["captain"]]["b"][0] if l0.get("captain") else None,
            "vice": l0.get("vice"), "formation": l0.get("formation")}
-    best = tr["best_per_out"][0] if tr["best_per_out"] else None
-    if best and best["gain"] > 0:
-        dec["top_transfer"] = f"{plr[best['out']]['name']} -> {plr[best['in']]['name']}"
-        dec["top_transfer_gain"] = best["gain"]
+    if plan["moves"]:
+        dec["top_transfer"] = " + ".join(f"{plr[m['out']]['name']} -> {plr[m['in']]['name']}" for m in plan["moves"])
+        dec["top_transfer_gain"] = plan["net"]
     prev_dec = read_json(p("latest", "decision.json"))
     if prev_dec and prev_dec.get("captain") in proj and prev_dec.get("captain") != dec["captain"]:
         dec["captain_alt_xp"] = proj[prev_dec["captain"]]["b"][0]
@@ -222,7 +265,7 @@ def run_model(ctx, d):
            "squad": d["squad"], "squad_source": d["squad_src"], "bank": d["bank"], "free_transfers_est": ft,
            "selling_prices": "estimates from config (real values need the owner's signed-in session)",
            "projections": proj, "lineups": lineups, "transfers": tr, "captain_squad": caps, "captain_pool": cap_pool,
-           "blanks_doubles": bd, "fixtures": {g: fmap[g] for g in gws}, "decision": dec, "dream": dream,
+           "blanks_doubles": bd, "fixtures": {g: fmap[g] for g in gws}, "decision": dec, "dream": dream, "plan": plan, "chips": chips, "scenarios": scen,
            "overrides": {k: v["source"] for k, v in M.active_overrides(cfg, ctx.now.date()).items()}}
     hrs = (datetime_from(gw["next_deadline"]) - ctx.now).total_seconds() / 3600 if gw.get("next_deadline") else 99
     archive = ctx.due("last_archive", 24 * 60 - 5) or (0 < hrs <= cfg["intervals"]["archive_deadline_hours"]
@@ -327,7 +370,14 @@ def write_public(ctx, d, proj_out):
     if lp:
         elite = read_json(p("latest", "elite.json"))
         dream = lp.get("dream") or {}
-        keep = (set(lp["squad"]) | set(cfg["watchlist"]["ids"]) | set(lp["captain_pool"]) | set(dream.get("xi", []))
+        extra = set()
+        for s in lp.get("scenarios") or []:
+            extra |= set(s["xi"])
+        for m in (lp.get("plan") or {}).get("moves", []):
+            extra.add(m["in"])
+        ex = read_json(p("experts", "latest.json")) or {}
+        extra |= {x["id"] for x in (ex.get("squad") or []) + (ex.get("xi") or []) if x.get("id")}
+        keep = extra | (set(lp["squad"]) | set(cfg["watchlist"]["ids"]) | set(lp["captain_pool"]) | set(dream.get("xi", []))
                 | {r["id"] for r in (elite or {}).get("players", [])[:40]}
                 | set(((elite or {}).get("template") or {}).get("xi", [])))
         ranked = sorted(lp["projections"].items(), key=lambda kv: -sum(kv[1]["b"]))
@@ -343,7 +393,8 @@ def write_public(ctx, d, proj_out):
             q = pl[i]
             rows.append({"id": i, "n": q["name"], "t": teams.get(q["team"], q["team"]), "pos": N.POS[q["pos"]],
                          "c": q["cost"], "st": q["status"], "ch": q["chance"], "news": q["news"], "own": q["own"],
-                         "pts": q["pts"], "mine": i in lp["squad"], "watch": i in cfg["watchlist"]["ids"], **r})
+                         "pts": q["pts"], "mine": i in lp["squad"], "watch": i in cfg["watchlist"]["ids"],
+                         **{k: v for k, v in r.items() if k != "c"}, "cons": r.get("c")})
         tname = lambda i: pl[i]["name"] if i in pl else str(i)
         lus = []
         for l in lp["lineups"]:
@@ -365,7 +416,9 @@ def write_public(ctx, d, proj_out):
                                    for g, x in lp["blanks_doubles"].items()},
                 "fixtures": fxt, "decision": lp["decision"], "overrides": lp["overrides"],
                 "dream": ({**dream, "xi_n": [tname(i) for i in dream["xi"]]} if dream else None),
-                "elite": elite, "experts": read_json(p("experts", "latest.json"))}
+                "elite": elite, "experts": read_json(p("experts", "latest.json")),
+                "plan": plan_pub(lp.get("plan"), tname), "chips": lp.get("chips"),
+                "scenarios": [{**s, "xi_n": [tname(i) for i in s["xi"]]} for s in lp.get("scenarios") or []]}
     gwj = d["gw"] if d else read_json(p("latest", "gw.json"), {})
     alerts = read_jsonl(p("state", "alerts.jsonl"))[-60:]
     val = [read_json(p("validation", f"gw{g}.json")) for g in (read_json(p("validation", "scored.json"), []) or [])]
@@ -384,6 +437,24 @@ def write_public(ctx, d, proj_out):
     write_json(p("public", "dashboard.json"), {"status": status, "gw": gwj, "projection": slim, "alerts": alerts,
                                                 "prices": prices, "validation": [v for v in val if v],
                                                 "consistency": st.get("consistency")})
+
+
+def plan_pub(plan, tname):
+    if not plan:
+        return None
+    out = {k: v for k, v in plan.items() if k not in ("selling", "lineups")}
+    out["moves"] = [{**m, "out_n": tname(m["out"]), "in_n": tname(m["in"])} for m in plan["moves"]]
+    if isinstance(plan.get("stop"), dict):
+        out["stop"] = {**plan["stop"], "next_out_n": tname(plan["stop"]["next_out"]), "next_in_n": tname(plan["stop"]["next_in"])}
+    lus = []
+    for l in plan.get("lineups") or []:
+        if l:
+            lus.append({**l, "xi_n": [tname(i) for i in l["xi"]], "bench_n": [tname(i) for i in l["bench"]],
+                        "captain_n": tname(l["captain"]), "vice_n": tname(l["vice"])})
+        else:
+            lus.append(None)
+    out["lineups"] = lus
+    return out
 
 
 def quota(ctx):

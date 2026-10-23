@@ -63,6 +63,8 @@ horizon = 5
 simulations = 6000
 seed = 8
 europe_teams = [1, 15, 14, 2, 3]   # ARS, MCI, LIV, AVL, BOU — rotation haircut
+plan_weights = [1.0, 0.9, 0.8, 0.7, 0.6]   # transfer plan values near gameweeks more
+roll_value = 1.5                           # xP a banked free transfer is worth (move must beat this)
 
 # Manual availability overrides: fraction of normal start probability for GW start_gw, start_gw+1, ...
 # Each override must carry a source and an expiry; expired overrides are ignored automatically.

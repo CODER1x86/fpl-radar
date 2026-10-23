@@ -330,3 +330,199 @@ def free_transfers(history: dict | None, upto_gw: int) -> int | None:
 
 def pos_name(p):
     return POS.get(p["pos"], "?")
+
+
+# ------------------------------------------------------------------ gameweek plan, chips, scenarios
+def weighted_value(ids, players, proj, weights):
+    tot = 0.0
+    for k, w in enumerate(weights):
+        r = best_xi(ids, players, lambda i, k=k: proj[i]["b"][k] if i in proj else 0.0)
+        tot += w * (r["xp"] if r else 0.0)
+    return tot
+
+
+def plan_transfers(squad, players, proj, bank, sell, ft, weights, roll_value=1.5, hit=4.0, max_moves=None, top=35):
+    """Greedy multi-transfer plan: keep adding the best single move while its weighted xP gain beats the
+    cost of making it (a banked free transfer is worth `roll_value`; beyond free transfers each costs a -4 hit)."""
+    cur = list(squad)
+    sp = {i: sell.get(i, players[i]["cost"]) for i in cur}
+    money = bank or 0.0
+    base = weighted_value(cur, players, proj, weights)
+    start = base
+    ft = ft if ft is not None else 1
+    max_moves = max_moves if max_moves is not None else ft + 2
+    pool = {}
+    score = lambda i: sum(w * proj[i]["b"][k] for k, w in enumerate(weights)) if i in proj else 0
+    for pos in (1, 2, 3, 4):
+        c = [i for i, p in players.items() if p["pos"] == pos and i in proj and p["status"] not in ("u", "n")]
+        pool[pos] = sorted(c, key=lambda i: -score(i))[:top]
+    moves, stop = [], None
+    while len(moves) < max_moves:
+        tc = {}
+        for x in cur:
+            tc[players[x]["team"]] = tc.get(players[x]["team"], 0) + 1
+        best = None
+        for o in cur:
+            po = players[o]
+            budget = money + sp[o]
+            for i in pool[po["pos"]]:
+                if i in cur or players[i]["cost"] > budget + 1e-9:
+                    continue
+                if players[i]["team"] != po["team"] and tc.get(players[i]["team"], 0) >= 3:
+                    continue
+                v = weighted_value([x for x in cur if x != o] + [i], players, proj, weights)
+                if best is None or v > best[0]:
+                    best = (v, o, i)
+        if not best:
+            stop = "no affordable improvement"
+            break
+        v, o, i = best
+        gain = v - base
+        free = len(moves) < ft
+        # a free transfer that would otherwise be lost to the 5-transfer cap is (almost) free to use
+        need = (0.3 if ft - len(moves) >= 5 else roll_value) if free else hit
+        if gain <= need:
+            stop = {"next_out": o, "next_in": i, "next_gain": round(gain, 2), "threshold": need,
+                    "reason": "next move not worth a free transfer" if free else "next move not worth a -4 hit"}
+            break
+        money = money + sp[o] - players[i]["cost"]
+        cur = [x for x in cur if x != o] + [i]
+        sp[i] = players[i]["cost"]
+        moves.append({"out": o, "in": i, "gain": round(gain, 2), "type": "free" if free else "hit",
+                      "bank_after": round(money, 1)})
+        base = v
+    hits = sum(1 for m in moves if m["type"] == "hit")
+    return {"moves": moves, "squad": cur, "gain": round(base - start, 2), "net": round(base - start - 4 * hits, 2),
+            "hits": hits, "ft_used": min(len(moves), ft), "ft_after": None if ft is None else min(5, ft - min(len(moves), ft) + 1),
+            "bank_after": round(money, 1), "selling": sp, "stop": stop, "weights": weights}
+
+
+def budget_xi(players, proj, k, budget, max_club=3):
+    """Best XI under a money limit (greedy downgrade from the unconstrained best XI)."""
+    d = dream_team(players, proj, k)
+    if not d:
+        return None
+    xi = list(d["xi"])
+    cost = lambda ids: sum(players[i]["cost"] for i in ids)
+    guard = 0
+    while cost(xi) > budget + 1e-9 and guard < 40:
+        guard += 1
+        tc = {}
+        for x in xi:
+            tc[players[x]["team"]] = tc.get(players[x]["team"], 0) + 1
+        best = None
+        for o in xi:
+            for i, p in players.items():
+                if i in xi or i not in proj or p["pos"] != players[o]["pos"] or p["cost"] >= players[o]["cost"]:
+                    continue
+                if p["status"] in ("u", "n") or (p["team"] != players[o]["team"] and tc.get(p["team"], 0) >= 3):
+                    continue
+                loss = proj[o]["b"][k] - proj[i]["b"][k]
+                save = players[o]["cost"] - p["cost"]
+                r = loss / save
+                if best is None or r < best[0]:
+                    best = (r, o, i)
+        if not best:
+            break
+        _, o, i = best
+        xi = [x for x in xi if x != o] + [i]
+    cap = max(xi, key=lambda i: proj[i]["b"][k])
+    return {"xi": xi, "captain": cap, "xp": round(sum(proj[i]["b"][k] for i in xi) + proj[cap]["b"][k], 2),
+            "cost": round(cost(xi), 1)}
+
+
+CHIP_NAMES = {"wildcard": "Wildcard", "freehit": "Free Hit", "bboost": "Bench Boost", "3xc": "Triple Captain"}
+
+
+def wildcard_squad(squad, players, proj, funds, weights):
+    """Approximate wildcard: best weighted-horizon XI under budget plus the cheapest valid bench."""
+    pseudo = {i: {"b": [sum(w * r["b"][k] for k, w in enumerate(weights))]} for i, r in proj.items()}
+    xi = budget_xi(players, pseudo, 0, funds - 16.5)
+    if not xi:
+        return {"gain": 0.0, "changes": [], "squad": squad}
+    have = {1: 0, 2: 0, 3: 0, 4: 0}
+    for i in xi["xi"]:
+        have[players[i]["pos"]] += 1
+    need = {1: 2 - have[1], 2: 5 - have[2], 3: 5 - have[3], 4: 3 - have[4]}
+    tc = {}
+    for i in xi["xi"]:
+        tc[players[i]["team"]] = tc.get(players[i]["team"], 0) + 1
+    bench = []
+    for pos, n in need.items():
+        cands = sorted((i for i, p in players.items() if p["pos"] == pos and i not in xi["xi"] and p["status"] == "a"
+                        and p["mins"] > 0), key=lambda i: (players[i]["cost"], -pseudo.get(i, {"b": [0]})["b"][0]))
+        for i in cands:
+            if n <= 0:
+                break
+            if tc.get(players[i]["team"], 0) < 3:
+                bench.append(i)
+                tc[players[i]["team"]] = tc.get(players[i]["team"], 0) + 1
+                n -= 1
+    new = xi["xi"] + bench
+    total_cost = sum(players[i]["cost"] for i in new)
+    if len(new) != 15 or total_cost > funds + 1e-9:
+        return {"gain": 0.0, "changes": [], "squad": squad}
+    gain = weighted_value(new, players, proj, weights) - weighted_value(squad, players, proj, weights)
+    return {"gain": round(gain, 2), "changes": sorted(set(new) - set(squad)), "squad": new, "cost": round(total_cost, 1)}
+
+
+def chips_plan(squad, players, proj, gws, history, bank, sell, weights):
+    nxt = gws[0]
+    half = (1, 19) if nxt <= 19 else (20, 38)
+    used = {}
+    for c in (history or {}).get("chips", []):
+        if half[0] <= c.get("event", 0) <= half[1]:
+            used[c["name"]] = c["event"]
+    funds = (bank or 0) + sum(sell.get(i, players[i]["cost"]) for i in squad)
+    per = {"3xc": [], "bboost": [], "freehit": []}
+    for k, g in enumerate(gws):
+        r = best_xi(squad, players, lambda i, k=k: proj[i]["b"][k] if i in proj else 0.0)
+        if not r:
+            continue
+        per["3xc"].append({"gw": g, "value": round(proj[r["captain"]]["b"][k], 2), "who": r["captain"]})
+        per["bboost"].append({"gw": g, "value": round(sum(proj[i]["b"][k] for i in r["bench"] if i in proj), 2)})
+        fh = budget_xi(players, proj, k, funds - 16.5)
+        per["freehit"].append({"gw": g, "value": round((fh["xp"] - r["xp"]) if fh else 0, 2), "xi": fh})
+    wc = wildcard_squad(squad, players, proj, funds, weights)
+    thresholds = {"3xc": 9.0, "bboost": 10.0, "freehit": 12.0, "wildcard": 15.0}
+    out = []
+    for c in ("wildcard", "freehit", "bboost", "3xc"):
+        row = {"chip": c, "name": CHIP_NAMES[c], "available": c not in used, "used_gw": used.get(c),
+               "expires_gw": half[1], "gws_left_in_half": half[1] - nxt + 1, "threshold": thresholds[c]}
+        if c == "wildcard":
+            row["value_now"] = wc["gain"]
+            row["series"] = [{"gw": nxt, "value": wc["gain"]}]
+            row["best_gw"] = nxt
+            row["moves"] = len(wc["changes"])
+            row["squad"] = wc["squad"]
+        else:
+            s = per[c]
+            b = max(s, key=lambda x: x["value"]) if s else None
+            row["series"] = [{"gw": x["gw"], "value": x["value"], **({"who": x["who"]} if "who" in x else {})} for x in s]
+            row["value_now"] = s[0]["value"] if s else None
+            row["best_gw"] = b["gw"] if b else None
+        if not row["available"]:
+            row["verdict"] = "used"
+        elif row["best_gw"] == nxt and (row["value_now"] or 0) >= thresholds[c]:
+            row["verdict"] = "use_now"
+        elif half[1] - nxt + 1 <= 2 and row["available"]:
+            row["verdict"] = "use_before_expiry"
+        else:
+            row["verdict"] = "hold"
+        out.append(row)
+    return {"half": half, "horizon_last_gw": gws[-1], "chips": out,
+            "note": "Values are model xP gains within the projected horizon only; doubles/blanks beyond it are not known yet."}
+
+
+def scenario(name, xi, players, proj, sims, mine, captain=None, k=0):
+    xi = [i for i in xi if i in proj and i in players]
+    if not xi:
+        return None
+    cap = captain if captain in xi else max(xi, key=lambda i: proj[i]["b"][k])
+    rest = [i for i in xi if i != cap]
+    vice = max(rest, key=lambda i: proj[i]["b"][k]) if rest else None
+    xp = sum(proj[i]["b"][k] for i in xi) + proj[cap]["b"][k]
+    return {"key": name, "xi": xi, "captain": cap, "vice": vice, "xp": round(xp, 2),
+            "cost": round(sum(players[i]["cost"] for i in xi), 1),
+            "dist": team_distribution(xi, cap, proj, sims, k),
+            "overlap": sorted(set(xi) & set(mine)), "differentials": sorted(set(xi) - set(mine))}

@@ -87,6 +87,22 @@ a{color:inherit}
 nav{position:fixed;bottom:0;left:0;right:0;z-index:6;background:var(--brand);display:flex;padding:6px 2px calc(6px + env(safe-area-inset-bottom))}
 nav button{flex:1;font:inherit;font-size:11px;font-weight:600;color:#cdb7d4;background:none;border:0;padding:4px 0;display:flex;flex-direction:column;align-items:center;gap:2px}
 nav button svg{width:22px;height:22px}nav button.on{color:var(--neon)}
+.step .sh{display:flex;align-items:center;gap:10px;margin-bottom:6px}.step .sh h2{margin:0}
+.sn{width:26px;height:26px;border-radius:50%;background:var(--brand);color:var(--neon);display:inline-flex;align-items:center;justify-content:center;font-weight:800;font-family:Rubik,var(--font);flex:0 0 auto}
+.big-line{font-size:17px;font-weight:700;margin:4px 0 6px}
+.mn{width:22px;height:22px;border-radius:50%;background:var(--chip);display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:0 0 auto}
+.move .g{text-align:end}
+details{margin-top:8px}summary{cursor:pointer;color:var(--mute);font-size:13px}
+.hero-sum{margin-top:10px}.hero-pill{background:#ffffff22;color:#fff;font-size:13px;padding:5px 12px}
+.pl .bdg.sub{background:#ffffffcc;color:#1d0a20;inset-inline-end:auto;inset-inline-start:6px;width:auto;min-width:18px;padding:0 4px;border-radius:9px}
+.pl.new .nm{box-shadow:inset 0 -3px 0 var(--neon)}
+.chips button[disabled]{opacity:.35}
+tr.sel td{background:var(--chip);font-weight:700}
+.chart{display:flex;gap:8px;align-items:flex-end;margin:10px 0 6px}
+.cb{flex:1;text-align:center}.cbv{font-size:11px;color:var(--mute)}.cbl{font-size:11px;color:var(--mute)}
+.cbb{height:80px;background:var(--chip);border-radius:8px;position:relative;overflow:hidden}
+.cbb i{position:absolute;bottom:0;left:0;right:0;background:#963cff99;border-radius:8px 8px 0 0}.cbb i.hot{background:var(--neon)}
+.cbb em{position:absolute;left:0;right:0;border-top:2px dashed var(--mag)}
 </style>
 </head>
 <body>
@@ -99,47 +115,51 @@ nav button svg{width:22px;height:22px}nav button.on{color:var(--neon)}
 <main>
 <div id="banner"></div>
 
-<section class="view on" id="v-home">
+<!-- PLAN: the deadline checklist -->
+<section class="view on" id="v-plan">
   <div class="card hero">
     <div class="mute small" id="dl-gw"></div>
     <div class="cd num" id="cd">—</div>
     <div class="mute small" id="dl-local"></div>
-    <a class="btn" href="https://fantasy.premierleague.com/transfers" target="_blank" rel="noopener" data-t="openTransfers">Open transfers in FPL</a>
+    <div class="hero-sum" id="hero-sum"></div>
   </div>
-  <div class="card"><h2><span data-t="forecast">Your gameweek forecast</span><small data-t="modelLabel">model</small></h2><div id="forecast"></div></div>
-  <div class="card"><h2><span data-t="call">This week's call</span><small id="call-ts"></small></h2><div id="decision"></div>
-    <div class="two"><button class="btn sec" id="copy" data-t="copyPlan">Copy plan</button><button class="btn sec" data-go="best" data-t="seeBest">See best XI</button></div></div>
-  <div class="card"><h2 data-t="flags">Your flagged players</h2><div id="flags"></div></div>
+  <div class="card step"><div class="sh"><span class="sn">1</span><h2 data-t="st1">Transfers</h2></div><div id="s-transfers"></div></div>
+  <div class="card step"><div class="sh"><span class="sn">2</span><h2 data-t="st2">Starting XI & bench order</h2></div><div id="s-lineup"></div></div>
+  <div class="card step"><div class="sh"><span class="sn">3</span><h2 data-t="st3">Captain</h2></div><div id="s-captain"></div></div>
+  <div class="card step"><div class="sh"><span class="sn">4</span><h2 data-t="st4">Chip</h2></div><div id="s-chip"></div></div>
+  <div class="card step"><div class="sh"><span class="sn">5</span><h2 data-t="st5">Do it in FPL</h2></div>
+    <div class="two"><a class="btn" href="https://fantasy.premierleague.com/transfers" target="_blank" rel="noopener" data-t="openTransfers">Transfers</a><a class="btn" href="https://fantasy.premierleague.com/my-team" target="_blank" rel="noopener" data-t="openTeam">Pick team</a></div>
+    <button class="btn sec" id="copy" data-t="copyPlan">Copy plan</button></div>
+  <div class="card"><h2 data-t="flags">Flagged players</h2><div id="flags"></div></div>
   <div class="card"><h2><span data-t="alerts">Latest alerts</span><small id="next-rem"></small></h2><div id="alerts-top"></div></div>
 </section>
 
-<section class="view" id="v-team">
-  <div class="chips" id="gw-chips"></div>
-  <div class="card"><h2><span data-t="myXI">My best XI</span><small id="team-xp" class="num"></small></h2>
-    <div class="pitch-wrap"><div id="pitch"></div></div><div id="benchrow" class="bench"></div>
-    <div class="legend" data-t="legendMine"></div>
-    <a class="btn" href="https://fantasy.premierleague.com/my-team" target="_blank" rel="noopener" data-t="openTeam">Open my team in FPL</a></div>
+<!-- LAB: compare and pick a lineup -->
+<section class="view" id="v-lab">
+  <p class="mute small" data-t="labIntro"></p>
+  <div class="chips" id="lab-chips"></div>
+  <div id="lab-body"></div>
+  <div class="card"><h2 data-t="compare">Compare all</h2><div class="tbl"><table id="lab-table"></table></div></div>
 </section>
 
-<section class="view" id="v-best">
-  <div class="seg" id="bestseg"><button class="on" data-s="model" data-t="segModel">Model</button><button data-s="elite" data-t="segElite">Top 100</button><button data-s="experts" data-t="segExperts">Experts</button></div>
-  <div id="best-body"></div>
+<!-- CHIPS -->
+<section class="view" id="v-chips">
+  <div id="chips-body"></div>
 </section>
 
-<section class="view" id="v-tr">
-  <div class="card"><h2><span data-t="bestMoves">Best move per player</span><small data-t="h3">next 3 GWs</small></h2><div id="singles"></div><p class="mute small" data-t="sellNote"></p></div>
-  <div class="card"><h2 data-t="pairs">Two-transfer combos</h2><div id="pairs"></div></div>
-  <a class="btn" href="https://fantasy.premierleague.com/transfers" target="_blank" rel="noopener" data-t="openTransfers">Open transfers in FPL</a>
-</section>
-
+<!-- PLAYERS -->
 <section class="view" id="v-pl">
   <div class="filters"><input id="q" inputmode="search"><select id="pos"></select><select id="sort"></select></div>
   <div class="chips" id="who"></div>
   <div class="card" id="plist"></div>
 </section>
 
-<section class="view" id="v-sys">
-  <div class="card"><h2 data-t="health">System health</h2><div id="health"></div></div>
+<!-- MORE -->
+<section class="view" id="v-more">
+  <div class="card"><h2 data-t="ahead">My team, next 5 GWs</h2><div class="chips" id="gw-chips"></div><div class="pitch-wrap"><div id="pitch"></div></div><div id="benchrow" class="bench"></div><div class="legend" id="team-xp"></div></div>
+  <div class="card"><h2><span data-t="bestMoves">Single-move alternatives</span><small data-t="h3">next 3 GWs</small></h2><div id="singles"></div><p class="mute small" data-t="sellNote"></p></div>
+  <div class="card"><h2 data-t="eliteTable">Top 100 managers: ownership</h2><div id="elite-table"></div></div>
+  <div class="card" id="sys"><h2 data-t="health">System health</h2><div id="health"></div></div>
   <div class="card"><h2 data-t="plan">Deadline alert schedule</h2><div id="plan"></div><p class="mute small" data-t="planNote"></p></div>
   <div class="card"><h2 data-t="allAlerts">All alerts</h2><div id="alerts-all"></div></div>
   <div class="card"><h2 data-t="prices">Observed price changes</h2><div id="prices"></div></div>
@@ -150,23 +170,57 @@ nav button svg{width:22px;height:22px}nav button.on{color:var(--neon)}
 </main>
 
 <nav id="nav">
-  <button class="on" data-v="home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span data-t="tHome">Home</span></button>
-  <button data-v="team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3L4 5 2 10l3 1.5V21h14v-9.5L22 10l-2-5-4-2c-.7 1.8-2.2 3-4 3s-3.3-1.2-4-3z"/></svg><span data-t="tTeam">My team</span></button>
-  <button data-v="best"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><span data-t="tBest">Best XI</span></button>
-  <button data-v="tr"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7h11l-3-3M17 17H6l3 3"/></svg><span data-t="tTr">Transfers</span></button>
+  <button class="on" data-v="plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg><span data-t="tPlan">GW plan</span></button>
+  <button data-v="lab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3L4 5 2 10l3 1.5V21h14v-9.5L22 10l-2-5-4-2c-.7 1.8-2.2 3-4 3s-3.3-1.2-4-3z"/></svg><span data-t="tLab">Lineups</span></button>
+  <button data-v="chips"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="12" rx="3"/><path d="M8 7V5h8v2M12 11v4M10 13h4"/></svg><span data-t="tChips">Chips</span></button>
   <button data-v="pl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><span data-t="tPl">Players</span></button>
+  <button data-v="more"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg><span data-t="tMore">More</span></button>
 </nav>
 
 <script>
 const I18N={
-en:{status:'Status',openTransfers:'Open transfers in FPL',openTeam:'Open my team in FPL',forecast:'Your gameweek forecast',modelLabel:'model',call:"This week's call",copyPlan:'Copy plan',copied:'Copied ✓',seeBest:'See best XI',flags:'Your flagged players',allFit:'Everyone available ✓',alerts:'Latest alerts',noAlerts:'No alerts yet.',myXI:'My best XI',legendMine:'C captain · V vice · ! flagged · number = expected points',segModel:'Model',segElite:'Top 100',segExperts:'Experts',bestMoves:'Best move per player',h3:'next 3 GWs',pairs:'Two-transfer combos',sellNote:'Gain = change in expected points of your best XI over 3 GWs. Selling prices are estimates (real ones need your FPL login).',health:'System health',plan:'Deadline alert schedule',planNote:'Times come from the official FPL deadline (UTC) and are shown in your device time zone, DST included. Reminders that would land 01:00–08:00 Cairo time are sent the evening before.',allAlerts:'All alerts',prices:'Observed price changes',fixtures:'Fixtures (FDR)',accuracy:'Model accuracy & checks',footer:'Public FPL data only · model numbers are estimates · no logins stored',tHome:'Home',tTeam:'My team',tBest:'Best XI',tTr:'Transfers',tPl:'Players',
-deadline:'GW{g} deadline',passed:'Deadline passed',expPts:'expected pts',range:'Likely range (10–90%)',chance:'≥{k} pts',vsBest:'Model best XI',captain:'Captain',vice:'Vice',formation:'Formation',transfer:'Transfer',hold:'Roll the transfer',ft:'Free transfers (est.)',bank:'Bank',updated:'updated {t}',data:'data {t}',nextAlert:'next: {l} · {t}',final:'Final check',moved:'moved earlier',allSent:'all reminders sent',hit:'hit',none:'No data yet.',search:'Search player or club',allPos:'All positions',all:'All',mine:'My team',watch:'Watchlist',sNext:'xP next GW',s5:'xP 5 GWs',sP90:'Ceiling P90',sPrice:'Price',sOwn:'Ownership',
-modelXI:'Model best XI · GW{g}',modelNote:'Highest expected points, max 3 per club, no budget limit (cost £{c}m).',youOwn:'green line = in your squad',eliteXI:'Top 100 template · GW{g}',eliteNote:'Most-owned XI of the top {n} managers in the world at the GW{g} deadline. Picks become public only after a deadline. Number = effective ownership.',eo:'EO',own:'Own',capt:'Capt',chips:'Chips played',expertsXI:'Experts\' team',expertsNone:'Expert picks (The Scout and leading analysts) are added by the daily brief at 08:31 Cairo. Not available yet for this gameweek.',sources:'Sources',stale:'Data is stale — showing last good copy ({m} min old)',nodata:'Data unavailable',ok:'Healthy',lastIngest:'Last data pull',lastModel:'Last model run',lastAlert:'Last alert check',lastVal:'Last daily check',fails:'Consecutive failures',channels:'Alert channels',noPrices:'No price changes observed yet.',noDbl:'No doubles or blanks in the current horizon.',valNone:'First accuracy check after GW8 is finished and confirmed.',players:'players',bias:'bias',bench:'Bench',
-dist:'Simulated from player projections; the real spread is a bit wider.'},
-ar:{status:'الحالة',openTransfers:'افتح التحويلات في FPL',openTeam:'افتح فريقي في FPL',forecast:'توقع نقاطك في الجولة',modelLabel:'نموذج',call:'قرار الجولة',copyPlan:'انسخ الخطة',copied:'اتنسخت ✓',seeBest:'أفضل تشكيلة',flags:'لاعيبتك اللي عليها علامة',allFit:'كله متاح ✓',alerts:'آخر التنبيهات',noAlerts:'مفيش تنبيهات لسه.',myXI:'أفضل تشكيلة من فريقي',legendMine:'C كابتن · V نائب · ! عليه علامة · الرقم = النقاط المتوقعة',segModel:'النموذج',segElite:'أفضل 100',segExperts:'الخبراء',bestMoves:'أحسن تحويل لكل لاعب',h3:'3 جولات جاية',pairs:'تحويلين مع بعض',sellNote:'المكسب = الفرق في النقاط المتوقعة لأحسن تشكيلة على 3 جولات. أسعار البيع تقديرية (الحقيقية بتظهر بتسجيل دخولك بس).',health:'صحة النظام',plan:'جدول تنبيهات الديدلاين',planNote:'المواعيد من ديدلاين FPL الرسمي (UTC) ومعروضة بتوقيت جهازك شامل التوقيت الصيفي. التنبيه اللي يقع بين 1 و8 الصبح بتوقيت القاهرة بيتبعت الليلة اللي قبلها.',allAlerts:'كل التنبيهات',prices:'تغيرات الأسعار',fixtures:'المباريات (FDR)',accuracy:'دقة النموذج والفحوصات',footer:'بيانات FPL العامة بس · أرقام النموذج تقديرات · مفيش بيانات دخول متخزنة',tHome:'الرئيسية',tTeam:'فريقي',tBest:'الأفضل',tTr:'التحويلات',tPl:'اللاعبين',
-deadline:'ديدلاين GW{g}',passed:'الديدلاين عدى',expPts:'نقطة متوقعة',range:'المدى المرجّح (10–90%)',chance:'≥{k} نقطة',vsBest:'أفضل تشكيلة للنموذج',captain:'الكابتن',vice:'النائب',formation:'الخطة',transfer:'التحويل',hold:'احتفظ بالتحويل',ft:'تحويلات مجانية (تقدير)',bank:'البنك',updated:'اتحدث {t}',data:'البيانات {t}',nextAlert:'الجاي: {l} · {t}',final:'المراجعة الأخيرة',moved:'اتقدّم',allSent:'كل التنبيهات اتبعتت',hit:'خصم',none:'مفيش بيانات لسه.',search:'ابحث بلاعب أو نادي',allPos:'كل المراكز',all:'الكل',mine:'فريقي',watch:'المراقبة',sNext:'نقاط الجولة الجاية',s5:'نقاط 5 جولات',sP90:'السقف P90',sPrice:'السعر',sOwn:'الملكية',
-modelXI:'أفضل تشكيلة للنموذج · GW{g}',modelNote:'أعلى نقاط متوقعة، 3 لاعيبة بحد أقصى من كل نادي، من غير حد ميزانية (التكلفة £{c}m).',youOwn:'الخط الأخضر = عندك في الفريق',eliteXI:'تشكيلة أفضل 100 · GW{g}',eliteNote:'أكتر 11 لاعب ملكية عند أفضل {n} مدير في العالم وقت ديدلاين GW{g}. الاختيارات بتظهر بعد الديدلاين بس. الرقم = الملكية الفعلية EO.',eo:'EO',own:'ملكية',capt:'كابتن',chips:'الشيبس المستخدمة',expertsXI:'تشكيلة الخبراء',expertsNone:'اختيارات الخبراء (The Scout وأهم المحللين) بتتضاف من الملخص اليومي الساعة 8:31 بتوقيت القاهرة. لسه مش متاحة للجولة دي.',sources:'المصادر',stale:'البيانات قديمة — معروض آخر نسخة سليمة (عمرها {m} دقيقة)',nodata:'البيانات مش متاحة',ok:'سليم',lastIngest:'آخر سحب بيانات',lastModel:'آخر حساب للنموذج',lastAlert:'آخر فحص تنبيهات',lastVal:'آخر فحص يومي',fails:'فشل متتالي',channels:'قنوات التنبيه',noPrices:'لسه مفيش تغييرات أسعار.',noDbl:'مفيش دبل أو بلانك في الأفق الحالي.',valNone:'أول قياس دقة بعد ما GW8 تخلص وتتعتمد.',players:'لاعب',bias:'انحياز',bench:'الدكة',
-dist:'محاكاة من توقعات اللاعيبة؛ التشتت الحقيقي أوسع شوية.'}};
+en:{status:'Status',tPlan:'GW plan',tLab:'Lineups',tChips:'Chips',tPl:'Players',tMore:'More',
+st1:'Transfers',st2:'Starting XI & bench order',st3:'Captain',st4:'Chip',st5:'Do it in FPL',openTransfers:'Make transfers',openTeam:'Pick team',copyPlan:'Copy the whole plan',copied:'Copied ✓',
+flags:'Flagged players',allFit:'Everyone in your squad is available ✓',alerts:'Latest alerts',noAlerts:'No alerts yet.',
+deadline:'GW{g} deadline',passed:'Deadline passed',heroSum:'Plan: {n} · {xp} expected pts',heroNone:'no transfers',
+makeN:'Make {n} transfer(s)',freeOnly:'all free',withHits:'{h} hit(s) = -{p}',noMove:'Roll the transfer',noMoveWhy:'No move beats the value of saving a free transfer (≥{t} xP).',
+gainW:'xP gain (weighted, 5 GWs)',bankAfter:'Bank after',ftNext:'Free transfers next GW',stopWhy:'Why not more?',stopTxt:'Next best: {o} → {i} (+{g}) — below the {t} xP needed ({r}).',free:'free',hit:'-4 hit',out:'OUT',in:'IN',
+benchOrder:'Bench order (sub order in FPL)',gk2:'GK',xpTeam:'Team expected points {xp} · formation {f}',
+capRow:'Captain',viceRow:'Vice-captain',capWhy:'Highest expected points in your XI. Alternatives:',
+chipNone:'No chip this week',chipUse:'Play {c} this week',chipDetail:'Details in the Chips tab',
+labIntro:'Pick a lineup to see its expected points, likely range and how it differs from your plan.',compare:'Compare all',
+scPlan:'My plan',scCurrent:'No transfers',scModel:'Model best XI',scBudget:'Best XI within my budget',scElite:'Top 100 template',scExperts:'Experts',
+expPts:'expected pts',range:'Likely range (10–90%)',chance:'≥{k} pts',dist:'Simulated from player projections; the real spread is a bit wider.',
+overlap:'Same as your plan',diff:'Not in your squad',cost:'Cost of XI',noBudget:'no budget limit, max 3 per club',withinBudget:'fits your squad value',
+eliteSrc:'Most-owned XI of the top {n} managers at the GW{g} deadline (picks are public only after a deadline).',expertsSrc:'Best XI from expert picks:',fromShort:'built from the shortlist by the model',
+expertsNone:'Expert picks for this gameweek are not loaded yet (added by the daily brief at 08:31 Cairo).',
+chipAvail:'Available',chipUsed:'Used in GW{g}',chipExp:'expires after GW{g} · {n} GWs left',verdict_use_now:'Use now',verdict_hold:'Hold',verdict_used:'Used',verdict_use_before_expiry:'Use before it expires',
+chipBest:'Best projected week: GW{g} (+{v} xP)',chipThr:'Worth playing from about +{t} xP',chipWhy_3xc:'Extra captain points = your captain\'s expected points that week.',chipWhy_bboost:'Extra points = your bench\'s expected points that week.',chipWhy_freehit:'Gain = best one-week XI within your budget minus your XI.',chipWhy_wildcard:'Gain over the next 5 GWs from rebuilding the squad within budget ({m} changes).',chipNote:'Only the next 5 gameweeks are projected; doubles and blanks beyond that are unknown yet.',
+ahead:'My team, next 5 GWs',bestMoves:'Single-move alternatives',h3:'next 3 GWs',sellNote:'Selling prices are estimates (real ones need your FPL login).',eliteTable:'Top 100 managers: ownership',eo:'EO',own:'Own',capt:'Capt',
+health:'System health',plan:'Deadline alert schedule',planNote:'Times come from the official FPL deadline (UTC), shown in your device time zone. Reminders that would land 01:00–08:00 Cairo time are sent the evening before.',allAlerts:'All alerts',prices:'Observed price changes',fixtures:'Fixtures (FDR)',accuracy:'Model accuracy & checks',footer:'Public FPL data only · model numbers are estimates · no logins stored',
+updated:'updated {t}',data:'data {t}',nextAlert:'next: {l} · {t}',final:'Final check',moved:'moved earlier',allSent:'all reminders sent',none:'No data yet.',search:'Search player or club',allPos:'All positions',all:'All',mine:'My squad',watch:'Watchlist',sNext:'xP next GW',s5:'xP 5 GWs',sP90:'Ceiling P90',sPrice:'Price',sOwn:'Ownership',
+stale:'Data is stale — showing last good copy ({m} min old)',nodata:'Data unavailable',ok:'Healthy',lastIngest:'Last data pull',lastModel:'Last model run',lastAlert:'Last alert check',lastVal:'Last daily check',fails:'Consecutive failures',channels:'Alert channels',noPrices:'No price changes observed yet.',noDbl:'No doubles or blanks in the current horizon.',valNone:'First accuracy check after GW8 is finished and confirmed.',players:'players',bias:'bias',bench:'Bench',xpShort:'xP',p50:'median',p90:'P90',p60:'≥60'},
+ar:{status:'الحالة',tPlan:'خطة الجولة',tLab:'التشكيلات',tChips:'الشيبس',tPl:'اللاعبين',tMore:'المزيد',
+st1:'التحويلات',st2:'التشكيلة وترتيب الدكة',st3:'الكابتن',st4:'الشيب',st5:'نفّذ في FPL',openTransfers:'اعمل التحويلات',openTeam:'اختار التشكيلة',copyPlan:'انسخ الخطة كلها',copied:'اتنسخت ✓',
+flags:'لاعيبة عليها علامة',allFit:'كل لاعيبة فريقك متاحين ✓',alerts:'آخر التنبيهات',noAlerts:'مفيش تنبيهات لسه.',
+deadline:'ديدلاين GW{g}',passed:'الديدلاين عدى',heroSum:'الخطة: {n} · {xp} نقطة متوقعة',heroNone:'من غير تحويلات',
+makeN:'اعمل {n} تحويل',freeOnly:'كلهم مجانًا',withHits:'{h} هيت = -{p}',noMove:'احتفظ بالتحويل',noMoveWhy:'مفيش تحويلة تستاهل أكتر من قيمة إنك تحوّش التحويل المجاني (≥{t} نقطة).',
+gainW:'مكسب النقاط (مرجّح، 5 جولات)',bankAfter:'البنك بعدها',ftNext:'التحويلات المجانية الجولة الجاية',stopWhy:'ليه مش أكتر؟',stopTxt:'التحويلة اللي بعدها: {o} ← {i} (+{g}) — أقل من {t} نقطة المطلوبة ({r}).',free:'مجاني',hit:'هيت -4',out:'خروج',in:'دخول',
+benchOrder:'ترتيب الدكة (ترتيب التبديل في FPL)',gk2:'حارس',xpTeam:'نقاط التشكيلة المتوقعة {xp} · الخطة {f}',
+capRow:'الكابتن',viceRow:'النائب',capWhy:'أعلى نقاط متوقعة في تشكيلتك. البدائل:',
+chipNone:'مفيش شيب الجولة دي',chipUse:'العب {c} الجولة دي',chipDetail:'التفاصيل في تبويب الشيبس',
+labIntro:'اختار تشكيلة وشوف نقاطها المتوقعة والمدى المرجّح والفرق بينها وبين خطتك.',compare:'مقارنة الكل',
+scPlan:'خطتي',scCurrent:'من غير تحويلات',scModel:'أفضل تشكيلة للنموذج',scBudget:'أفضل تشكيلة بميزانيتي',scElite:'تشكيلة أفضل 100',scExperts:'الخبراء',
+expPts:'نقطة متوقعة',range:'المدى المرجّح (10–90%)',chance:'≥{k} نقطة',dist:'محاكاة من توقعات اللاعيبة؛ التشتت الحقيقي أوسع شوية.',
+overlap:'زي خطتك',diff:'مش في فريقك',cost:'تكلفة التشكيلة',noBudget:'من غير حد ميزانية، 3 بحد أقصى من كل نادي',withinBudget:'في حدود قيمة فريقك',
+eliteSrc:'أكتر 11 لاعب ملكية عند أفضل {n} مدير وقت ديدلاين GW{g} (الاختيارات بتظهر بعد الديدلاين بس).',expertsSrc:'أفضل تشكيلة من اختيارات الخبراء:',fromShort:'النموذج اختارها من القائمة المختصرة',
+expertsNone:'اختيارات الخبراء للجولة دي لسه ما اتحمّلتش (بتتضاف من الملخص اليومي 8:31 القاهرة).',
+chipAvail:'متاح',chipUsed:'اتستخدم في GW{g}',chipExp:'بينتهي بعد GW{g} · فاضل {n} جولة',verdict_use_now:'استخدمه دلوقتي',verdict_hold:'استنى',verdict_used:'اتستخدم',verdict_use_before_expiry:'استخدمه قبل ما ينتهي',
+chipBest:'أفضل جولة متوقعة: GW{g} (+{v} نقطة)',chipThr:'يستاهل من حوالي +{t} نقطة',chipWhy_3xc:'النقاط الزيادة = نقاط الكابتن المتوقعة في الجولة دي.',chipWhy_bboost:'النقاط الزيادة = نقاط الدكة المتوقعة في الجولة دي.',chipWhy_freehit:'المكسب = أفضل تشكيلة لجولة واحدة بميزانيتك ناقص تشكيلتك.',chipWhy_wildcard:'المكسب على 5 جولات لو بنيت الفريق من جديد في حدود الميزانية ({m} تغيير).',chipNote:'التوقعات للخمس جولات الجاية بس؛ الدبل والبلانك بعدها لسه مش معروفين.',
+ahead:'فريقي في الخمس جولات الجاية',bestMoves:'بدائل تحويلة واحدة',h3:'3 جولات',sellNote:'أسعار البيع تقديرية (الحقيقية بتظهر بتسجيل دخولك بس).',eliteTable:'أفضل 100 مدير: الملكية',eo:'EO',own:'ملكية',capt:'كابتن',
+health:'صحة النظام',plan:'جدول تنبيهات الديدلاين',planNote:'المواعيد من ديدلاين FPL الرسمي (UTC) ومعروضة بتوقيت جهازك. التنبيه اللي يقع بين 1 و8 الصبح بتوقيت القاهرة بيتبعت الليلة اللي قبلها.',allAlerts:'كل التنبيهات',prices:'تغيرات الأسعار',fixtures:'المباريات (FDR)',accuracy:'دقة النموذج والفحوصات',footer:'بيانات FPL العامة بس · أرقام النموذج تقديرات · مفيش بيانات دخول متخزنة',
+updated:'اتحدث {t}',data:'البيانات {t}',nextAlert:'الجاي: {l} · {t}',final:'المراجعة الأخيرة',moved:'اتقدّم',allSent:'كل التنبيهات اتبعتت',none:'مفيش بيانات لسه.',search:'ابحث بلاعب أو نادي',allPos:'كل المراكز',all:'الكل',mine:'فريقي',watch:'المراقبة',sNext:'نقاط الجولة الجاية',s5:'نقاط 5 جولات',sP90:'السقف P90',sPrice:'السعر',sOwn:'الملكية',
+stale:'البيانات قديمة — معروض آخر نسخة سليمة (عمرها {m} دقيقة)',nodata:'البيانات مش متاحة',ok:'سليم',lastIngest:'آخر سحب بيانات',lastModel:'آخر حساب للنموذج',lastAlert:'آخر فحص تنبيهات',lastVal:'آخر فحص يومي',fails:'فشل متتالي',channels:'قنوات التنبيه',noPrices:'لسه مفيش تغييرات أسعار.',noDbl:'مفيش دبل أو بلانك في الأفق الحالي.',valNone:'أول قياس دقة بعد ما GW8 تخلص وتتعتمد.',players:'لاعب',bias:'انحياز',bench:'الدكة',xpShort:'نقاط',p50:'الوسيط',p90:'P90',p60:'≥60'}};
 let LANG='en';try{LANG=localStorage.getItem('fr-lang')||'en'}catch(e){}
 const t=(k,v={})=>(I18N[LANG][k]??I18N.en[k]??k).replace(/\{(\w+)\}/g,(_,x)=>v[x]??'');
 const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -174,7 +228,8 @@ const LOC=()=>LANG==='ar'?'ar-EG':'en-GB';
 const ago=ts=>{if(!ts)return'—';const m=Math.max(0,(Date.now()-Date.parse(ts))/6e4);const rt=new Intl.RelativeTimeFormat(LOC(),{numeric:'auto'});return m<1?rt.format(0,'minute'):m<60?rt.format(-Math.round(m),'minute'):m<1440?rt.format(-Math.round(m/60),'hour'):rt.format(-Math.round(m/1440),'day')};
 const when=ts=>ts?new Date(ts).toLocaleString(LOC(),{weekday:'short',day:'numeric',month:'short',hour:'numeric',minute:'2-digit',timeZoneName:'short'}):'—';
 const f1=v=>v==null?'—':(+v).toFixed(1),pc=v=>v==null?'—':Math.round(v*100)+'%',sum=a=>a.reduce((x,y)=>x+y,0);
-let D=null,gwi=0,who='',bestSeg='model';
+let D=null,gwi=0,who='',labKey='plan';
+const SCN={plan:'scPlan',current:'scCurrent',model:'scModel',budget:'scBudget',elite:'scElite',experts:'scExperts'};
 
 function applyLang(){document.documentElement.lang=LANG;document.documentElement.dir=LANG==='ar'?'rtl':'ltr';
  $('#lang').textContent=LANG==='ar'?'🏴󠁧󠁢󠁥󠁮󠁧󠁿 EN':'🇪🇬 AR';
@@ -186,11 +241,11 @@ function applyLang(){document.documentElement.lang=LANG;document.documentElement
  $('#who').querySelectorAll('button').forEach(b=>b.onclick=()=>{who=b.dataset.w;applyLang()});
  if(D)render()}
 $('#lang').onclick=()=>{LANG=LANG==='ar'?'en':'ar';try{localStorage.setItem('fr-lang',LANG)}catch(e){}applyLang()};
-
-function go(v){document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));scrollTo(0,0);try{localStorage.setItem('fr-tab',v)}catch(e){}}
+function go(v,anchor){document.querySelectorAll('#nav button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));document.querySelectorAll('.view').forEach(x=>x.classList.toggle('on',x.id==='v-'+v));
+ if(anchor){const el=$(anchor);if(el)setTimeout(()=>el.scrollIntoView({behavior:'smooth'}),50)}else scrollTo(0,0);try{localStorage.setItem('fr-tab2',v)}catch(e){}}
 document.querySelectorAll('#nav button').forEach(b=>b.onclick=()=>go(b.dataset.v));
-$('#sysbtn').onclick=()=>go('sys');document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)go(g.dataset.go)});
-$('#bestseg').querySelectorAll('button').forEach(b=>b.onclick=()=>{bestSeg=b.dataset.s;$('#bestseg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));renderBest()});
+$('#sysbtn').onclick=()=>go('more','#sys');
+document.addEventListener('click',e=>{const g=e.target.closest('[data-go]');if(g)go(g.dataset.go)});
 
 function tick(){const G=D&&D.gw;if(!G||!G.next_deadline)return;const ms=Date.parse(G.next_deadline)-Date.now();
  if(ms<=0){$('#cd').textContent=t('passed');return}const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5),m=Math.floor(ms%36e5/6e4);
@@ -199,17 +254,19 @@ setInterval(tick,15000);
 
 const shirt=gk=>`<svg viewBox="0 0 64 64"><path d="M22 6l-12 6-8 14 9 5 4-6v33h34V25l4 6 9-5-8-14-12-6c-2 5-6 8-10 8s-8-3-10-8z" fill="${gk?'#ffd166':'#ffffff'}" stroke="#1d0a20" stroke-width="2"/><path d="M22 6c2 5 6 8 10 8s8-3 10-8" fill="none" stroke="${gk?'#1d0a20':'#963cff'}" stroke-width="3"/></svg>`;
 const POSN={GKP:1,DEF:2,MID:3,FWD:4};
-function pitch(ids,o){const by=D.byId;const lines=[4,3,2,1].map(k=>ids.filter(i=>by[i]&&POSN[by[i].pos]===k));
- const tile=i=>{const p=by[i]||{n:'?',t:'',b:[],st:'a'};return `<div class="pl ${o.mark&&p.mine?'mine':''}">${i===o.cap?'<span class="bdg">C</span>':i===o.vice?'<span class="bdg">V</span>':''}${p.st&&p.st!=='a'?'<span class="flg">!</span>':''}${shirt(p.pos==='GKP')}<div class="nm">${esc(p.n)}</div><div class="pt num">${o.val(p)} · ${esc(p.t)}</div></div>`};
- return {xi:'<div class="pitch">'+lines.filter(r=>r.length).map(r=>'<div class="line">'+r.map(tile).join('')+'</div>').join('')+'</div>',tile}}
+function tileFn(o){const by=D.byId;return (i,n)=>{const p=by[i]||{n:'?',t:'',b:[],st:'a'};const isNew=o.newIds&&o.newIds.has(i);
+ return `<div class="pl ${o.mark&&p.mine?'mine':''} ${isNew?'new':''}">${i===o.cap?'<span class="bdg">C</span>':i===o.vice?'<span class="bdg">V</span>':''}${n!=null?`<span class="bdg sub">${n}</span>`:''}${p.st&&p.st!=='a'?'<span class="flg">!</span>':''}${shirt(p.pos==='GKP')}<div class="nm">${esc(p.n)}</div><div class="pt num">${o.val(p)} · ${esc(p.t)}</div></div>`}}
+function pitchHTML(ids,o){const by=D.byId,tile=tileFn(o);const lines=[4,3,2,1].map(k=>ids.filter(i=>by[i]&&POSN[by[i].pos]===k));
+ return '<div class="pitch-wrap"><div class="pitch">'+lines.filter(r=>r.length).map(r=>'<div class="line">'+r.map(i=>tile(i)).join('')+'</div>').join('')+'</div></div>'}
+function benchHTML(ids,o){const tile=tileFn(o);return `<div class="bench">${ids.map((i,k)=>tile(i,D.byId[i]&&D.byId[i].pos==='GKP'?t('gk2'):k)).join('')}</div>`}
 
-function distBlock(dist,mean,best){if(!dist)return `<div class="xp num">${f1(mean)} <small>${t('expPts')}</small></div>`;
+function distBlock(dist,xp){if(!dist)return `<div class="xp num">${f1(xp)} <small>${t('expPts')}</small></div>`;
  const hi=Math.max(100,dist.p90+10),x=v=>Math.max(0,Math.min(100,v/hi*100));
  return `<div class="xp num">${f1(dist.mean)} <small>${t('expPts')}</small></div>
  <div class="bar"><i style="inset-inline-start:${x(dist.p10)}%;width:${x(dist.p90)-x(dist.p10)}%"></i><em style="inset-inline-start:${x(dist.p50)}%"></em></div>
  <div class="small mute">${t('range')}: <b class="num">${dist.p10}–${dist.p90}</b></div>
  <div class="probs">${Object.entries(dist.prob).map(([k,v])=>`<span>${t('chance',{k})} <b class="num">${pc(v)}</b></span>`).join('')}</div>
- ${best?`<div class="row" style="margin-top:8px"><span class="k">${t('vsBest')}</span><span class="v num">${f1(best)}</span></div>`:''}<div class="small mute" style="margin-top:4px">${t('dist')}</div>`}
+ <div class="small mute" style="margin-top:4px">${t('dist')}</div>`}
 
 async function load(){try{const r=await fetch('data/dashboard.json?ts='+Date.now(),{cache:'no-store'});D=await r.json()}catch(e){$('#upd').textContent='offline';return}
  D.byId=D.projection?Object.fromEntries(D.projection.players.map(p=>[p.id,p])):{};render()}
@@ -225,39 +282,58 @@ function render(){const S=D.status||{},P=D.projection,G=D.gw||{};
  const plan=S.deadline_plan||[],nx=plan.find(r=>Date.parse(r.at)>Date.now());
  $('#next-rem').textContent=nx?t('nextAlert',{l:nx.label==='final'?t('final'):nx.label,t:when(nx.at)}):t('allSent');
  $('#plan').innerHTML=plan.map(r=>`<div class="row"><span>${r.label==='final'?t('final'):r.label}${r.moved?` <span class="pill">${t('moved')}</span>`:''}</span><span class="v small">${when(r.at)} ${Date.parse(r.at)<=Date.now()?'✓':''}</span></div>`).join('')||`<div class="empty">—</div>`;
- renderSys(S,P);
- if(!P){$('#forecast').innerHTML=`<div class="empty">${t('none')}</div>`;return}
- const L0=P.lineups[0]||{},b=P.transfers.best_per_out[0];
- $('#forecast').innerHTML=distBlock(L0.dist,L0.xp,P.dream&&P.dream.xp);
- $('#call-ts').textContent=t('updated',{t:ago(P.ts)});
- $('#decision').innerHTML=[[t('captain'),esc(L0.captain_n)],[t('vice'),esc(L0.vice_n)],
-  [t('transfer'),b&&b.gain>0?`<span class="bad">▼ ${esc(b.out_n)}</span><br><span class="ok">▲ ${esc(b.in_n)} <span class="num">(+${b.gain})</span></span>`:t('hold')],
-  [t('ft'),`<span class="num">${P.free_transfers_est??'—'}</span>`],[t('bank'),`<span class="num">${P.bank!=null?'£'+P.bank+'m':'—'}</span>`],[t('formation'),`<span class="num">${L0.formation||'—'}</span>`]]
-  .map(([k,v])=>`<div class="row"><span class="k">${k}</span><span class="v">${v}</span></div>`).join('');
- const fl=P.players.filter(p=>p.mine&&p.st!=='a');
- $('#flags').innerHTML=fl.length?fl.map(p=>`<div class="row"><span><b>${esc(p.n)}</b> <span class="mute small">${esc(p.t)}</span><br><span class="mute small">${esc(p.news)}</span></span><span class="pill warn num">${p.st}${p.ch!=null?' '+p.ch+'%':''}</span></div>`).join(''):`<div class="ok">${t('allFit')}</div>`;
- $('#gw-chips').innerHTML=P.gws.map((g,i)=>`<button class="${i===gwi?'on':''}" data-i="${i}">GW${g}</button>`).join('');
- $('#gw-chips').querySelectorAll('button').forEach(x=>x.onclick=()=>{gwi=+x.dataset.i;render()});
- const L=P.lineups[gwi];if(L){const pt=pitch(L.xi,{cap:L.captain,vice:L.vice,val:p=>f1(p.b[gwi])});$('#pitch').innerHTML=pt.xi;$('#benchrow').innerHTML=L.bench.map(pt.tile).join('');$('#team-xp').textContent=`${L.formation} · ${f1(L.xp)} xP`}
- const mv=s=>`<div class="move"><span><span class="bad">▼</span> ${esc(s.out_n)}<br><span class="ok">▲</span> <b>${esc(s.in_n)}</b><br><span class="mute small">${t('bank')} <span class="num">£${s.bank_after}m</span></span></span><span class="g num">${s.gain>0?'+':''}${s.gain}</span></div>`;
- $('#singles').innerHTML=P.transfers.best_per_out.slice(0,8).map(mv).join('')||`<div class="empty">—</div>`;
- $('#pairs').innerHTML=P.transfers.pairs.slice(0,5).map(x=>`<div class="move"><span>${x.moves_n.map(m=>`<span class="bad">▼</span> ${esc(m[0])} · <span class="ok">▲</span> <b>${esc(m[1])}</b>`).join('<br>')}<br><span class="mute small">${x.hit?t('hit')+' -4 · ':''}${t('bank')} <span class="num">£${x.bank_after}m</span></span></span><span class="g num">${x.net>0?'+':''}${x.net}</span></div>`).join('')||`<div class="empty">—</div>`;
- renderBest();drawPlayers()}
+ renderSys(S,P);if(!P)return;
+ renderPlan(P);renderLab(P);renderChips(P);renderMore(P);drawPlayers()}
 
-function renderBest(){if(!D||!D.projection)return;const P=D.projection,box=$('#best-body');
- if(bestSeg==='model'){const d=P.dream;if(!d){box.innerHTML=`<div class="card empty">${t('none')}</div>`;return}
-  const pt=pitch(d.xi,{cap:d.captain,val:p=>f1(p.b[0]),mark:true});
-  box.innerHTML=`<div class="card"><h2>${t('modelXI',{g:P.gws[0]})}<small class="num">${d.formation}</small></h2>${distBlock(d.dist,d.xp)}</div><div class="card"><div class="pitch-wrap">${pt.xi}</div><div class="legend">${t('modelNote',{c:d.cost})} · ${t('youOwn')}</div></div>`;return}
- if(bestSeg==='elite'){const e=P.elite;if(!e||!e.template){box.innerHTML=`<div class="card empty">${t('none')}</div>`;return}
-  const eo=Object.fromEntries(e.players.map(r=>[r.id,r]));const pt=pitch(e.template.xi,{cap:e.template.captain,val:p=>(eo[p.id]?Math.round(eo[p.id].eo)+'%':'—'),mark:true});
-  box.innerHTML=`<div class="card"><h2>${t('eliteXI',{g:e.gw})}<small>${ago(e.ts)}</small></h2><div class="pitch-wrap">${pt.xi}</div><div class="legend">${t('eliteNote',{n:e.sample,g:e.gw})} · ${t('youOwn')}</div></div>
-  <div class="card"><div class="tbl"><table><tr><th class="l"></th><th>${t('eo')}</th><th>${t('own')}</th><th>${t('capt')}</th></tr>${e.players.slice(0,20).map(r=>{const p=D.byId[r.id];return `<tr><td class="l">${esc(p?p.n:r.id)} <span class="mute">${esc(p?p.t:'')}</span></td><td class="num">${r.eo}%</td><td class="num">${r.own}%</td><td class="num">${r.capt}%</td></tr>`}).join('')}</table></div>
-  ${Object.keys(e.chips||{}).length?`<p class="small mute">${t('chips')}: ${Object.entries(e.chips).map(([k,v])=>esc(k)+' '+v).join(' · ')}</p>`:''}</div>`;return}
- const x=P.experts;if(!x||!x.xi||!x.xi.length){box.innerHTML=`<div class="card empty">${t('expertsNone')}</div>`;return}
- const ids=x.xi.map(o=>o.id).filter(i=>D.byId[i]);
- const pt=pitch(ids,{cap:x.captain_id,val:p=>f1(p.b[0]),mark:true});
- box.innerHTML=`<div class="card"><h2>${t('expertsXI')} · GW${x.gw}<small>${ago(x.ts)}</small></h2><div class="pitch-wrap">${pt.xi}</div>${x.notes?`<p class="small">${esc(x.notes)}</p>`:''}
- <h2 style="margin-top:12px">${t('sources')}</h2>${(x.sources||[]).map(s=>`<div class="row"><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.name)}</a><span class="small mute">${esc(s.published||'')}</span></div>`).join('')}</div>`}
+function renderPlan(P){const pl=P.plan||{moves:[]},L=(pl.lineups||[])[0]||P.lineups[0];
+ const hits=pl.hits||0,n=pl.moves.length;
+ $('#hero-sum').innerHTML=`<div class="pill hero-pill">${t('heroSum',{n:n?t('makeN',{n}):t('heroNone'),xp:f1(L&&L.dist?L.dist.mean:L&&L.xp)})}</div>`;
+ // 1 transfers
+ let h='';
+ if(n){h+=`<div class="big-line">${t('makeN',{n})} · <span class="${hits?'bad':'ok'}">${hits?t('withHits',{h:hits,p:hits*4}):t('freeOnly')}</span></div>`;
+  h+=pl.moves.map((m,k)=>`<div class="move"><span class="mn num">${k+1}</span><span><span class="bad">▼ ${t('out')}</span> ${esc(m.out_n)}<br><span class="ok">▲ ${t('in')}</span> <b>${esc(m.in_n)}</b> <span class="mute small">£${(D.byId[m.in]||{}).c??'?'}m</span></span><span class="g num">+${m.gain}<br><span class="mute small">${m.type==='free'?t('free'):t('hit')}</span></span></div>`).join('');
+ }else h+=`<div class="big-line">${t('noMove')}</div>`;
+ h+=`<div class="row"><span class="k">${t('gainW')}</span><span class="v num ok">+${f1(pl.net)}</span></div><div class="row"><span class="k">${t('bankAfter')}</span><span class="v num">£${pl.bank_after??'—'}m</span></div><div class="row"><span class="k">${t('ftNext')}</span><span class="v num">${pl.ft_after??'—'}</span></div>`;
+ if(pl.stop&&pl.stop.next_out_n)h+=`<details><summary>${t('stopWhy')}</summary><p class="small">${t('stopTxt',{o:esc(pl.stop.next_out_n),i:esc(pl.stop.next_in_n),g:pl.stop.next_gain,t:pl.stop.threshold,r:pl.stop.reason})}</p></details>`;
+ $('#s-transfers').innerHTML=h;
+ // 2 lineup
+ if(L){const newIds=new Set(pl.moves.map(m=>m.in));const o={cap:L.captain,vice:L.vice,val:p=>f1(p.b[0]),newIds};
+  $('#s-lineup').innerHTML=pitchHTML(L.xi,o)+`<div class="small mute" style="margin:8px 0 4px">${t('benchOrder')}</div>`+benchHTML(L.bench,o)+`<p class="small">${t('xpTeam',{xp:f1(L.xp),f:L.formation})}</p>`;
+  const caps=L.xi.map(i=>D.byId[i]).filter(Boolean).sort((a,b)=>b.b[0]-a.b[0]).slice(0,4);
+  $('#s-captain').innerHTML=`<div class="row"><span class="k">${t('capRow')}</span><span class="v">${esc(L.captain_n)}</span></div><div class="row"><span class="k">${t('viceRow')}</span><span class="v">${esc(L.vice_n)}</span></div><p class="small mute">${t('capWhy')}</p>`+caps.map(p=>`<div class="row small"><span>${esc(p.n)} <span class="mute">${esc(p.t)}</span></span><span class="num">${f1(p.b[0])} xP · P90 ${f1(p.u1)} · ≥10 ${pc(p.h1)}</span></div>`).join('')}
+ // 4 chip
+ const C=(P.chips||{}).chips||[],now=C.find(c=>c.verdict==='use_now');
+ $('#s-chip').innerHTML=`<div class="big-line">${now?t('chipUse',{c:now.name}):t('chipNone')}</div>`+C.filter(c=>c.available).map(c=>`<div class="row small"><span>${esc(c.name)}</span><span>${t('verdict_'+c.verdict)}${c.best_gw?` · GW${c.best_gw}`:''}</span></div>`).join('')+`<button class="btn sec" data-go="chips">${t('chipDetail')}</button>`;
+ const fl=P.players.filter(p=>p.mine&&p.st!=='a');
+ $('#flags').innerHTML=fl.length?fl.map(p=>`<div class="row"><span><b>${esc(p.n)}</b> <span class="mute small">${esc(p.t)}</span><br><span class="mute small">${esc(p.news)}</span></span><span class="pill warn num">${p.st}${p.ch!=null?' '+p.ch+'%':''}</span></div>`).join(''):`<div class="ok">${t('allFit')}</div>`}
+
+function renderLab(P){const SC=P.scenarios||[];if(!SC.find(s=>s.key===labKey))labKey=SC[0]?SC[0].key:'plan';
+ $('#lab-chips').innerHTML=Object.keys(SCN).map(k=>{const s=SC.find(x=>x.key===k);return `<button class="${k===labKey?'on':''}" data-k="${k}" ${s?'':'disabled'}>${t(SCN[k])}</button>`}).join('');
+ $('#lab-chips').querySelectorAll('button').forEach(b=>b.onclick=()=>{labKey=b.dataset.k;renderLab(P)});
+ const s=SC.find(x=>x.key===labKey);
+ if(!s){$('#lab-body').innerHTML=`<div class="card empty">${labKey==='experts'?t('expertsNone'):t('none')}</div>`}
+ else{const plan=SC.find(x=>x.key==='plan')||{xi:[]};const inPlan=new Set(plan.xi);
+  let src='';if(s.key==='model')src=t('noBudget');if(s.key==='budget')src=t('withinBudget');if(s.key==='elite'&&P.elite)src=t('eliteSrc',{n:P.elite.sample,g:P.elite.gw});
+  if(s.key==='experts'&&P.experts)src=t('expertsSrc')+' '+(P.experts.sources||[]).map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.name)}</a> (${esc(x.published)})`).join(', ')+(s.from_shortlist?` — ${t('fromShort')}`:'');
+  const same=s.xi.filter(i=>inPlan.has(i)).length,notMine=s.differentials.map(i=>D.byId[i]?D.byId[i].n:i);
+  $('#lab-body').innerHTML=`<div class="card"><h2>${t(SCN[s.key])} · GW${P.gws[0]}<small class="num">£${s.cost}m</small></h2>${distBlock(s.dist,s.xp)}<p class="small mute">${src}</p></div>
+  <div class="card">${pitchHTML(s.xi,{cap:s.captain,vice:s.vice,val:p=>f1(p.b[0]),mark:true})}<div class="legend">${t('overlap')}: <b class="num">${same}/11</b> · ${t('diff')}: ${esc(notMine.join(', ')||'—')}</div></div>`}
+ $('#lab-table').innerHTML=`<tr><th class="l"></th><th>${t('xpShort')}</th><th>${t('p50')}</th><th>${t('p90')}</th><th>${t('p60')}</th></tr>`+SC.map(s=>`<tr class="${s.key===labKey?'sel':''}"><td class="l">${t(SCN[s.key])}</td><td class="num">${f1(s.dist?s.dist.mean:s.xp)}</td><td class="num">${s.dist?s.dist.p50:'—'}</td><td class="num">${s.dist?s.dist.p90:'—'}</td><td class="num">${s.dist?pc(s.dist.prob['60']):'—'}</td></tr>`).join('')}
+
+function renderChips(P){const CP=P.chips;if(!CP){$('#chips-body').innerHTML=`<div class="card empty">${t('none')}</div>`;return}
+ $('#chips-body').innerHTML=CP.chips.map(c=>{const ser=c.series||[],mx=Math.max(c.threshold*1.3,...ser.map(x=>x.value||0),1);
+  const bars=ser.map(x=>`<div class="cb"><div class="cbv num">${f1(x.value)}</div><div class="cbb"><i style="height:${Math.max(2,x.value/mx*100)}%" class="${x.value>=c.threshold?'hot':''}"></i><em style="bottom:${c.threshold/mx*100}%"></em></div><div class="cbl num">GW${x.gw}</div></div>`).join('');
+  const who=c.chip==='3xc'&&ser.length?' · '+ser.map(x=>D.byId[x.who]?D.byId[x.who].n:'').filter((v,i,a)=>a.indexOf(v)===i).join('/'):'';
+  return `<div class="card"><h2>${esc(c.name)}<span class="pill ${c.verdict==='use_now'||c.verdict==='use_before_expiry'?'ok':''}">${t('verdict_'+c.verdict)}</span></h2>
+  <div class="small mute">${c.available?t('chipAvail'):t('chipUsed',{g:c.used_gw})} · ${t('chipExp',{g:c.expires_gw,n:c.gws_left_in_half})}</div>
+  ${c.available?`<div class="chart">${bars}</div><div class="small">${t('chipBest',{g:c.best_gw,v:f1(c.chip==='wildcard'?c.value_now:Math.max(...ser.map(x=>x.value)))})}${who} · ${t('chipThr',{t:c.threshold})}</div><div class="small mute">${t('chipWhy_'+c.chip,{m:c.moves??''})}</div>`:''}</div>`}).join('')+`<p class="small mute">${t('chipNote')}</p>`}
+
+function renderMore(P){const pl=P.plan||{},LS=(pl.lineups&&pl.lineups.length?pl.lineups:P.lineups);
+ $('#gw-chips').innerHTML=P.gws.map((g,i)=>`<button class="${i===gwi?'on':''}" data-i="${i}">GW${g}</button>`).join('');
+ $('#gw-chips').querySelectorAll('button').forEach(x=>x.onclick=()=>{gwi=+x.dataset.i;renderMore(P)});
+ const L=LS[gwi];if(L){const o={cap:L.captain,vice:L.vice,val:p=>f1(p.b[gwi])};$('#pitch').innerHTML=pitchHTML(L.xi,o).replace('<div class="pitch-wrap">','').replace(/<\/div>$/,'');$('#benchrow').innerHTML=L.bench.map((i,k)=>tileFn(o)(i,D.byId[i]&&D.byId[i].pos==='GKP'?t('gk2'):k)).join('');$('#team-xp').textContent=`${L.formation} · ${f1(L.xp)} xP`}
+ $('#singles').innerHTML=P.transfers.best_per_out.slice(0,10).map(s=>`<div class="move"><span><span class="bad">▼</span> ${esc(s.out_n)}<br><span class="ok">▲</span> <b>${esc(s.in_n)}</b></span><span class="g num">${s.gain>0?'+':''}${s.gain}</span></div>`).join('')||`<div class="empty">—</div>`;
+ const e=P.elite;$('#elite-table').innerHTML=e?`<p class="small mute">${t('eliteSrc',{n:e.sample,g:e.gw})}</p><div class="tbl"><table><tr><th class="l"></th><th>${t('eo')}</th><th>${t('own')}</th><th>${t('capt')}</th></tr>${e.players.slice(0,25).map(r=>{const p=D.byId[r.id];return `<tr><td class="l">${esc(p?p.n:r.id)} <span class="mute">${esc(p?p.t:'')}</span>${p&&p.mine?' ●':''}</td><td class="num">${r.eo}%</td><td class="num">${r.own}%</td><td class="num">${r.capt}%</td></tr>`}).join('')}</table></div>`:`<div class="empty">${t('none')}</div>`}
 
 function drawPlayers(){if(!D||!D.projection)return;const q=$('#q').value.trim().toLowerCase(),ps=$('#pos').value,sk=$('#sort').value||'b1';
  const key=p=>sk==='b1'?p.b[0]:sk==='b5'?sum(p.b):sk==='u1'?(p.u1??0):p[sk];
@@ -274,10 +350,11 @@ function renderSys(S,P){const src=S.sources||{};
  const V=D.validation||[];$('#val').innerHTML=V.length?V.map(v=>`<div class="row"><span>GW${v.gw} (${v.n} ${t('players')})</span><span class="v small num">MAE ${v.mae} · ${t('bias')} ${v.bias_actual_minus_proj}</span></div>`).join(''):`<p class="mute small">${t('valNone')}</p>`;
  $('#cons').innerHTML=(D.consistency||[]).map(c=>`<div class="small">${c.ok?'✅':'❌'} ${esc(c.check)}</div>`).join('')}
 
-$('#copy').onclick=e=>{if(!D||!D.projection)return;const P=D.projection,L=P.lineups[0],b=P.transfers.best_per_out[0];
- const txt=`FPL Radar — GW${P.gws[0]}\n${t('transfer')}: ${b&&b.gain>0?b.out_n+' → '+b.in_n+' (+'+b.gain+' xP)':t('hold')}\n${t('captain')}: ${L.captain_n} · ${t('vice')}: ${L.vice_n}\n${t('formation')}: ${L.formation}\n${t('bench')}: ${L.bench_n.join(', ')}`;
+$('#copy').onclick=e=>{if(!D||!D.projection)return;const P=D.projection,pl=P.plan||{moves:[]},L=(pl.lineups||[])[0]||P.lineups[0];const C=(P.chips||{}).chips||[],now=C.find(c=>c.verdict==='use_now');
+ const txt=[`FPL Radar — GW${P.gws[0]}`,`${t('st1')}: `+(pl.moves.length?pl.moves.map(m=>`${m.out_n} → ${m.in_n}`).join(' | '):t('noMove')),
+  `XI (${L.formation}): ${L.xi_n.join(', ')}`,`${t('bench')}: ${L.bench_n.map((n,k)=>(k?k+'. ':'GK ')+n).join(', ')}`,`${t('capRow')}: ${L.captain_n} · ${t('viceRow')}: ${L.vice_n}`,`${t('st4')}: ${now?now.name:t('chipNone')}`].join('\n');
  (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>{e.target.textContent=t('copied');setTimeout(()=>e.target.textContent=t('copyPlan'),1500)}).catch(()=>prompt('',txt))};
-applyLang();try{const v=localStorage.getItem('fr-tab');if(v&&$('#v-'+v))go(v)}catch(e){}
+applyLang();try{const v=localStorage.getItem('fr-tab2');if(v&&$('#v-'+v))go(v)}catch(e){}
 load();setInterval(load,5*60*1000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)load()});
 </script>
 </body>
