@@ -29,3 +29,7 @@
 {"ts":"2026-10-23T18:37:08Z","id":515,"name":"Maddison","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-23T14:30:10.270986Z"}
 {"ts":"2026-10-23T21:39:25Z","id":267,"name":"Lukić","from":["i",0],"to":["i",0],"news":"Groin injury - Unknown return date","news_added":"2026-10-19T15:30:08.949503Z"}
 {"ts":"2026-10-24T00:01:31Z","id":469,"name":"N.Williams","from":["a",100],"to":["d",75],"news":"Arm injury - 75% chance of playing","news_added":"2026-10-24T00:00:10.181593Z"}
+{"ts":"2026-10-24T13:14:40Z","id":53,"name":"Manzambi","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-17T19:30:09.768277Z"}
+{"ts":"2026-10-24T13:14:40Z","id":387,"name":"O'Reilly","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-19T15:30:09.078291Z"}
+{"ts":"2026-10-24T13:14:40Z","id":406,"name":"Kovačić","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-19T15:30:09.126343Z"}
+{"ts":"2026-10-24T13:14:40Z","id":487,"name":"Dominguez","from":["a",null],"to":["d",75],"news":"Muscular injury - 75% chance of playing","news_added":"2026-10-24T13:00:08.751863Z"}

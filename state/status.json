@@ -1,43 +1,43 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-10-24T08:17:19Z",
+   "last_ok": "2026-10-24T13:14:40Z",
    "last_status": 200,
-   "ms": 186,
-   "bytes": 1784363,
+   "ms": 132,
+   "bytes": 1784790,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "fixtures": {
-   "last_ok": "2026-10-24T08:17:19Z",
+   "last_ok": "2026-10-24T13:14:40Z",
    "last_status": 200,
-   "ms": 53,
-   "bytes": 280389,
+   "ms": 21,
+   "bytes": 282596,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "picks": {
-   "last_ok": "2026-10-24T04:25:10Z",
+   "last_ok": "2026-10-24T13:14:40Z",
    "last_status": 200,
-   "ms": 445,
+   "ms": 99,
    "bytes": 1868,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "history": {
-   "last_ok": "2026-10-24T04:25:10Z",
+   "last_ok": "2026-10-24T13:14:40Z",
    "last_status": 200,
-   "ms": 198,
+   "ms": 98,
    "bytes": 2707,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "elite": {
-   "last_ok": "2026-10-24T04:25:10Z",
+   "last_ok": "2026-10-24T13:14:40Z",
    "last_status": 200,
    "ms": null,
    "bytes": null,
@@ -49,17 +49,17 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-10-24T08:17:19Z",
- "fixtures_last_ok": "2026-10-24T08:17:19Z",
- "picks_last_ok": "2026-10-24T04:25:10Z",
- "history_last_ok": "2026-10-24T04:25:10Z",
- "market_last": "2026-10-24T08:17:19Z",
+ "last_ingest_attempt": "2026-10-24T13:14:40Z",
+ "fixtures_last_ok": "2026-10-24T13:14:40Z",
+ "picks_last_ok": "2026-10-24T13:14:40Z",
+ "history_last_ok": "2026-10-24T13:14:40Z",
+ "market_last": "2026-10-24T13:14:40Z",
  "raw_last": "2026-10-24T00:01:31Z",
- "last_ingest_ok": "2026-10-24T08:17:19Z",
- "data_observed_at": "2026-10-24T08:17:19Z",
+ "last_ingest_ok": "2026-10-24T13:14:40Z",
+ "data_observed_at": "2026-10-24T13:14:40Z",
  "last_archive": "2026-10-24T00:01:31Z",
- "last_model_ok": "2026-10-24T08:17:19Z",
- "model_inputs_hash": "1d2178e48ae72d1e",
+ "last_model_ok": "2026-10-24T13:14:40Z",
+ "model_inputs_hash": "f2805b17444ba61e",
  "blanks_doubles": {
   "9": {
    "doubles": [],
@@ -82,7 +82,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-10-24T08:17:19Z",
+ "last_alert_check": "2026-10-24T13:14:40Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -126,8 +126,8 @@
  "health": "ok",
  "quota": {
   "month": "2026-10",
-  "runs": 22,
-  "est_billable_minutes": 22,
+  "runs": 23,
+  "est_billable_minutes": 23,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
@@ -237,7 +237,7 @@
   }
  ],
  "next_deadline_text": "Sat 31 Oct 13:00 EET (Africa/Cairo) · 11:00 GMT UK · 11:00 UTC",
- "elite_last": "2026-10-24T04:25:10Z",
+ "elite_last": "2026-10-24T13:14:40Z",
  "elite_gw": 8,
  "push_devices": 0
 }
