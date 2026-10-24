@@ -1,18 +1,18 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-10-24T04:25:10Z",
+   "last_ok": "2026-10-24T08:17:19Z",
    "last_status": 200,
-   "ms": 79,
-   "bytes": 1784073,
+   "ms": 186,
+   "bytes": 1784363,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "fixtures": {
-   "last_ok": "2026-10-24T04:25:10Z",
+   "last_ok": "2026-10-24T08:17:19Z",
    "last_status": 200,
-   "ms": 17,
+   "ms": 53,
    "bytes": 280389,
    "not_modified": false,
    "attempts": 1,
@@ -49,16 +49,16 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-10-24T04:25:10Z",
- "fixtures_last_ok": "2026-10-24T04:25:10Z",
+ "last_ingest_attempt": "2026-10-24T08:17:19Z",
+ "fixtures_last_ok": "2026-10-24T08:17:19Z",
  "picks_last_ok": "2026-10-24T04:25:10Z",
  "history_last_ok": "2026-10-24T04:25:10Z",
- "market_last": "2026-10-24T04:25:10Z",
+ "market_last": "2026-10-24T08:17:19Z",
  "raw_last": "2026-10-24T00:01:31Z",
- "last_ingest_ok": "2026-10-24T04:25:10Z",
- "data_observed_at": "2026-10-24T04:25:10Z",
+ "last_ingest_ok": "2026-10-24T08:17:19Z",
+ "data_observed_at": "2026-10-24T08:17:19Z",
  "last_archive": "2026-10-24T00:01:31Z",
- "last_model_ok": "2026-10-24T04:25:10Z",
+ "last_model_ok": "2026-10-24T08:17:19Z",
  "model_inputs_hash": "1d2178e48ae72d1e",
  "blanks_doubles": {
   "9": {
@@ -82,7 +82,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-10-24T04:25:10Z",
+ "last_alert_check": "2026-10-24T08:17:19Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -92,7 +92,7 @@
   {
    "check": "≤3 per club",
    "ok": true,
-   "detail": "{5: 2, 1: 1, 7: 1, 8: 1, 16: 3, 14: 1, 15: 1, 13: 1, 6: 1, 19: 1, 12: 2}"
+   "detail": "{5: 2, 1: 1, 7: 1, 13: 2, 16: 2, 3: 1, 15: 1, 6: 1, 19: 1, 12: 2, 8: 1}"
   },
   {
    "check": "fixtures cover GW1..38",
@@ -113,23 +113,28 @@
    "check": "projection age < 24h",
    "ok": true,
    "detail": "0.0h"
+  },
+  {
+   "check": "no duplicate price rows",
+   "ok": true,
+   "detail": "0 duplicates"
   }
  ],
- "last_validate_ok": "2026-10-23T08:42:11Z",
+ "last_validate_ok": "2026-10-24T08:17:19Z",
  "consecutive_failures": 0,
  "warnings": [],
  "health": "ok",
  "quota": {
   "month": "2026-10",
-  "runs": 21,
-  "est_billable_minutes": 21,
+  "runs": 22,
+  "est_billable_minutes": 22,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
  "freshness": "current",
  "data_age_minutes": 0.0,
  "last_delivery": {
-  "ts": "2026-10-24T00:01:31Z",
+  "ts": "2026-10-24T08:17:19Z",
   "n": 2,
   "records": [
    {
