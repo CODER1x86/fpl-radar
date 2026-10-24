@@ -37,3 +37,7 @@
 {"ts":"2026-10-24T16:39:14Z","id":165,"name":"João Pedro","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-24T16:30:09.687729Z"}
 {"ts":"2026-10-24T16:39:14Z","id":238,"name":"Grealish","from":["a",100],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-10-24T14:30:09.610430Z"}
 {"ts":"2026-10-24T16:39:14Z","id":515,"name":"Maddison","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-23T14:30:10.270986Z"}
+{"ts":"2026-10-24T19:00:25Z","id":8,"name":"Calafiori","from":["a",null],"to":["d",75],"news":"Hip injury - 75% chance of playing","news_added":"2026-10-24T18:30:08.735545Z"}
+{"ts":"2026-10-24T19:00:25Z","id":173,"name":"Thomas","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-24T17:00:09.115906Z"}
+{"ts":"2026-10-24T19:00:25Z","id":233,"name":"Mykolenko","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-24T19:00:09.907289Z"}
+{"ts":"2026-10-24T19:00:25Z","id":515,"name":"Maddison","from":["a",100],"to":["d",75],"news":"Groin injury - 75% chance of playing","news_added":"2026-10-24T19:00:10.113555Z"}
