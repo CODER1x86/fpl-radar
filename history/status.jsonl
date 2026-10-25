@@ -41,3 +41,4 @@
 {"ts":"2026-10-24T19:00:25Z","id":173,"name":"Thomas","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-24T17:00:09.115906Z"}
 {"ts":"2026-10-24T19:00:25Z","id":233,"name":"Mykolenko","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-24T19:00:09.907289Z"}
 {"ts":"2026-10-24T19:00:25Z","id":515,"name":"Maddison","from":["a",100],"to":["d",75],"news":"Groin injury - 75% chance of playing","news_added":"2026-10-24T19:00:10.113555Z"}
+{"ts":"2026-10-25T12:06:00Z","id":515,"name":"Maddison","from":["d",75],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-24T19:00:10.113555Z"}
