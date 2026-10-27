@@ -1,0 +1,85 @@
+{
+ "gw": 8,
+ "projection_ts": "2026-10-23T00:03:18Z",
+ "model": "m3-cloud-1.0",
+ "n": 187,
+ "mae": 2.464,
+ "bias_actual_minus_proj": 0.17,
+ "squad": [
+  {
+   "id": 4,
+   "proj": 4.68,
+   "actual": 17
+  },
+  {
+   "id": 109,
+   "proj": 2.76,
+   "actual": 2
+  },
+  {
+   "id": 124,
+   "proj": 4.51,
+   "actual": 0
+  },
+  {
+   "id": 165,
+   "proj": 4.83,
+   "actual": 0
+  },
+  {
+   "id": 175,
+   "proj": 3.0,
+   "actual": 2
+  },
+  {
+   "id": 204,
+   "proj": 2.7,
+   "actual": 1
+  },
+  {
+   "id": 304,
+   "proj": 3.28,
+   "actual": 2
+  },
+  {
+   "id": 571,
+   "proj": 1.16,
+   "actual": 4
+  },
+  {
+   "id": 346,
+   "proj": 4.61,
+   "actual": 2
+  },
+  {
+   "id": 368,
+   "proj": 0.05,
+   "actual": 0
+  },
+  {
+   "id": 411,
+   "proj": 5.83,
+   "actual": 8
+  },
+  {
+   "id": 423,
+   "proj": 0.05,
+   "actual": 0
+  },
+  {
+   "id": 426,
+   "proj": 4.74,
+   "actual": 0
+  },
+  {
+   "id": 427,
+   "proj": 5.38,
+   "actual": 2
+  },
+  {
+   "id": 497,
+   "proj": 0.0,
+   "actual": 0
+  }
+ ]
+}

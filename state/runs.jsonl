@@ -41,3 +41,4 @@
 {"ts":"2026-10-26T23:22:22Z","mode":"auto","secs":36,"health":"ok","errors":[],"events":["0 price changes, 0 status/news changes","alerts: 0 detected, 0 sent, 0 held (quiet hours)"],"run":"40419264344"}
 {"ts":"2026-10-27T02:12:10Z","mode":"auto","secs":2,"health":"ok","errors":[],"events":["10 price changes, 0 status/news changes","alerts: 4 detected, 2 sent, 2 held (quiet hours)"],"run":"40437025230"}
 {"ts":"2026-10-27T07:53:17Z","mode":"auto","secs":34,"health":"ok","errors":[],"events":["0 price changes, 0 status/news changes","alerts: 0 detected, 2 sent, 0 held (quiet hours)"],"run":"40469817704"}
+{"ts":"2026-10-27T09:11:34Z","mode":"validate","secs":2,"health":"ok","errors":[],"events":["0 price changes, 0 status/news changes","alerts: 0 detected, 0 sent, 0 held (quiet hours)","validation: 7/7 checks ok, 1 GWs scored"],"run":"40478886592"}
