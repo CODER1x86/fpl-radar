@@ -1,40 +1,35 @@
 {
- "ts": "2026-10-23T05:33:47Z",
- "gw": 8,
+ "ts": "2026-10-27T05:33:34Z",
+ "gw": 9,
  "xi": [
   {
-   "id": 1,
-   "name": "Raya",
+   "id": 597,
+   "name": "Suzuki",
+   "mentions": 1
+  },
+  {
+   "id": 4,
+   "name": "Gabriel",
    "mentions": 2
   },
   {
-   "id": 8,
-   "name": "Calafiori",
+   "id": 112,
+   "name": "Van Hecke",
    "mentions": 2
   },
   {
-   "id": 334,
-   "name": "Muharemović",
-   "mentions": 2
-  },
-  {
-   "id": 31,
-   "name": "Konsa",
-   "mentions": 2
-  },
-  {
-   "id": 173,
-   "name": "Thomas",
-   "mentions": 2
-  },
-  {
-   "id": 480,
-   "name": "Gibbs-White",
-   "mentions": 2
+   "id": 566,
+   "name": "Silva",
+   "mentions": 1
   },
   {
    "id": 68,
    "name": "Tavernier",
+   "mentions": 3
+  },
+  {
+   "id": 154,
+   "name": "Palmer",
    "mentions": 2
   },
   {
@@ -43,140 +38,43 @@
    "mentions": 2
   },
   {
-   "id": 411,
-   "name": "Haaland",
-   "mentions": 3
-  },
-  {
-   "id": 165,
-   "name": "João Pedro",
+   "id": 53,
+   "name": "Manzambi",
    "mentions": 2
   },
   {
-   "id": 346,
-   "name": "Calvert-Lewin",
+   "id": 411,
+   "name": "Haaland",
+   "mentions": 2
+  },
+  {
+   "id": 166,
+   "name": "N.Jackson",
+   "mentions": 2
+  },
+  {
+   "id": 249,
+   "name": "Barry",
    "mentions": 2
   }
  ],
  "captain_id": 411,
- "notes": "4-3-3 consensus: Raya; Calafiori, Muharemovic, Konsa, B.Thomas; Gibbs-White, Tavernier, Rogers; Haaland, Joao Pedro, Calvert-Lewin. Captain Haaland (AllAboutFPL; FFS says fit to start) - main disagreement: FF Hub AI captains Palmer (5.9 xP) on Haaland doubt; reader polls lean Joao Pedro. FFS final Scout Picks & PL Scout Selection not yet published/readable at 05:40 UTC.",
+ "notes": "3-4-3 early consensus: Suzuki; Gabriel, Van Hecke, A.Silva; Tavernier, Palmer, Rogers, Manzambi; Haaland, N.Jackson, Barry. Captain Haaland (FFS 'default GW9 captain'). Disagreement: GK split Suzuki (FFS Villa triple-up) vs Raya (OnsideArena); FFS backs Palmer (not suspended for GW9) while OnsideArena prefers B.Fernandes/Mbeumo. PL Scout Selection for GW9 not yet published at 05:45 UTC Tue.",
  "sources": [
   {
-   "name": "AllAboutFPL - GW8 Scout Picks (full XI, C Haaland)",
-   "url": "https://allaboutfpl.com/2026/10/fpl-gw8-scout-picks-based-on-stats-analysis-and-matchups/",
-   "published": "2026-10-22"
+   "name": "Fantasy Football Scout - GW9 early Scout Picks (Villa triple-up)",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
+   "published": "2026-10-26"
   },
   {
-   "name": "Fantasy Football Scout - GW8 early Scout Picks (15-man bus team)",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/10/21/fpl-gameweek-8-early-scout-picks-arsenal-trio-two-double-ups",
-   "published": "2026-10-21"
+   "name": "Fantasy Football Fix - GW9 transfer tips (most-targeted players)",
+   "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
+   "published": "2026-10-26"
   },
   {
-   "name": "Fantasy Football Hub - GW8 captain (Palmer)",
-   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-captain-gameweek-8-article-26-27",
-   "published": "2026-10-22"
-  },
-  {
-   "name": "FPL Focal - GW8 team selection (partial: Raya, Konsa, Thiaw, De Cuyper)",
-   "url": "https://fpl.page/article/fpl-gw8-team-selection-2627",
-   "published": "2026-10-22"
-  },
-  {
-   "name": "The Scout (premierleague.com) - GW8 transfer radar (Doku, Schade, Evanilson, B.Thomas)",
-   "url": "https://www.premierleague.com/en/news/4744220/the-scouts-fpl-gameweek-8-transfer-radar",
-   "published": "2026-10-21"
-  }
- ],
- "squad": [
-  {
-   "id": 82,
-   "name": "Kelleher",
-   "pos": "GKP",
-   "mentions": 1
-  },
-  {
-   "id": 385,
-   "name": "Trafford",
-   "pos": "GKP",
-   "mentions": 1
-  },
-  {
-   "id": 8,
-   "name": "Calafiori",
-   "pos": "DEF",
-   "mentions": 1
-  },
-  {
-   "id": 334,
-   "name": "Muharemović",
-   "pos": "DEF",
-   "mentions": 1
-  },
-  {
-   "id": 31,
-   "name": "Konsa",
-   "pos": "DEF",
-   "mentions": 1
-  },
-  {
-   "id": 87,
-   "name": "Ajer",
-   "pos": "DEF",
-   "mentions": 1
-  },
-  {
-   "id": 173,
-   "name": "Thomas",
-   "pos": "DEF",
-   "mentions": 1
-  },
-  {
-   "id": 480,
-   "name": "Gibbs-White",
-   "pos": "MID",
-   "mentions": 1
-  },
-  {
-   "id": 68,
-   "name": "Tavernier",
-   "pos": "MID",
-   "mentions": 1
-  },
-  {
-   "id": 94,
-   "name": "Schade",
-   "pos": "MID",
-   "mentions": 1
-  },
-  {
-   "id": 453,
-   "name": "Barnes",
-   "pos": "MID",
-   "mentions": 1
-  },
-  {
-   "id": 40,
-   "name": "Rogers",
-   "pos": "MID",
-   "mentions": 1
-  },
-  {
-   "id": 411,
-   "name": "Haaland",
-   "pos": "FWD",
-   "mentions": 1
-  },
-  {
-   "id": 165,
-   "name": "João Pedro",
-   "pos": "FWD",
-   "mentions": 1
-  },
-  {
-   "id": 346,
-   "name": "Calvert-Lewin",
-   "pos": "FWD",
-   "mentions": 1
+   "name": "OnsideArena - GW9 wildcard XI (C Haaland)",
+   "url": "https://onsidearena.com/tips/best-wildcard-week-9-2026-27",
+   "published": "2026-10-26"
   }
  ]
 }
