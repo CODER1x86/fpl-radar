@@ -60,3 +60,12 @@
 {"ts":"2026-10-25T18:59:32Z","id":501,"name":"Danso","from":["s",0],"to":["a",100],"news":"","news_added":"2026-10-18T13:30:09.387826Z"}
 {"ts":"2026-10-25T18:59:32Z","id":552,"name":"Brobbey","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-19T11:00:09.674071Z"}
 {"ts":"2026-10-27T13:47:10Z","id":208,"name":"Sarr","from":["a",100],"to":["d",75],"news":"Groin injury - 75% chance of playing","news_added":"2026-10-27T10:30:09.385934Z"}
+{"ts":"2026-10-27T19:00:42Z","id":89,"name":"Henry","from":["a",null],"to":["i",0],"news":"Hip injury - Unknown return date","news_added":"2026-10-27T16:30:09.444144Z"}
+{"ts":"2026-10-27T19:00:42Z","id":122,"name":"Minteh","from":["d",50],"to":["d",75],"news":"Leg injury - 75% chance of playing","news_added":"2026-08-14T18:00:06.418033Z"}
+{"ts":"2026-10-27T19:00:42Z","id":130,"name":"Wieffer","from":["d",25],"to":["d",75],"news":"Knee injury - 75% chance of playing","news_added":"2026-09-04T09:30:08.612904Z"}
+{"ts":"2026-10-27T19:00:42Z","id":328,"name":"Struijk","from":["d",75],"to":["d",50],"news":"Hamstring injury - 50% chance of playing","news_added":"2026-10-16T17:30:09.428175Z"}
+{"ts":"2026-10-27T19:00:42Z","id":639,"name":"Andrés","from":["d",75],"to":["d",75],"news":"Hip injury - 75% chance of playing","news_added":"2026-10-25T17:30:10.276308Z"}
+{"ts":"2026-10-27T19:00:42Z","id":165,"name":"João Pedro","from":["d",75],"to":["i",0],"news":"Thigh injury - Unknown return date","news_added":"2026-10-24T16:30:09.687729Z"}
+{"ts":"2026-10-27T19:00:42Z","id":170,"name":"Emegha","from":["i",0],"to":["a",100],"news":"","news_added":"2026-09-09T15:00:09.063849Z"}
+{"ts":"2026-10-27T19:00:42Z","id":198,"name":"Henderson","from":["d",50],"to":["d",75],"news":"Foot injury - 75% chance of playing","news_added":"2026-09-12T14:00:09.378740Z"}
+{"ts":"2026-10-27T19:00:42Z","id":459,"name":"L.Miley","from":["a",100],"to":["d",75],"news":"Muscular injury - 75% chance of playing","news_added":"2026-10-27T16:00:07.981816Z"}
