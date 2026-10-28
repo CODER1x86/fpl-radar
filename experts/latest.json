@@ -1,5 +1,5 @@
 {
- "ts": "2026-10-27T05:33:34Z",
+ "ts": "2026-10-28T05:34:14Z",
  "gw": 9,
  "xi": [
   {
@@ -10,27 +10,32 @@
   {
    "id": 4,
    "name": "Gabriel",
-   "mentions": 2
+   "mentions": 4
   },
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 2
+   "mentions": 3
   },
   {
-   "id": 566,
-   "name": "Silva",
-   "mentions": 1
+   "id": 31,
+   "name": "Konsa",
+   "mentions": 2
   },
   {
    "id": 68,
    "name": "Tavernier",
-   "mentions": 3
+   "mentions": 4
+  },
+  {
+   "id": 53,
+   "name": "Manzambi",
+   "mentions": 4
   },
   {
    "id": 154,
    "name": "Palmer",
-   "mentions": 2
+   "mentions": 4
   },
   {
    "id": 40,
@@ -38,43 +43,53 @@
    "mentions": 2
   },
   {
-   "id": 53,
-   "name": "Manzambi",
-   "mentions": 2
-  },
-  {
    "id": 411,
    "name": "Haaland",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 2
+   "mentions": 4
   },
   {
-   "id": 249,
-   "name": "Barry",
-   "mentions": 2
+   "id": 79,
+   "name": "Evanilson",
+   "mentions": 3
   }
  ],
  "captain_id": 411,
- "notes": "3-4-3 early consensus: Suzuki; Gabriel, Van Hecke, A.Silva; Tavernier, Palmer, Rogers, Manzambi; Haaland, N.Jackson, Barry. Captain Haaland (FFS 'default GW9 captain'). Disagreement: GK split Suzuki (FFS Villa triple-up) vs Raya (OnsideArena); FFS backs Palmer (not suspended for GW9) while OnsideArena prefers B.Fernandes/Mbeumo. PL Scout Selection for GW9 not yet published at 05:45 UTC Tue.",
+ "notes": "3-4-3 consensus: Suzuki; Gabriel, Van Hecke, Konsa; Tavernier, Manzambi, Palmer, Rogers; Haaland, N.Jackson, Evanilson. Captain Haaland. Joao Pedro is a universal sell (out 'a few weeks'); N.Jackson is the top replacement (Isak/Evanilson alternatives). Disagreement: PL Scout says sell B.Fernandes, Mbeumo, Calvert-Lewin and buy Gabriel now, while FFS says hold Gabriel until GW10 (away at Liverpool). GK split Suzuki vs Raya/Verbruggen. PL Scout Selection XI for GW9 not yet published.",
  "sources": [
   {
-   "name": "Fantasy Football Scout - GW9 early Scout Picks (Villa triple-up)",
+   "name": "Fantasy Football Scout - GW9 early Scout Picks",
    "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
    "published": "2026-10-26"
   },
   {
-   "name": "Fantasy Football Fix - GW9 transfer tips (most-targeted players)",
+   "name": "Fantasy Football Scout - Buy, keep or sell GW9",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/10/27/jackson-evanilson-cherki-gabriel-buy-keep-or-sell-in-gameweek-9",
+   "published": "2026-10-27"
+  },
+  {
+   "name": "Fantasy Football Fix - GW9 transfer tips",
    "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
    "published": "2026-10-26"
   },
   {
-   "name": "OnsideArena - GW9 wildcard XI (C Haaland)",
-   "url": "https://onsidearena.com/tips/best-wildcard-week-9-2026-27",
-   "published": "2026-10-26"
+   "name": "Fantasy Football Hub - Ultimate Guide GW9",
+   "url": "https://www.fantasyfootballhub.co.uk/articles/fantasy-premier-league-ultimate-guide-fpl-tips",
+   "published": "2026-10-27"
+  },
+  {
+   "name": "Premier League (The Scout) - Buy, keep or sell 20 most-owned",
+   "url": "https://www.premierleague.com/en/news/4750035/buy-keep-or-sell-what-to-do-with-the-20-most-owned-players-in-fpl",
+   "published": "2026-10-27"
+  },
+  {
+   "name": "Premier League (The Scout) - Best replacements for Joao Pedro",
+   "url": "https://www.premierleague.com/en/news/4750154",
+   "published": "2026-10-27"
   }
  ]
 }
