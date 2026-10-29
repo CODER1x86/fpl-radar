@@ -1,5 +1,5 @@
 {
- "ts": "2026-10-28T05:34:14Z",
+ "ts": "2026-10-29T05:34:12Z",
  "gw": 9,
  "xi": [
   {
@@ -25,7 +25,7 @@
   {
    "id": 68,
    "name": "Tavernier",
-   "mentions": 4
+   "mentions": 5
   },
   {
    "id": 53,
@@ -35,7 +35,7 @@
   {
    "id": 154,
    "name": "Palmer",
-   "mentions": 4
+   "mentions": 5
   },
   {
    "id": 40,
@@ -45,12 +45,12 @@
   {
    "id": 411,
    "name": "Haaland",
-   "mentions": 3
+   "mentions": 4
   },
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 4
+   "mentions": 5
   },
   {
    "id": 79,
@@ -59,7 +59,7 @@
   }
  ],
  "captain_id": 411,
- "notes": "3-4-3 consensus: Suzuki; Gabriel, Van Hecke, Konsa; Tavernier, Manzambi, Palmer, Rogers; Haaland, N.Jackson, Evanilson. Captain Haaland. Joao Pedro is a universal sell (out 'a few weeks'); N.Jackson is the top replacement (Isak/Evanilson alternatives). Disagreement: PL Scout says sell B.Fernandes, Mbeumo, Calvert-Lewin and buy Gabriel now, while FFS says hold Gabriel until GW10 (away at Liverpool). GK split Suzuki vs Raya/Verbruggen. PL Scout Selection XI for GW9 not yet published.",
+ "notes": "3-4-3 consensus: Suzuki; Gabriel, Van Hecke, Konsa; Tavernier, Manzambi, Palmer, Rogers; Haaland, N.Jackson, Evanilson. Captain Haaland (near-unanimous; N.Jackson the main alternative). Joao Pedro universal sell (thigh, 'a few weeks' - Alonso). Disagreement: PL Scout says buy Gabriel now vs FFS hold until after GW10 (LIV away); GK split Suzuki vs Raya/Verbruggen; Igor Thiago (BRE pens) a Hub alternative to Evanilson. PL Scout Selection XI for 2026/27 GW9 still not published as of 29 Oct 05:40 UTC.",
  "sources": [
   {
    "name": "Fantasy Football Scout - GW9 early Scout Picks",
@@ -89,6 +89,11 @@
   {
    "name": "Premier League (The Scout) - Best replacements for Joao Pedro",
    "url": "https://www.premierleague.com/en/news/4750154",
+   "published": "2026-10-27"
+  },
+  {
+   "name": "Fantasy Football Hub - Best FPL players for GW9",
+   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-9-article-26-27",
    "published": "2026-10-27"
   }
  ]
