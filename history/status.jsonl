@@ -80,3 +80,20 @@
 {"ts":"2026-10-28T20:17:02Z","id":541,"name":"Meunier","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-10T16:30:09.200467Z"}
 {"ts":"2026-10-29T00:03:46Z","id":200,"name":"Lacroix","from":["a",null],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-10-28T23:00:10.088612Z"}
 {"ts":"2026-10-29T10:14:24Z","id":650,"name":"Affengruber","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-29T08:30:08.436091Z"}
+{"ts":"2026-10-29T17:35:14Z","id":121,"name":"Mitoma","from":["i",0],"to":["i",0],"news":"Hamstring injury - Expected back 22 Nov","news_added":"2026-07-24T18:30:10.661894Z"}
+{"ts":"2026-10-29T17:35:14Z","id":135,"name":"Yohanna","from":["i",0],"to":["i",0],"news":"Unspecified injury - Expected back 22 Nov","news_added":"2026-09-10T13:00:08.617941Z"}
+{"ts":"2026-10-29T17:35:14Z","id":328,"name":"Struijk","from":["d",50],"to":["i",0],"news":"Hamstring injury - Expected back 8 Nov","news_added":"2026-10-16T17:30:09.428175Z"}
+{"ts":"2026-10-29T17:35:14Z","id":652,"name":"Azeez","from":["i",0],"to":["i",0],"news":"Hamstring injury - Expected back 8 Nov","news_added":"2026-09-04T11:30:08.661589Z"}
+{"ts":"2026-10-29T17:35:14Z","id":173,"name":"Thomas","from":["d",75],"to":["d",50],"news":"Calf injury - 50% chance of playing","news_added":"2026-10-24T17:00:09.115906Z"}
+{"ts":"2026-10-29T17:35:14Z","id":208,"name":"Sarr","from":["d",75],"to":["i",0],"news":"Groin injury - Expected back 8 Nov","news_added":"2026-10-27T10:30:09.385934Z"}
+{"ts":"2026-10-29T17:35:14Z","id":274,"name":"Butland","from":["i",0],"to":["d",50],"news":"Arm injury - 50% chance of playing","news_added":"2026-08-08T19:00:05.601633Z"}
+{"ts":"2026-10-29T17:35:14Z","id":586,"name":"Mendy","from":["i",0],"to":["a",100],"news":"","news_added":"2026-10-16T12:30:09.976274Z"}
+{"ts":"2026-10-29T17:35:14Z","id":335,"name":"Stach","from":["a",100],"to":["d",50],"news":"Foot injury - 50% chance of playing","news_added":"2026-10-29T14:30:08.129193Z"}
+{"ts":"2026-10-29T17:35:14Z","id":598,"name":"Elvedi","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-25T17:00:10.080582Z"}
+{"ts":"2026-10-29T17:35:14Z","id":415,"name":"Dorgu","from":["i",0],"to":["i",0],"news":"Hamstring injury - Unknown return date","news_added":"2026-09-27T21:30:07.831640Z"}
+{"ts":"2026-10-29T17:35:14Z","id":432,"name":"Mainoo","from":["i",0],"to":["d",25],"news":"Unspecified injury - 25% chance of playing","news_added":"2026-10-12T21:30:09.006287Z"}
+{"ts":"2026-10-29T17:35:14Z","id":450,"name":"Livramento","from":["i",0],"to":["i",0],"news":"Knee injury - Unknown return date","news_added":"2026-09-19T14:00:09.046677Z"}
+{"ts":"2026-10-29T17:35:14Z","id":469,"name":"N.Williams","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-24T00:00:10.181593Z"}
+{"ts":"2026-10-29T17:35:14Z","id":483,"name":"Ndoye","from":["a",null],"to":["d",50],"news":"Hamstring injury - 50% chance of playing","news_added":"2026-10-29T15:00:10.057610Z"}
+{"ts":"2026-10-29T17:35:14Z","id":147,"name":"Tosin","from":["a",100],"to":["d",75],"news":"Calf injury - 75% chance of playing","news_added":"2026-10-29T17:00:09.335810Z"}
+{"ts":"2026-10-29T17:35:14Z","id":403,"name":"Sávio","from":["i",0],"to":["i",0],"news":"Muscular injury - Expected back 21 Nov","news_added":"2026-10-18T13:00:09.266321Z"}
