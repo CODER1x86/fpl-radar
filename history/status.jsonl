@@ -100,3 +100,8 @@
 {"ts":"2026-10-29T21:59:15Z","id":233,"name":"Mykolenko","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-24T19:00:09.907289Z"}
 {"ts":"2026-10-29T21:59:15Z","id":238,"name":"Grealish","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-24T14:30:09.610430Z"}
 {"ts":"2026-10-29T21:59:15Z","id":533,"name":"Mukiele","from":["a",100],"to":["d",75],"news":"Knock - 75% chance of playing","news_added":"2026-10-29T18:30:09.458031Z"}
+{"ts":"2026-10-30T01:48:28Z","id":144,"name":"Gusto","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-29T22:00:09.886054Z"}
+{"ts":"2026-10-30T01:48:28Z","id":148,"name":"Hato","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-29T22:00:09.909621Z"}
+{"ts":"2026-10-30T01:48:28Z","id":159,"name":"Caicedo","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-29T22:00:09.933708Z"}
+{"ts":"2026-10-30T01:48:28Z","id":200,"name":"Lacroix","from":["d",75],"to":["d",50],"news":"Hamstring injury - 50% chance of playing","news_added":"2026-10-28T23:00:10.088612Z"}
+{"ts":"2026-10-30T01:48:28Z","id":465,"name":"Osula","from":["a",100],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-10-29T23:00:08.575179Z"}
