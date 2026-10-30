@@ -1,11 +1,11 @@
 {
- "ts": "2026-10-29T05:34:12Z",
+ "ts": "2026-10-30T06:34:39Z",
  "gw": 9,
  "xi": [
   {
    "id": 597,
    "name": "Suzuki",
-   "mentions": 1
+   "mentions": 2
   },
   {
    "id": 4,
@@ -15,42 +15,42 @@
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 3
+   "mentions": 4
   },
   {
-   "id": 31,
-   "name": "Konsa",
+   "id": 566,
+   "name": "Silva",
    "mentions": 2
   },
   {
    "id": 68,
    "name": "Tavernier",
-   "mentions": 5
-  },
-  {
-   "id": 53,
-   "name": "Manzambi",
-   "mentions": 4
+   "mentions": 6
   },
   {
    "id": 154,
    "name": "Palmer",
+   "mentions": 6
+  },
+  {
+   "id": 53,
+   "name": "Manzambi",
    "mentions": 5
   },
   {
    "id": 40,
    "name": "Rogers",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 411,
    "name": "Haaland",
-   "mentions": 4
+   "mentions": 5
   },
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 5
+   "mentions": 6
   },
   {
    "id": 79,
@@ -59,8 +59,23 @@
   }
  ],
  "captain_id": 411,
- "notes": "3-4-3 consensus: Suzuki; Gabriel, Van Hecke, Konsa; Tavernier, Manzambi, Palmer, Rogers; Haaland, N.Jackson, Evanilson. Captain Haaland (near-unanimous; N.Jackson the main alternative). Joao Pedro universal sell (thigh, 'a few weeks' - Alonso). Disagreement: PL Scout says buy Gabriel now vs FFS hold until after GW10 (LIV away); GK split Suzuki vs Raya/Verbruggen; Igor Thiago (BRE pens) a Hub alternative to Evanilson. PL Scout Selection XI for 2026/27 GW9 still not published as of 29 Oct 05:40 UTC.",
+ "notes": "3-4-3 consensus: Suzuki; Gabriel, Van Hecke, Silva; Tavernier, Palmer, Manzambi, Rogers; Haaland, N.Jackson, Evanilson. Captain Haaland (unanimous; N.Jackson vice per OneFPL). PL Scout Selection (29 Oct) and FFS bus team both go 3-5-2 with Kudus instead of Evanilson, and PL Scout has Mukiele over Gabriel. Joao Pedro universal sell (thigh, out 'a few weeks' - Alonso). Watch: Manzambi minutes being managed (rested in EFL Cup), Palmer available after serving ban in cup.",
  "sources": [
+  {
+   "name": "Premier League - Scout Selection GW9",
+   "url": "https://www.premierleague.com/en/news/4750445/scout-selection-best-fantasy-team-for-gameweek-9",
+   "published": "2026-10-29"
+  },
+  {
+   "name": "OneFPL - GW9 captain picks",
+   "url": "https://onefpl.com/blog/fpl-gw9-captaincy-early-watchlist-2026-27",
+   "published": "2026-10-28"
+  },
+  {
+   "name": "Fantasy Football Scout - Evanilson, Jackson + Manzambi rested",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/10/29/fpl-notes-evanilson-jackson-manzambi-rested-for-gameweek-9",
+   "published": "2026-10-29"
+  },
   {
    "name": "Fantasy Football Scout - GW9 early Scout Picks",
    "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
