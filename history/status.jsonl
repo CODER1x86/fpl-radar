@@ -105,3 +105,17 @@
 {"ts":"2026-10-30T01:48:28Z","id":159,"name":"Caicedo","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-10-29T22:00:09.933708Z"}
 {"ts":"2026-10-30T01:48:28Z","id":200,"name":"Lacroix","from":["d",75],"to":["d",50],"news":"Hamstring injury - 50% chance of playing","news_added":"2026-10-28T23:00:10.088612Z"}
 {"ts":"2026-10-30T01:48:28Z","id":465,"name":"Osula","from":["a",100],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-10-29T23:00:08.575179Z"}
+{"ts":"2026-10-30T14:34:57Z","id":557,"name":"Tzolis","from":["i",0],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-10-02T15:00:11.091226Z"}
+{"ts":"2026-10-30T14:34:57Z","id":69,"name":"Scott","from":["i",0],"to":["i",0],"news":"Thigh injury - Expected back 21 Nov","news_added":"2026-10-05T09:30:09.910752Z"}
+{"ts":"2026-10-30T14:34:57Z","id":100,"name":"Carvalho","from":["a",100],"to":["i",0],"news":"Knock - Expected back 23 Nov","news_added":"2026-10-30T14:30:09.456391Z"}
+{"ts":"2026-10-30T14:34:57Z","id":148,"name":"Hato","from":["d",75],"to":["i",0],"news":"Unspecified injury - Unknown return date","news_added":"2026-10-29T22:00:09.909621Z"}
+{"ts":"2026-10-30T14:34:57Z","id":159,"name":"Caicedo","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-29T22:00:09.933708Z"}
+{"ts":"2026-10-30T14:34:57Z","id":200,"name":"Lacroix","from":["d",50],"to":["i",0],"news":"Hamstring injury - Unknown return date","news_added":"2026-10-28T23:00:10.088612Z"}
+{"ts":"2026-10-30T14:34:57Z","id":583,"name":"Chavarria","from":["i",0],"to":["a",100],"news":"","news_added":"2026-10-17T12:00:10.154091Z"}
+{"ts":"2026-10-30T14:34:57Z","id":262,"name":"Smith Rowe","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-23T11:30:09.310090Z"}
+{"ts":"2026-10-30T14:34:57Z","id":650,"name":"Affengruber","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-29T08:30:08.436091Z"}
+{"ts":"2026-10-30T14:34:57Z","id":389,"name":"Matheus N.","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-19T15:30:09.094655Z"}
+{"ts":"2026-10-30T14:34:57Z","id":465,"name":"Osula","from":["d",75],"to":["d",50],"news":"Ankle injury - 50% chance of playing","news_added":"2026-10-29T23:00:08.575179Z"}
+{"ts":"2026-10-30T14:34:57Z","id":147,"name":"Tosin","from":["d",75],"to":["i",0],"news":"Calf injury - Unknown return date","news_added":"2026-10-29T17:00:09.335810Z"}
+{"ts":"2026-10-30T14:34:57Z","id":506,"name":"Udogie","from":["i",0],"to":["a",100],"news":"","news_added":"2026-10-19T22:30:08.875960Z"}
+{"ts":"2026-10-30T14:34:57Z","id":515,"name":"Maddison","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-24T19:00:10.113555Z"}

@@ -1,18 +1,18 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-10-30T10:16:10Z",
+   "last_ok": "2026-10-30T14:34:57Z",
    "last_status": 200,
-   "ms": 223,
-   "bytes": 1791009,
+   "ms": 116,
+   "bytes": 1790044,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "fixtures": {
-   "last_ok": "2026-10-30T07:45:55Z",
+   "last_ok": "2026-10-30T14:34:57Z",
    "last_status": 200,
-   "ms": 26,
+   "ms": 35,
    "bytes": 300482,
    "not_modified": false,
    "attempts": 1,
@@ -58,17 +58,17 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-10-30T10:16:10Z",
- "fixtures_last_ok": "2026-10-30T07:45:55Z",
+ "last_ingest_attempt": "2026-10-30T14:34:57Z",
+ "fixtures_last_ok": "2026-10-30T14:34:57Z",
  "picks_last_ok": "2026-10-30T10:16:10Z",
  "history_last_ok": "2026-10-30T10:16:10Z",
- "market_last": "2026-10-30T10:16:10Z",
+ "market_last": "2026-10-30T14:34:57Z",
  "raw_last": "2026-10-30T10:16:10Z",
- "last_ingest_ok": "2026-10-30T10:16:10Z",
- "data_observed_at": "2026-10-30T10:16:10Z",
+ "last_ingest_ok": "2026-10-30T14:34:57Z",
+ "data_observed_at": "2026-10-30T14:34:57Z",
  "last_archive": "2026-10-30T10:16:10Z",
- "last_model_ok": "2026-10-30T10:16:10Z",
- "model_inputs_hash": "b4b18d272f5d8006",
+ "last_model_ok": "2026-10-30T14:34:57Z",
+ "model_inputs_hash": "aab6168324b045cc",
  "blanks_doubles": {
   "9": {
    "doubles": [],
@@ -91,7 +91,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-10-30T10:16:10Z",
+ "last_alert_check": "2026-10-30T14:34:57Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -135,16 +135,16 @@
  "health": "ok",
  "quota": {
   "month": "2026-10",
-  "runs": 61,
-  "est_billable_minutes": 61,
+  "runs": 62,
+  "est_billable_minutes": 62,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
  "freshness": "current",
  "data_age_minutes": 0.0,
  "last_delivery": {
-  "ts": "2026-10-30T07:45:55Z",
-  "n": 2,
+  "ts": "2026-10-30T14:34:57Z",
+  "n": 1,
   "records": [
    {
     "channel": "github_issue",
