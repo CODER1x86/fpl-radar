@@ -1,19 +1,19 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-10-31T14:47:35Z",
+   "last_ok": "2026-10-31T18:50:48Z",
    "last_status": 200,
-   "ms": 240,
-   "bytes": 1788121,
+   "ms": 83,
+   "bytes": 1789184,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "fixtures": {
-   "last_ok": "2026-10-31T14:47:35Z",
+   "last_ok": "2026-10-31T18:50:48Z",
    "last_status": 200,
    "ms": 22,
-   "bytes": 302766,
+   "bytes": 315895,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
@@ -58,17 +58,17 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-10-31T14:47:35Z",
- "fixtures_last_ok": "2026-10-31T14:47:35Z",
+ "last_ingest_attempt": "2026-10-31T18:50:48Z",
+ "fixtures_last_ok": "2026-10-31T18:50:48Z",
  "picks_last_ok": "2026-10-31T14:47:35Z",
  "history_last_ok": "2026-10-31T14:47:35Z",
- "market_last": "2026-10-31T14:47:35Z",
+ "market_last": "2026-10-31T18:50:48Z",
  "raw_last": "2026-10-31T14:47:35Z",
- "last_ingest_ok": "2026-10-31T14:47:35Z",
- "data_observed_at": "2026-10-31T14:47:35Z",
+ "last_ingest_ok": "2026-10-31T18:50:48Z",
+ "data_observed_at": "2026-10-31T18:50:48Z",
  "last_archive": "2026-10-31T09:50:19Z",
- "last_model_ok": "2026-10-31T14:47:35Z",
- "model_inputs_hash": "7510644979bbc9b0",
+ "last_model_ok": "2026-10-31T18:50:48Z",
+ "model_inputs_hash": "2dee4901babc0eaa",
  "blanks_doubles": {
   "10": {
    "doubles": [],
@@ -91,7 +91,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-10-31T14:47:35Z",
+ "last_alert_check": "2026-10-31T18:50:48Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -135,15 +135,15 @@
  "health": "ok",
  "quota": {
   "month": "2026-10",
-  "runs": 68,
-  "est_billable_minutes": 68,
+  "runs": 69,
+  "est_billable_minutes": 69,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
  "freshness": "current",
  "data_age_minutes": 0.0,
  "last_delivery": {
-  "ts": "2026-10-31T14:47:35Z",
+  "ts": "2026-10-31T18:50:48Z",
   "n": 2,
   "records": [
    {
