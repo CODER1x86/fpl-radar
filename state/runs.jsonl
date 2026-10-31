@@ -65,3 +65,4 @@
 {"ts":"2026-10-31T02:28:16Z","mode":"auto","secs":34,"health":"ok","errors":[],"events":["12 price changes, 0 status/news changes","alerts: 5 detected, 4 sent, 0 held (quiet hours)"],"run":"41160136598"}
 {"ts":"2026-10-31T08:43:44Z","mode":"auto","secs":27,"health":"ok","errors":[],"events":["0 price changes, 0 status/news changes","alerts: 1 detected, 0 sent, 0 held (quiet hours)"],"run":"41185758028"}
 {"ts":"2026-10-31T09:50:19Z","mode":"validate","secs":2,"health":"ok","errors":[],"events":["0 price changes, 0 status/news changes","alerts: 1 detected, 1 sent, 0 held (quiet hours)","validation: 7/7 checks ok, 0 GWs scored"],"run":"41190286540"}
+{"ts":"2026-10-31T14:47:35Z","mode":"auto","secs":29,"health":"ok","errors":[],"events":["0 price changes, 7 status/news changes","alerts: 2 detected, 2 sent, 0 held (quiet hours)"],"run":"41211749467"}

@@ -126,3 +126,10 @@
 {"ts":"2026-10-30T19:40:04Z","id":267,"name":"Lukić","from":["i",0],"to":["d",75],"news":"Groin injury - 75% chance of playing","news_added":"2026-10-19T15:30:08.949503Z"}
 {"ts":"2026-10-30T19:40:04Z","id":368,"name":"Szoboszlai","from":["i",0],"to":["d",50],"news":"Hamstring injury - 50% chance of playing","news_added":"2026-10-17T15:00:08.293301Z"}
 {"ts":"2026-10-30T19:40:04Z","id":377,"name":"Munoz","from":["d",25],"to":["d",50],"news":"Knee injury - 50% chance of playing","news_added":"2026-10-20T18:30:09.999223Z"}
+{"ts":"2026-10-31T14:47:35Z","id":639,"name":"Andrés","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-25T17:30:10.276308Z"}
+{"ts":"2026-10-31T14:47:35Z","id":101,"name":"Henderson","from":["a",100],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-10-31T13:30:08.172741Z"}
+{"ts":"2026-10-31T14:47:35Z","id":335,"name":"Stach","from":["d",50],"to":["a",100],"news":"","news_added":"2026-10-29T14:30:08.129193Z"}
+{"ts":"2026-10-31T14:47:35Z","id":419,"name":"Martinez","from":["a",100],"to":["s",0],"news":"Suspended until 22 Nov","news_added":"2026-10-31T14:00:08.592593Z"}
+{"ts":"2026-10-31T14:47:35Z","id":432,"name":"Mainoo","from":["d",25],"to":["a",100],"news":"","news_added":"2026-10-12T21:30:09.006287Z"}
+{"ts":"2026-10-31T14:47:35Z","id":483,"name":"Ndoye","from":["d",50],"to":["a",100],"news":"","news_added":"2026-10-29T15:00:10.057610Z"}
+{"ts":"2026-10-31T14:47:35Z","id":553,"name":"Isidor","from":["d",50],"to":["a",100],"news":"","news_added":"2026-10-15T16:30:07.851112Z"}

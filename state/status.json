@@ -1,43 +1,43 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-10-31T09:50:19Z",
+   "last_ok": "2026-10-31T14:47:35Z",
    "last_status": 200,
-   "ms": 303,
-   "bytes": 1791629,
+   "ms": 240,
+   "bytes": 1788121,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "fixtures": {
-   "last_ok": "2026-10-31T08:43:44Z",
+   "last_ok": "2026-10-31T14:47:35Z",
    "last_status": 200,
-   "ms": 21,
-   "bytes": 300482,
+   "ms": 22,
+   "bytes": 302766,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "picks": {
-   "last_ok": "2026-10-31T08:43:44Z",
+   "last_ok": "2026-10-31T14:47:35Z",
    "last_status": 200,
-   "ms": 7,
-   "bytes": 1990,
+   "ms": 94,
+   "bytes": 1859,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "history": {
-   "last_ok": "2026-10-31T08:43:44Z",
+   "last_ok": "2026-10-31T14:47:35Z",
    "last_status": 200,
-   "ms": 10,
-   "bytes": 2704,
+   "ms": 100,
+   "bytes": 2938,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "elite": {
-   "last_ok": "2026-10-31T08:43:44Z",
+   "last_ok": "2026-10-31T14:47:35Z",
    "last_status": 200,
    "ms": null,
    "bytes": null,
@@ -58,22 +58,18 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-10-31T09:50:19Z",
- "fixtures_last_ok": "2026-10-31T08:43:44Z",
- "picks_last_ok": "2026-10-31T08:43:44Z",
- "history_last_ok": "2026-10-31T08:43:44Z",
- "market_last": "2026-10-31T09:50:19Z",
- "raw_last": "2026-10-30T10:16:10Z",
- "last_ingest_ok": "2026-10-31T09:50:19Z",
- "data_observed_at": "2026-10-31T09:50:19Z",
+ "last_ingest_attempt": "2026-10-31T14:47:35Z",
+ "fixtures_last_ok": "2026-10-31T14:47:35Z",
+ "picks_last_ok": "2026-10-31T14:47:35Z",
+ "history_last_ok": "2026-10-31T14:47:35Z",
+ "market_last": "2026-10-31T14:47:35Z",
+ "raw_last": "2026-10-31T14:47:35Z",
+ "last_ingest_ok": "2026-10-31T14:47:35Z",
+ "data_observed_at": "2026-10-31T14:47:35Z",
  "last_archive": "2026-10-31T09:50:19Z",
- "last_model_ok": "2026-10-31T09:50:19Z",
- "model_inputs_hash": "5ed49b95542f0062",
+ "last_model_ok": "2026-10-31T14:47:35Z",
+ "model_inputs_hash": "7510644979bbc9b0",
  "blanks_doubles": {
-  "9": {
-   "doubles": [],
-   "blanks": []
-  },
   "10": {
    "doubles": [],
    "blanks": []
@@ -89,9 +85,13 @@
   "13": {
    "doubles": [],
    "blanks": []
+  },
+  "14": {
+   "doubles": [],
+   "blanks": []
   }
  },
- "last_alert_check": "2026-10-31T09:50:19Z",
+ "last_alert_check": "2026-10-31T14:47:35Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -135,16 +135,16 @@
  "health": "ok",
  "quota": {
   "month": "2026-10",
-  "runs": 67,
-  "est_billable_minutes": 67,
+  "runs": 68,
+  "est_billable_minutes": 68,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
  "freshness": "current",
  "data_age_minutes": 0.0,
  "last_delivery": {
-  "ts": "2026-10-31T09:50:19Z",
-  "n": 1,
+  "ts": "2026-10-31T14:47:35Z",
+  "n": 2,
   "records": [
    {
     "channel": "github_issue",
@@ -195,58 +195,58 @@
  },
  "deadline_plan": [
   {
-   "gw": 9,
+   "gw": 10,
    "label": "T-48h",
-   "at": "2026-10-29T11:00:00Z",
-   "target": "2026-10-29T11:00:00Z",
+   "at": "2026-11-04T18:30:00Z",
+   "target": "2026-11-04T18:30:00Z",
    "moved": false,
    "severity": "medium",
    "action": "Plan transfers / chips; watch press conferences",
-   "local": "Thu 29 Oct 14:00 EEST"
+   "local": "Wed 04 Nov 20:30 EET"
   },
   {
-   "gw": 9,
+   "gw": 10,
    "label": "T-24h",
-   "at": "2026-10-30T11:00:00Z",
-   "target": "2026-10-30T11:00:00Z",
+   "at": "2026-11-05T18:30:00Z",
+   "target": "2026-11-05T18:30:00Z",
    "moved": false,
    "severity": "medium",
    "action": "Plan transfers / chips; watch press conferences",
-   "local": "Fri 30 Oct 13:00 EET"
+   "local": "Thu 05 Nov 20:30 EET"
   },
   {
-   "gw": 9,
+   "gw": 10,
    "label": "T-6h",
-   "at": "2026-10-30T22:30:00Z",
-   "target": "2026-10-31T05:00:00Z",
-   "moved": true,
+   "at": "2026-11-06T12:30:00Z",
+   "target": "2026-11-06T12:30:00Z",
+   "moved": false,
    "severity": "high",
    "action": "Lock in transfers; check press-conference news",
-   "local": "Sat 31 Oct 00:30 EET"
+   "local": "Fri 06 Nov 14:30 EET"
   },
   {
-   "gw": 9,
+   "gw": 10,
    "label": "T-2h",
-   "at": "2026-10-31T09:00:00Z",
-   "target": "2026-10-31T09:00:00Z",
+   "at": "2026-11-06T16:30:00Z",
+   "target": "2026-11-06T16:30:00Z",
    "moved": false,
    "severity": "high",
    "action": "Final team check: transfers, captain, bench order",
-   "local": "Sat 31 Oct 11:00 EET"
+   "local": "Fri 06 Nov 18:30 EET"
   },
   {
-   "gw": 9,
+   "gw": 10,
    "label": "final",
-   "at": "2026-10-31T09:45:00Z",
-   "target": "2026-10-31T09:45:00Z",
+   "at": "2026-11-06T17:15:00Z",
+   "target": "2026-11-06T17:15:00Z",
    "moved": false,
    "severity": "high",
    "action": "Last chance: confirm XI, captain/vice, bench order and transfers",
-   "local": "Sat 31 Oct 11:45 EET"
+   "local": "Fri 06 Nov 19:15 EET"
   }
  ],
- "next_deadline_text": "Sat 31 Oct 13:00 EET (Africa/Cairo) · 11:00 GMT UK · 11:00 UTC",
- "elite_last": "2026-10-31T08:43:44Z",
- "elite_gw": 8,
+ "next_deadline_text": "Fri 06 Nov 20:30 EET (Africa/Cairo) · 18:30 GMT UK · 18:30 UTC",
+ "elite_last": "2026-10-31T14:47:35Z",
+ "elite_gw": 9,
  "push_devices": 0
 }
