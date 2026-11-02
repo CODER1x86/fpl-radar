@@ -1,115 +1,80 @@
 {
- "ts": "2026-10-30T06:34:39Z",
- "gw": 9,
+ "ts": "2026-11-02T06:35:22Z",
+ "gw": 10,
  "xi": [
   {
-   "id": 597,
-   "name": "Suzuki",
-   "mentions": 2
+   "id": 109,
+   "name": "Verbruggen",
+   "mentions": 1
+  },
+  {
+   "id": 31,
+   "name": "Konsa",
+   "mentions": 1
   },
   {
    "id": 4,
    "name": "Gabriel",
-   "mentions": 4
+   "mentions": 3
+  },
+  {
+   "id": 115,
+   "name": "De Cuyper",
+   "mentions": 2
   },
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 4
+   "mentions": 1
   },
   {
-   "id": 566,
-   "name": "Silva",
-   "mentions": 2
+   "id": 129,
+   "name": "Ayari",
+   "mentions": 1
   },
   {
-   "id": 68,
-   "name": "Tavernier",
-   "mentions": 6
+   "id": 13,
+   "name": "Rice",
+   "mentions": 1
   },
   {
-   "id": 154,
-   "name": "Palmer",
-   "mentions": 6
-  },
-  {
-   "id": 53,
-   "name": "Manzambi",
-   "mentions": 5
-  },
-  {
-   "id": 40,
-   "name": "Rogers",
-   "mentions": 3
-  },
-  {
-   "id": 411,
-   "name": "Haaland",
-   "mentions": 5
-  },
-  {
-   "id": 166,
-   "name": "N.Jackson",
-   "mentions": 6
+   "id": 156,
+   "name": "Neto",
+   "mentions": 1
   },
   {
    "id": 79,
    "name": "Evanilson",
+   "mentions": 1
+  },
+  {
+   "id": 166,
+   "name": "N.Jackson",
+   "mentions": 1
+  },
+  {
+   "id": 411,
+   "name": "Haaland",
    "mentions": 3
   }
  ],
  "captain_id": 411,
- "notes": "3-4-3 consensus: Suzuki; Gabriel, Van Hecke, Silva; Tavernier, Palmer, Manzambi, Rogers; Haaland, N.Jackson, Evanilson. Captain Haaland (unanimous; N.Jackson vice per OneFPL). PL Scout Selection (29 Oct) and FFS bus team both go 3-5-2 with Kudus instead of Evanilson, and PL Scout has Mukiele over Gabriel. Joao Pedro universal sell (thigh, out 'a few weeks' - Alonso). Watch: Manzambi minutes being managed (rested in EFL Cup), Palmer available after serving ban in cup.",
+ "notes": "Early GW10 view (Mon): only The False 9 (Free Hit XI + captain piece) and FootballDream captain ranking published so far; PL Scout Selection and FFS Scout Picks not out yet. Haaland (at Forest) is the consensus captain, Gabriel (v Hull) the main alternative/differential; False 9 FH XI oddly captains Konsa. Evanilson most bought, Joao Pedro (thigh, 0%) most sold.",
  "sources": [
   {
-   "name": "Premier League - Scout Selection GW9",
-   "url": "https://www.premierleague.com/en/news/4750445/scout-selection-best-fantasy-team-for-gameweek-9",
-   "published": "2026-10-29"
+   "name": "The False 9 - GW10 Free Hit team",
+   "url": "https://thefalse9.com/2026/11/fpl-gw10-free-hit-team.html",
+   "published": "2026-11-01"
   },
   {
-   "name": "OneFPL - GW9 captain picks",
-   "url": "https://onefpl.com/blog/fpl-gw9-captaincy-early-watchlist-2026-27",
-   "published": "2026-10-28"
+   "name": "The False 9 - GW10 captain picks",
+   "url": "https://thefalse9.com/2026/11/fpl-gw10-captain-picks.html",
+   "published": "2026-11-01"
   },
   {
-   "name": "Fantasy Football Scout - Evanilson, Jackson + Manzambi rested",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/10/29/fpl-notes-evanilson-jackson-manzambi-rested-for-gameweek-9",
-   "published": "2026-10-29"
-  },
-  {
-   "name": "Fantasy Football Scout - GW9 early Scout Picks",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/10/26/fpl-gameweek-9-early-scout-picks",
+   "name": "FootballDream - best FPL captains GW10",
+   "url": "https://www.footballdream.in/blog/best-fpl-captains-gameweek-10-2026-27",
    "published": "2026-10-26"
-  },
-  {
-   "name": "Fantasy Football Scout - Buy, keep or sell GW9",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/10/27/jackson-evanilson-cherki-gabriel-buy-keep-or-sell-in-gameweek-9",
-   "published": "2026-10-27"
-  },
-  {
-   "name": "Fantasy Football Fix - GW9 transfer tips",
-   "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw9-transfer-tips-2026-27/",
-   "published": "2026-10-26"
-  },
-  {
-   "name": "Fantasy Football Hub - Ultimate Guide GW9",
-   "url": "https://www.fantasyfootballhub.co.uk/articles/fantasy-premier-league-ultimate-guide-fpl-tips",
-   "published": "2026-10-27"
-  },
-  {
-   "name": "Premier League (The Scout) - Buy, keep or sell 20 most-owned",
-   "url": "https://www.premierleague.com/en/news/4750035/buy-keep-or-sell-what-to-do-with-the-20-most-owned-players-in-fpl",
-   "published": "2026-10-27"
-  },
-  {
-   "name": "Premier League (The Scout) - Best replacements for Joao Pedro",
-   "url": "https://www.premierleague.com/en/news/4750154",
-   "published": "2026-10-27"
-  },
-  {
-   "name": "Fantasy Football Hub - Best FPL players for GW9",
-   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-9-article-26-27",
-   "published": "2026-10-27"
   }
  ]
 }
