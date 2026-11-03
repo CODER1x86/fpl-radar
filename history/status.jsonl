@@ -153,3 +153,6 @@
 {"ts":"2026-11-03T01:13:24Z","id":230,"name":"Branthwaite","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-30T15:30:09.601963Z"}
 {"ts":"2026-11-03T01:13:24Z","id":456,"name":"J.Ramsey","from":["a",100],"to":["s",0],"news":"Suspended until 21 Nov","news_added":"2026-11-02T22:00:09.813234Z"}
 {"ts":"2026-11-03T01:13:24Z","id":465,"name":"Osula","from":["d",50],"to":["a",100],"news":"","news_added":"2026-10-29T23:00:08.575179Z"}
+{"ts":"2026-11-03T21:27:00Z","id":6,"name":"Saliba","from":["i",0],"to":["d",75],"news":"Back injury - 75% chance of playing","news_added":"2026-07-23T12:01:23.289376Z"}
+{"ts":"2026-11-03T21:27:00Z","id":371,"name":"Gravenberch","from":["a",100],"to":["d",75],"news":"Foot injury - 75% chance of playing","news_added":"2026-11-03T17:00:09.626695Z"}
+{"ts":"2026-11-03T21:27:00Z","id":431,"name":"Amad","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-31T17:30:08.280248Z"}
