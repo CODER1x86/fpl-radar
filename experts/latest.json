@@ -1,66 +1,71 @@
 {
- "ts": "2026-11-02T06:35:22Z",
+ "ts": "2026-11-03T06:34:04Z",
  "gw": 10,
  "xi": [
   {
-   "id": 109,
-   "name": "Verbruggen",
+   "id": 226,
+   "name": "Pickford",
    "mentions": 1
-  },
-  {
-   "id": 31,
-   "name": "Konsa",
-   "mentions": 1
-  },
-  {
-   "id": 4,
-   "name": "Gabriel",
-   "mentions": 3
   },
   {
    "id": 115,
    "name": "De Cuyper",
+   "mentions": 3
+  },
+  {
+   "id": 31,
+   "name": "Konsa",
+   "mentions": 2
+  },
+  {
+   "id": 4,
+   "name": "Gabriel",
    "mentions": 2
   },
   {
    "id": 112,
    "name": "Van Hecke",
+   "mentions": 2
+  },
+  {
+   "id": 40,
+   "name": "Rogers",
+   "mentions": 2
+  },
+  {
+   "id": 68,
+   "name": "Tavernier",
    "mentions": 1
   },
   {
-   "id": 129,
-   "name": "Ayari",
-   "mentions": 1
-  },
-  {
-   "id": 13,
-   "name": "Rice",
-   "mentions": 1
-  },
-  {
-   "id": 156,
-   "name": "Neto",
-   "mentions": 1
-  },
-  {
-   "id": 79,
-   "name": "Evanilson",
-   "mentions": 1
-  },
-  {
-   "id": 166,
-   "name": "N.Jackson",
+   "id": 154,
+   "name": "Palmer",
    "mentions": 1
   },
   {
    "id": 411,
    "name": "Haaland",
    "mentions": 3
+  },
+  {
+   "id": 79,
+   "name": "Evanilson",
+   "mentions": 2
+  },
+  {
+   "id": 166,
+   "name": "N.Jackson",
+   "mentions": 2
   }
  ],
  "captain_id": 411,
- "notes": "Early GW10 view (Mon): only The False 9 (Free Hit XI + captain piece) and FootballDream captain ranking published so far; PL Scout Selection and FFS Scout Picks not out yet. Haaland (at Forest) is the consensus captain, Gabriel (v Hull) the main alternative/differential; False 9 FH XI oddly captains Konsa. Evanilson most bought, Joao Pedro (thigh, 0%) most sold.",
+ "notes": "GW10 consensus (Tue): FFS early Scout Picks now out (Pickford, Calafiori, De Cuyper, Konsa, Tavernier, Rogers, Gross, Palmer, Barry, Haaland, Isak); Haaland (at Forest) is the consensus captain with Gabriel (v Hull) the main alternative; most-bought Evanilson/Jackson/Tavernier/Rogers. Disagreement: model captains Gabriel over Haaland. PL Scout Selection not yet published.",
  "sources": [
+  {
+   "name": "Fantasy Football Scout - GW10 early Scout Picks",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/02/fpl-gameweek-10-early-scout-picks-four-double-ups",
+   "published": "2026-11-02"
+  },
   {
    "name": "The False 9 - GW10 Free Hit team",
    "url": "https://thefalse9.com/2026/11/fpl-gw10-free-hit-team.html",
@@ -72,9 +77,9 @@
    "published": "2026-11-01"
   },
   {
-   "name": "FootballDream - best FPL captains GW10",
-   "url": "https://www.footballdream.in/blog/best-fpl-captains-gameweek-10-2026-27",
-   "published": "2026-10-26"
+   "name": "OneFPL - Best GW10 transfers",
+   "url": "https://onefpl.com/blog/best-fpl-gw10-transfers-2026-27",
+   "published": "2026-11-01"
   }
  ]
 }
