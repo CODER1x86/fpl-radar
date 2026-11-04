@@ -1,11 +1,11 @@
 {
- "ts": "2026-11-03T06:34:04Z",
+ "ts": "2026-11-04T06:34:01Z",
  "gw": 10,
  "xi": [
   {
-   "id": 226,
-   "name": "Pickford",
-   "mentions": 1
+   "id": 1,
+   "name": "Raya",
+   "mentions": 2
   },
   {
    "id": 115,
@@ -13,23 +13,18 @@
    "mentions": 3
   },
   {
-   "id": 31,
-   "name": "Konsa",
-   "mentions": 2
+   "id": 8,
+   "name": "Calafiori",
+   "mentions": 3
   },
   {
    "id": 4,
    "name": "Gabriel",
-   "mentions": 2
+   "mentions": 3
   },
   {
-   "id": 112,
-   "name": "Van Hecke",
-   "mentions": 2
-  },
-  {
-   "id": 40,
-   "name": "Rogers",
+   "id": 154,
+   "name": "Palmer",
    "mentions": 2
   },
   {
@@ -38,28 +33,33 @@
    "mentions": 1
   },
   {
-   "id": 154,
-   "name": "Palmer",
+   "id": 40,
+   "name": "Rogers",
+   "mentions": 1
+  },
+  {
+   "id": 124,
+   "name": "Groß",
    "mentions": 1
   },
   {
    "id": 411,
    "name": "Haaland",
+   "mentions": 4
+  },
+  {
+   "id": 249,
+   "name": "Barry",
    "mentions": 3
   },
   {
-   "id": 79,
-   "name": "Evanilson",
-   "mentions": 2
-  },
-  {
-   "id": 166,
-   "name": "N.Jackson",
-   "mentions": 2
+   "id": 379,
+   "name": "Isak",
+   "mentions": 3
   }
  ],
  "captain_id": 411,
- "notes": "GW10 consensus (Tue): FFS early Scout Picks now out (Pickford, Calafiori, De Cuyper, Konsa, Tavernier, Rogers, Gross, Palmer, Barry, Haaland, Isak); Haaland (at Forest) is the consensus captain with Gabriel (v Hull) the main alternative; most-bought Evanilson/Jackson/Tavernier/Rogers. Disagreement: model captains Gabriel over Haaland. PL Scout Selection not yet published.",
+ "notes": "GW10 consensus (Wed): Haaland (at Forest) is captain in all 4 sources; Gabriel (v Hull) is the main alternative (FFHub calls him arguably best), RotoWire prefers Havertz as #2. De Cuyper, Calafiori, Gabriel, Barry and Isak are the most-cited picks. Model agrees on Haaland (C) and rolls the transfer; experts' FFS picks include Rogers, which is the model's best single move (B.Fernandes->Rogers, +1.2 xP). PL Scout Selection for 2026/27 GW10 not yet published.",
  "sources": [
   {
    "name": "Fantasy Football Scout - GW10 early Scout Picks",
@@ -67,18 +67,18 @@
    "published": "2026-11-02"
   },
   {
-   "name": "The False 9 - GW10 Free Hit team",
-   "url": "https://thefalse9.com/2026/11/fpl-gw10-free-hit-team.html",
-   "published": "2026-11-01"
+   "name": "Fantasy Football Hub - Best FPL players for GW10",
+   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-10-article-26-27",
+   "published": "2026-11-03"
+  },
+  {
+   "name": "RotoWire - FPL GW10 rankings & captain picks",
+   "url": "https://www.rotowire.com/soccer/article/fpl-gw10-gameweek-10-rankings-best-players-captain-picks-145057",
+   "published": "2026-11-03"
   },
   {
    "name": "The False 9 - GW10 captain picks",
    "url": "https://thefalse9.com/2026/11/fpl-gw10-captain-picks.html",
-   "published": "2026-11-01"
-  },
-  {
-   "name": "OneFPL - Best GW10 transfers",
-   "url": "https://onefpl.com/blog/best-fpl-gw10-transfers-2026-27",
    "published": "2026-11-01"
   }
  ]
