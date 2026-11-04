@@ -157,3 +157,4 @@
 {"ts":"2026-11-03T21:27:00Z","id":371,"name":"Gravenberch","from":["a",100],"to":["d",75],"news":"Foot injury - 75% chance of playing","news_added":"2026-11-03T17:00:09.626695Z"}
 {"ts":"2026-11-03T21:27:00Z","id":431,"name":"Amad","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-31T17:30:08.280248Z"}
 {"ts":"2026-11-04T01:34:42Z","id":131,"name":"Baleba","from":["a",100],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-11-03T22:00:07.995956Z"}
+{"ts":"2026-11-04T11:16:43Z","id":131,"name":"Baleba","from":["d",75],"to":["d",50],"news":"Hamstring injury - 50% chance of playing","news_added":"2026-11-03T22:00:07.995956Z"}
