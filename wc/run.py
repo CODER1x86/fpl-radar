@@ -13,6 +13,7 @@ import traceback
 from datetime import timedelta
 
 from . import alerts as AL
+from . import cadence as CD
 from . import elite as EL
 from . import model as M
 from . import normalize as N
@@ -436,9 +437,10 @@ def write_public(ctx, d, proj_out):
             if not q:
                 continue
             allrows.append([i, q["name"], teams.get(q["team"], q["team"]), q["pos"], q["cost"], q["status"], q["chance"],
-                            q["own"], rr["b"], rr.get("u1"), rr.get("h1"), rr.get("sp"), rr.get("sd1"), q["news"], q["pts"]])
+                            q["own"], rr["b"], rr.get("u1"), rr.get("h1"), rr.get("sp"), rr.get("sd1"), q["news"], q["pts"],
+                            q["tin"] - q["tout"], q.get("cce", 0)])
         write_json(p("public", "players.json"), {"ts": lp["ts"], "gws": lp["gws"], "cols": ["id", "n", "t", "pos", "c", "st",
-                   "ch", "own", "b", "u1", "h1", "sp", "sd1", "news", "pts"], "rows": allrows,
+                   "ch", "own", "b", "u1", "h1", "sp", "sd1", "news", "pts", "ni", "cce"], "rows": allrows,
                    "teams": {str(k): v for k, v in teams.items()}})
     gwj = d["gw"] if d else read_json(p("latest", "gw.json"), {})
     alerts = read_jsonl(p("state", "alerts.jsonl"))[-60:]
@@ -450,15 +452,37 @@ def write_public(ctx, d, proj_out):
     status = {k: st.get(k) for k in ("last_ingest_ok", "last_ingest_attempt", "last_model_ok", "last_alert_check",
                                       "last_validate_ok", "data_observed_at", "freshness", "data_age_minutes",
                                       "consecutive_failures", "last_error", "health", "quota", "notify_channels",
-                                      "last_delivery", "warnings", "deadline_plan", "next_deadline_text", "push_devices")}
+                                      "last_delivery", "warnings", "deadline_plan", "next_deadline_text", "push_devices", "cadence")}
     status["sources"] = st.get("sources")
     status["owner"] = cfg["manager"]["id"]
     status["generated_at"] = iso(ctx.now)
     status["run_url"] = os.environ.get("WC_RUN_URL")
     write_json(p("public", "status.json"), status, compact=False)
+    if st.get("cadence"):
+        write_json(p("public", "schedule.json"), st["cadence"], compact=False)
     write_json(p("public", "dashboard.json"), {"status": status, "gw": gwj, "projection": slim, "alerts": alerts,
                                                 "prices": prices, "validation": [v for v in val if v],
                                                 "consistency": st.get("consistency")})
+
+
+def replacement_note(alert, absent, d, lp):
+    """Add the best replacement and the price pressure on both players to a quiet-phase absence alert."""
+    pl = d["players"]
+    pid = next((i for i in absent if pl.get(i, {}).get("name") == alert.get("player")), None)
+    if alert["type"] != "availability" or pid is None:
+        return alert
+    net = lambda i: pl[i]["tin"] - pl[i]["tout"]
+    best = next((s for s in ((lp.get("transfers") or {}).get("best_per_out") or []) if s["out"] == pid), None)
+    extra = [f"{pl[pid]['name']} net transfers this GW {net(pid):+,} (price falls when sellers pile in)."]
+    if best and best["in"] in pl:
+        b = pl[best["in"]]
+        extra.insert(0, f"Best replacement: {b['name']} £{b['cost']:.1f}m ({best['gain']:+.1f} xP over 3 GWs), "
+                        f"net transfers {net(best['in']):+,}.")
+    alert = dict(alert)
+    alert["what"] = alert["what"] + " " + " ".join(extra)
+    alert["action"] = "Transfer now, before the prices move" if pid in d["squad"] else "Remove from your plan"
+    alert["replacement"] = best["in"] if best else None
+    return alert
 
 
 def plan_pub(plan, tname):
@@ -549,8 +573,17 @@ def main(argv=None):
         if d["gw"].get("next_deadline"):
             hrs = (parse_iso(d["gw"]["next_deadline"]) - now).total_seconds() / 3600
         gap = cfg["intervals"]["model_min_gap_minutes"] if (hrs is None or hrs > 24) else 5   # faster near deadline
-        need = (a.force_model or a.mode == "validate" or read_json(p("latest", "projection.json.gz")) is None or ctx.due("last_model_ok", cfg["intervals"]["model_max_age_minutes"])
-                or (mh != ctx.status.get("model_inputs_hash") and ctx.due("last_model_ok", gap)))
+        cad = CD.phase(d["gw"], now, cfg)
+        ctx.status["cadence"] = cad
+        prev_ins = (read_json(p("latest", "decision.json")) or {}).get("plan_ins") or []
+        absent = CD.new_absences(d["prev"], d["players"], list(dict.fromkeys(list(d["squad"]) + list(prev_ins))))
+        have_proj = read_json(p("latest", "projection.json.gz")) is not None
+        if cad["phase"] == "focus":
+            need = (a.force_model or a.mode == "validate" or not have_proj or ctx.due("last_model_ok", cfg["intervals"]["model_max_age_minutes"])
+                    or (mh != ctx.status.get("model_inputs_hash") and ctx.due("last_model_ok", gap)))
+        else:  # quiet / live: nothing new until the focus window, except a confirmed absence in your squad
+            need = a.force_model or not have_proj or bool(absent)
+        ctx.events.append(f"phase={cad['phase']} next_due={cad['next_due']}" + (f" absences={absent}" if absent else ""))
         if need:
             r = run_model(ctx, d)
             prev_dec = None
@@ -575,6 +608,10 @@ def main(argv=None):
                                        f"Previously {AL.when_text(old_dl, cfg)}", source="FPL official API (events)",
                                        observed=iso(now), impact="reminder schedule re-planned automatically",
                                        action="Note the new deadline", deadline=None))
+        if cad["phase"] != "focus":
+            found = CD.filter_quiet(found, absent, d["players"])
+            lp_ = proj_out or read_json(p("latest", "projection.json.gz")) or {}
+            found = [replacement_note(x, absent, d, lp_) for x in found]
         ctx.status["deadlines"] = {str(g): v for g, v in d["gw"]["deadlines"].items()}
         ctx.status["deadline_plan"] = AL.deadline_plan(d["gw"].get("next"), d["gw"].get("next_deadline"), now, cfg)
         ctx.status["next_deadline_text"] = (AL.when_text(d["gw"]["next_deadline"], cfg)

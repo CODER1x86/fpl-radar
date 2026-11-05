@@ -41,6 +41,16 @@ raw_snapshot_hours = 24
 # projections are archived to git at most daily, plus hourly within this many hours of a deadline
 archive_deadline_hours = 3
 
+[cadence]
+# Between gameweeks the app stays quiet: one availability check per quiet_minutes, and the only alerts are confirmed
+# absences in your squad (with the best replacement). Full updates start focus_hours before the deadline.
+focus_hours = 36
+focus_minutes = 10     # run interval inside the focus window
+final_hours = 3
+final_minutes = 5      # run interval in the last final_hours
+quiet_minutes = 60
+live_minutes = 120     # while the gameweek's matches are being played
+
 [alerts]
 quiet_start_hour = 1   # local time; non-critical alerts are held into a digest during quiet hours
 quiet_end_hour = 8
@@ -52,7 +62,7 @@ dashboard_url = "https://coder1x86.github.io/fpl-radar/"
 # so it follows rescheduled/irregular deadlines and is independent of where you are. Local display and quiet
 # hours use the IANA zone in [manager].timezone (DST handled by tz data, e.g. Egypt and UK clock changes).
 [alerts.deadline]
-reminder_hours = [48, 24, 6, 2]
+reminder_hours = [36, 24, 6, 2]   # T-36h opens the focus window
 final_check_minutes = 75
 pre_quiet_minutes = 30        # a reminder falling in quiet hours is sent this long before quiet hours start
 merge_within_minutes = 40     # reminders closer than this are merged into the more urgent one

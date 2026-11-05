@@ -148,10 +148,10 @@
       return row; }) };
   }
   // Build a projection object with the same shape the UI already renders for the owner's server-side plan.
-  function buildForTeam(pj, base, team, done = []) {
+  function buildForTeam(pj, base, team, done = [], opts = {}) {
     const P = players(pj), gws = pj.gws, W = [1, 0.9, 0.8, 0.7, 0.6].slice(0, gws.length);
     const squad0 = team.picks.picks.map(x => x.element).filter(i => P[i]);
-    let bank = team.picks.entry_history.bank / 10; const ft0 = freeTransfers(team.history, gws[0]) ?? 1;
+    let bank = team.picks.entry_history.bank / 10; const ft0 = opts.ft ?? freeTransfers(team.history, gws[0]) ?? 1;
     const { out: sell, est } = sellingPrices(squad0, team.transfers, P);
     // apply transfers the manager says he already made this gameweek (not public until the deadline)
     let squad = squad0.slice(); const applied = [];
@@ -180,5 +180,5 @@
       chips: chipsPlan(plan.squad, P, gws, team.history, plan.bank_after, plan.selling, W), scenarios,
       transfers: { horizon: 5, best_per_out: plan.bestPerOut.slice(0, 15).map(s => ({ ...s, out_n: nm(s.out), in_n: nm(s.in) })), pairs: [] } };
   }
-  G.FREngine = { players, bestXI, planTransfers, buildForTeam, dist, freeTransfers };
+  G.FREngine = { players, bestXI, planTransfers, buildForTeam, dist, freeTransfers, sellingPrices };
 })(window);

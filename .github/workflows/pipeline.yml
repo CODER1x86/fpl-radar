@@ -2,7 +2,7 @@ name: radar-pipeline
 
 on:
   schedule:
-    - cron: "*/5 * * * *"      # ingest + alerts every 5 min (GitHub minimum; runs may be delayed under load)
+    - cron: "*/15 * * * *"     # backup trigger; the gate below runs the pipeline only when schedule.json says it is due
     - cron: "23 3 * * *"       # daily full validation (03:23 UTC)
   workflow_dispatch:
     inputs:
@@ -25,7 +25,36 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  gate:
+    # Cadence (wc/cadence.py): quiet between gameweeks (hourly availability check), full updates in the last 36 h.
+    # The Cloudflare cron already checks schedule.json before dispatching; this gate does the same for GitHub's own cron.
+    runs-on: ubuntu-latest
+    outputs:
+      run: ${{ steps.g.outputs.run }}
+    steps:
+      - id: g
+        env:
+          EV: ${{ github.event_name }}
+          SCHED: ${{ github.event.schedule }}
+          URL: ${{ vars.DASHBOARD_URL || 'https://coder1x86.github.io/fpl-radar/' }}
+        run: |
+          if [ "$EV" != "schedule" ] || [ "$SCHED" = "23 3 * * *" ]; then echo "run=1" >> "$GITHUB_OUTPUT"; exit 0; fi
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os, urllib.request, datetime as dt
+          try:
+              s = json.load(urllib.request.urlopen(os.environ["URL"].rstrip("/") + "/data/schedule.json", timeout=20))
+              due = dt.datetime.fromisoformat(s["next_due"].replace("Z", "+00:00"))
+              ok = dt.datetime.now(dt.timezone.utc) >= due - dt.timedelta(minutes=2)
+              print(f"::notice::phase={s.get('phase')} next_due={s['next_due']} -> {'run' if ok else 'skip'}")
+          except Exception as e:
+              ok = True
+              print(f"::notice::no schedule ({e}) -> run")
+          print("run=" + ("1" if ok else "0"))
+          PY
+
   run:
+    needs: gate
+    if: needs.gate.outputs.run == '1'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment:

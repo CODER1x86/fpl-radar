@@ -1,7 +1,8 @@
 # FPL Radar — WildCard.exe cloud pipeline
 
 Autonomous, free, cloud-hosted FPL data + projection + alerting service for team *WildCard.exe* (manager 4969994).
-Runs on GitHub Actions; no computer or browser needs to be on.
+Runs on GitHub Actions; no computer or browser needs to be on. Quiet between gameweeks (hourly check, alerts only for
+confirmed absences in your squad), full updates in the last 36 h before each deadline (`wc/cadence.py`).
 
 - **Dashboard:** GitHub Pages (URL in repo About / `vars.DASHBOARD_URL`).
 - **Architecture decision:** [docs/ADR-001-architecture.md](docs/ADR-001-architecture.md)
@@ -13,6 +14,7 @@ wc/validate.py    schema checks — malformed or changed payloads are rejected
 wc/normalize.py   compact player / fixture / gameweek records, blanks & doubles
 wc/model.py       projection engine (baseline, conservative, Monte-Carlo upside/ceiling), lineup, captaincy, transfers
 wc/alerts.py      change detection, dedup, quiet hours
+wc/cadence.py     quiet / focus-36h / live phases and schedule.json
 wc/notify.py      GitHub Issues / ntfy / Telegram delivery
 wc/run.py         orchestrator: auto | validate | notify-test | export
 wc/export.py      SQLite + tarball backup

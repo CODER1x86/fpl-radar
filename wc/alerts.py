@@ -177,7 +177,8 @@ def deadline_plan(gw_id, deadline_iso, now, cfg):
         at = d - timedelta(hours=h)
         label = f"T-{h:g}h"
         sev = "medium" if h >= 24 else "high"
-        action = ("Plan transfers / chips; watch press conferences" if h >= 24 else
+        action = ("Focus window open: the full plan for this gameweek is ready in FPL Radar" if h >= 36 else
+                  "Plan transfers / chips; watch press conferences" if h >= 24 else
                   "Lock in transfers; check press-conference news" if h >= 4 else
                   "Final team check: transfers, captain, bench order")
         rows.append({"label": label, "target": at, "severity": sev, "action": action})

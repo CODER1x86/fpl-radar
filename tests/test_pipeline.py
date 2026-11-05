@@ -301,3 +301,49 @@ def test_news_triggers_plan_update_alert(env, monkeypatch):
     plan = [a for a in al if a["type"] == "plan"]
     assert inj and inj[0]["severity"] == "critical"
     assert plan and "Captain" in plan[0]["what"] and "Haaland, " not in plan[0]["what"].split("XI")[1].split("Bench")[0]
+
+
+# cadence: quiet between gameweeks, focus window in the last 36 h
+def test_cadence_phases():
+    from wc import cadence as CD
+    cfg = core.load_config()
+    gw = {"current": 7, "current_finished": True, "next": 8, "next_deadline": "2026-10-23T17:30:00Z"}
+    q = CD.phase(gw, core.parse_iso("2026-10-20T12:00:00Z"), cfg)
+    assert q["phase"] == "quiet" and q["interval_minutes"] == 60 and q["focus_from"] == "2026-10-22T05:30:00Z"
+    edge = CD.phase(gw, core.parse_iso("2026-10-22T05:00:00Z"), cfg)
+    assert edge["phase"] == "quiet" and edge["next_due"] == "2026-10-22T05:30:00Z"   # never skips the window start
+    f = CD.phase(gw, core.parse_iso("2026-10-22T06:00:00Z"), cfg)
+    assert f["phase"] == "focus" and f["interval_minutes"] == 10
+    assert CD.phase(gw, core.parse_iso("2026-10-23T16:00:00Z"), cfg)["interval_minutes"] == 5
+    live = CD.phase({**gw, "current": 8, "current_finished": False, "next": 9,
+                     "next_deadline": "2026-10-31T11:00:00Z"}, core.parse_iso("2026-10-24T15:00:00Z"), cfg)
+    assert live["phase"] == "live" and live["interval_minutes"] == 120
+
+
+def test_quiet_phase_only_confirmed_absences(env, monkeypatch):
+    fake, d = env
+    monkeypatch.setenv("WC_NOW", "2026-10-20T12:00:00Z")          # 77.5 h before the GW8 deadline -> quiet
+    R.main(["auto", "--dry-notify"])
+    st = status(d)
+    assert st["cadence"]["phase"] == "quiet"
+    sched = json.loads((d / "public" / "schedule.json").read_text())
+    assert sched["next_due"] == "2026-10-20T13:00:00Z"
+    model_ts = st["last_model_ok"]
+    # price move + doubtful flag: recorded, but no alert and no new plan between gameweeks
+    fake.mutate(1, now_cost=fake.boot["elements"][0]["now_cost"] + 1)
+    fake.mutate(427, status="d", chance_of_playing_next_round=75, news="Knock - 75% chance of playing")
+    monkeypatch.setenv("WC_NOW", "2026-10-20T13:00:00Z")
+    R.main(["auto", "--dry-notify"])
+    assert status(d)["last_model_ok"] == model_ts
+    sent = [json.loads(l) for l in open(d / "state" / "alerts.jsonl")] if (d / "state" / "alerts.jsonl").exists() else []
+    assert not [a for a in sent if a["type"] in ("price", "availability", "plan", "model")]
+    # confirmed injury in the squad: immediate alert with the best replacement, plan recomputed
+    fake.mutate(411, status="i", chance_of_playing_next_round=0, transfers_out_event=90000,
+                news="Hamstring injury - Unknown return date")
+    monkeypatch.setenv("WC_NOW", "2026-10-20T14:00:00Z")
+    R.main(["auto", "--dry-notify"])
+    sent = [json.loads(l) for l in open(d / "state" / "alerts.jsonl")]
+    inj = [a for a in sent if a["type"] == "availability"]
+    assert len(inj) == 1 and inj[0]["player"] == "Haaland" and "Best replacement" in inj[0]["what"]
+    assert "-90,000" in inj[0]["what"] and inj[0]["replacement"]
+    assert status(d)["last_model_ok"] != model_ts

@@ -31,6 +31,14 @@ with no repository activity (data commits count as activity).
 - **Alerts:** GitHub Issues created by the workflow (`GITHUB_TOKEN`, no extra secret) → GitHub email / GitHub Mobile push
   via the owner's notification settings. Optional ntfy.sh push and Telegram bot when their secrets exist.
 
+## Cadence (2026-11-05, supersedes the fixed 5-minute polling below)
+Between gameweeks the system is quiet: one availability check per hour and no model, price or plan alerts. The only
+alert is a confirmed absence (injured / suspended / unavailable / 0%) of a squad player or planned buy, sent at once with
+the best replacement and both players' net transfers, so the move can be made before prices change. Full updates
+(model, plan, reminders) run only in the last 36 h before a deadline: every 10 min, every 5 min in the last 3 h.
+While matches are played: every 2 h. `wc/cadence.py` writes `schedule.json`; the Cloudflare cron and a gate job on
+GitHub's backup cron start a run only when it is due.
+
 ## Polling
 | Data | Interval |
 |---|---|

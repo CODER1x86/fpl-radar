@@ -6,5 +6,8 @@ workers_dev = true
 [vars]
 ALLOWED_ORIGINS = "https://coder1x86.github.io"
 
+[ai]
+binding = "AI"   # Workers AI free allocation (10,000 Neurons/day) for Ask Radar
+
 [triggers]
-crons = ["*/5 * * * *"]   # kicks the GitHub pipeline every 5 min (GitHub's own schedule can lag for hours)
+crons = ["*/5 * * * *"]   # checks data/schedule.json every 5 min and starts the pipeline only when a run is due
