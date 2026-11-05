@@ -4,6 +4,9 @@ on:
   schedule:
     - cron: "*/15 * * * *"     # backup trigger; the gate below runs the pipeline only when schedule.json says it is due
     - cron: "23 3 * * *"       # daily full validation (03:23 UTC)
+  push:                         # app or pipeline changes go live at once
+    branches: [main]
+    paths: ["dashboard/**", "wc/**", "config.toml"]
   workflow_dispatch:
     inputs:
       mode:
