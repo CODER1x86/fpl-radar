@@ -6,7 +6,7 @@ on:
     - cron: "23 3 * * *"       # daily full validation (03:23 UTC)
   push:                         # app or pipeline changes go live at once
     branches: [main]
-    paths: ["dashboard/**", "wc/**", "config.toml"]
+    paths: ["dashboard/**", "wc/**", "config.toml", ".github/workflows/pipeline.yml"]
   workflow_dispatch:
     inputs:
       mode:
