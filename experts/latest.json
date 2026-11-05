@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-04T06:34:01Z",
+ "ts": "2026-11-05T06:33:25Z",
  "gw": 10,
  "xi": [
   {
@@ -10,7 +10,12 @@
   {
    "id": 115,
    "name": "De Cuyper",
-   "mentions": 3
+   "mentions": 5
+  },
+  {
+   "id": 4,
+   "name": "Gabriel",
+   "mentions": 4
   },
   {
    "id": 8,
@@ -18,48 +23,43 @@
    "mentions": 3
   },
   {
-   "id": 4,
-   "name": "Gabriel",
-   "mentions": 3
+   "id": 112,
+   "name": "Van Hecke",
+   "mentions": 2
   },
   {
    "id": 154,
    "name": "Palmer",
-   "mentions": 2
-  },
-  {
-   "id": 68,
-   "name": "Tavernier",
-   "mentions": 1
+   "mentions": 4
   },
   {
    "id": 40,
    "name": "Rogers",
-   "mentions": 1
+   "mentions": 3
   },
   {
    "id": 124,
    "name": "Groß",
-   "mentions": 1
+   "mentions": 2
   },
   {
    "id": 411,
    "name": "Haaland",
+   "mentions": 5
+  },
+  {
+   "id": 379,
+   "name": "Isak",
    "mentions": 4
   },
   {
    "id": 249,
    "name": "Barry",
    "mentions": 3
-  },
-  {
-   "id": 379,
-   "name": "Isak",
-   "mentions": 3
   }
  ],
  "captain_id": 411,
- "notes": "GW10 consensus (Wed): Haaland (at Forest) is captain in all 4 sources; Gabriel (v Hull) is the main alternative (FFHub calls him arguably best), RotoWire prefers Havertz as #2. De Cuyper, Calafiori, Gabriel, Barry and Isak are the most-cited picks. Model agrees on Haaland (C) and rolls the transfer; experts' FFS picks include Rogers, which is the model's best single move (B.Fernandes->Rogers, +1.2 xP). PL Scout Selection for 2026/27 GW10 not yet published.",
+ "notes": "GW10 consensus (Thu): Haaland (at Forest) is the default captain everywhere; Palmer, Isak and Gabriel are the alternatives. De Cuyper, Gabriel, Palmer and Isak most cited; Rogers (model's best move, B.Fernandes->Rogers) backed by FFS, F6P and RotoWire. Disagreement: FFS calls Palmer/Rogers 'hard to trust' vs RotoWire 'secure minutes'; F6P avoids Cunha. PL Scout published only a transfer radar (Rayan, Gakpo, Ndiaye, Vuskovic), no full Scout Selection yet.",
  "sources": [
   {
    "name": "Fantasy Football Scout - GW10 early Scout Picks",
@@ -80,6 +80,26 @@
    "name": "The False 9 - GW10 captain picks",
    "url": "https://thefalse9.com/2026/11/fpl-gw10-captain-picks.html",
    "published": "2026-11-01"
+  },
+  {
+   "name": "Fantasy Six Pack - GW10 tips & transfers",
+   "url": "https://fantasysixpack.net/2026-27-fpl-gameweek-10-tips-transfers-strategy-chip-watch/",
+   "published": "2026-11-04"
+  },
+  {
+   "name": "OneFPL - GW10 captain ranking",
+   "url": "https://onefpl.com/blog/fpl-gw10-captain-haaland-palmer-gabriel-2026-27",
+   "published": "2026-11-02"
+  },
+  {
+   "name": "RotoWire - GW10 best upcoming fixtures",
+   "url": "https://rotowire.com/soccer/article/fpl-gw10-teams-best-upcoming-fixtures-gameweek-10-145276",
+   "published": "2026-11-04"
+  },
+  {
+   "name": "The Scout (premierleague.com) - GW10 transfer radar",
+   "url": "https://www.premierleague.com/en/news/4756485/the-scouts-fpl-gameweek-10-transfer-radar",
+   "published": "2026-11-04"
   }
  ]
 }
