@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-05T06:33:25Z",
+ "ts": "2026-11-06T06:32:56Z",
  "gw": 10,
  "xi": [
   {
@@ -10,22 +10,17 @@
   {
    "id": 115,
    "name": "De Cuyper",
-   "mentions": 5
+   "mentions": 6
   },
   {
    "id": 4,
    "name": "Gabriel",
-   "mentions": 4
+   "mentions": 6
   },
   {
    "id": 8,
    "name": "Calafiori",
    "mentions": 3
-  },
-  {
-   "id": 112,
-   "name": "Van Hecke",
-   "mentions": 2
   },
   {
    "id": 154,
@@ -35,31 +30,36 @@
   {
    "id": 40,
    "name": "Rogers",
-   "mentions": 3
+   "mentions": 4
   },
   {
    "id": 124,
    "name": "Groß",
-   "mentions": 2
+   "mentions": 4
+  },
+  {
+   "id": 68,
+   "name": "Tavernier",
+   "mentions": 3
   },
   {
    "id": 411,
    "name": "Haaland",
-   "mentions": 5
+   "mentions": 7
   },
   {
    "id": 379,
    "name": "Isak",
-   "mentions": 4
+   "mentions": 5
   },
   {
    "id": 249,
    "name": "Barry",
-   "mentions": 3
+   "mentions": 4
   }
  ],
  "captain_id": 411,
- "notes": "GW10 consensus (Thu): Haaland (at Forest) is the default captain everywhere; Palmer, Isak and Gabriel are the alternatives. De Cuyper, Gabriel, Palmer and Isak most cited; Rogers (model's best move, B.Fernandes->Rogers) backed by FFS, F6P and RotoWire. Disagreement: FFS calls Palmer/Rogers 'hard to trust' vs RotoWire 'secure minutes'; F6P avoids Cunha. PL Scout published only a transfer radar (Rayan, Gakpo, Ndiaye, Vuskovic), no full Scout Selection yet.",
+ "notes": "GW10 consensus (Fri): Haaland (at Forest) captain everywhere incl. PL Scout Selection (vice Isak) and AllAboutFPL (Haaland over Gabriel). Scout Selection adds Tavernier, Odegaard, Tarkowski, Petrovic; De Cuyper/Gabriel/Gross/Rogers/Isak/Barry broadly shared. Model agrees on Haaland but rolls the FT, while several experts move B.Fernandes->Rogers or bring in Tavernier/Rayan; Van Hecke dropped for Tavernier (3-4-3).",
  "sources": [
   {
    "name": "Fantasy Football Scout - GW10 early Scout Picks",
@@ -100,6 +100,16 @@
    "name": "The Scout (premierleague.com) - GW10 transfer radar",
    "url": "https://www.premierleague.com/en/news/4756485/the-scouts-fpl-gameweek-10-transfer-radar",
    "published": "2026-11-04"
+  },
+  {
+   "name": "The Scout (premierleague.com) - Scout Selection GW10",
+   "url": "https://www.premierleague.com/en/news/4756626/scout-selection-best-fantasy-team-for-gameweek-10",
+   "published": "2026-11-05"
+  },
+  {
+   "name": "AllAboutFPL - GW10 team selection drafts & watchlist",
+   "url": "https://allaboutfpl.com/2026/11/fpl-gw10-team-selection-drafts-transfer-plans-and-watchlist/",
+   "published": "2026-11-05"
   }
  ]
 }
