@@ -188,3 +188,8 @@
 {"ts":"2026-11-06T16:19:58Z","id":415,"name":"Dorgu","from":["i",0],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-09-27T21:30:07.831640Z"}
 {"ts":"2026-11-06T16:19:58Z","id":429,"name":"Rashford","from":["d",75],"to":["i",0],"news":"Hip injury - Unknown return date","news_added":"2026-10-20T20:00:09.925594Z"}
 {"ts":"2026-11-06T16:19:58Z","id":147,"name":"Tosin","from":["i",0],"to":["a",100],"news":"","news_added":"2026-10-29T17:00:09.335810Z"}
+{"ts":"2026-11-06T21:43:58Z","id":208,"name":"Sarr","from":["i",0],"to":["i",0],"news":"Groin injury - Expected back 21 Nov","news_added":"2026-10-27T10:30:09.385934Z"}
+{"ts":"2026-11-06T21:43:58Z","id":577,"name":"Tomiyasu","from":["i",0],"to":["i",0],"news":"Calf injury - Expected back 21 Nov","news_added":"2026-09-21T13:30:09.030724Z"}
+{"ts":"2026-11-06T21:43:58Z","id":230,"name":"Branthwaite","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-05T16:57:40.272082Z"}
+{"ts":"2026-11-06T21:43:58Z","id":267,"name":"Lukić","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-19T15:30:08.949503Z"}
+{"ts":"2026-11-06T21:43:58Z","id":520,"name":"Bergvall","from":["i",0],"to":["i",0],"news":"Knee injury - Unknown return date","news_added":"2026-10-18T13:00:09.356060Z"}

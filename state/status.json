@@ -1,28 +1,28 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-11-06T16:19:58Z",
+   "last_ok": "2026-11-06T21:43:58Z",
    "last_status": 200,
-   "ms": 101,
-   "bytes": 1793337,
+   "ms": 200,
+   "bytes": 1790418,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "fixtures": {
-   "last_ok": "2026-11-06T16:19:58Z",
+   "last_ok": "2026-11-06T21:43:58Z",
    "last_status": 200,
-   "ms": 20,
-   "bytes": 323074,
+   "ms": 75,
+   "bytes": 325024,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "picks": {
-   "last_ok": "2026-11-06T16:19:58Z",
+   "last_ok": "2026-11-06T21:43:58Z",
    "last_status": 200,
-   "ms": 148,
-   "bytes": 1863,
+   "ms": 172,
+   "bytes": 1860,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
@@ -37,7 +37,7 @@
    "last_error": null
   },
   "elite": {
-   "last_ok": "2026-11-06T16:19:58Z",
+   "last_ok": "2026-11-06T21:43:58Z",
    "last_status": 200,
    "ms": null,
    "bytes": null,
@@ -58,14 +58,14 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-11-06T16:19:58Z",
- "fixtures_last_ok": "2026-11-06T16:19:58Z",
- "picks_last_ok": "2026-11-06T16:19:58Z",
+ "last_ingest_attempt": "2026-11-06T21:43:58Z",
+ "fixtures_last_ok": "2026-11-06T21:43:58Z",
+ "picks_last_ok": "2026-11-06T21:43:58Z",
  "history_last_ok": "2026-11-06T16:19:58Z",
- "market_last": "2026-11-06T16:19:58Z",
+ "market_last": "2026-11-06T21:43:58Z",
  "raw_last": "2026-11-06T08:31:20Z",
- "last_ingest_ok": "2026-11-06T16:19:58Z",
- "data_observed_at": "2026-11-06T16:19:58Z",
+ "last_ingest_ok": "2026-11-06T21:43:58Z",
+ "data_observed_at": "2026-11-06T21:43:58Z",
  "last_archive": "2026-11-06T16:19:58Z",
  "last_model_ok": "2026-11-06T16:19:58Z",
  "model_inputs_hash": "0ecd7026bbe679d5",
@@ -91,7 +91,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-11-06T16:19:58Z",
+ "last_alert_check": "2026-11-06T21:43:58Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -135,8 +135,8 @@
  "health": "ok",
  "quota": {
   "month": "2026-11",
-  "runs": 29,
-  "est_billable_minutes": 29,
+  "runs": 30,
+  "est_billable_minutes": 30,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
@@ -195,69 +195,69 @@
  },
  "deadline_plan": [
   {
-   "gw": 10,
+   "gw": 11,
    "label": "T-36h",
-   "at": "2026-11-05T06:30:00Z",
-   "target": "2026-11-05T06:30:00Z",
-   "moved": false,
+   "at": "2026-11-19T22:30:00Z",
+   "target": "2026-11-19T23:00:00Z",
+   "moved": true,
    "severity": "medium",
    "action": "Focus window open: the full plan for this gameweek is ready in FPL Radar",
-   "local": "Thu 05 Nov 08:30 EET"
+   "local": "Fri 20 Nov 00:30 EET"
   },
   {
-   "gw": 10,
+   "gw": 11,
    "label": "T-24h",
-   "at": "2026-11-05T18:30:00Z",
-   "target": "2026-11-05T18:30:00Z",
+   "at": "2026-11-20T11:00:00Z",
+   "target": "2026-11-20T11:00:00Z",
    "moved": false,
    "severity": "medium",
    "action": "Plan transfers / chips; watch press conferences",
-   "local": "Thu 05 Nov 20:30 EET"
+   "local": "Fri 20 Nov 13:00 EET"
   },
   {
-   "gw": 10,
+   "gw": 11,
    "label": "T-6h",
-   "at": "2026-11-06T12:30:00Z",
-   "target": "2026-11-06T12:30:00Z",
-   "moved": false,
+   "at": "2026-11-20T22:30:00Z",
+   "target": "2026-11-21T05:00:00Z",
+   "moved": true,
    "severity": "high",
    "action": "Lock in transfers; check press-conference news",
-   "local": "Fri 06 Nov 14:30 EET"
+   "local": "Sat 21 Nov 00:30 EET"
   },
   {
-   "gw": 10,
+   "gw": 11,
    "label": "T-2h",
-   "at": "2026-11-06T16:30:00Z",
-   "target": "2026-11-06T16:30:00Z",
+   "at": "2026-11-21T09:00:00Z",
+   "target": "2026-11-21T09:00:00Z",
    "moved": false,
    "severity": "high",
    "action": "Final team check: transfers, captain, bench order",
-   "local": "Fri 06 Nov 18:30 EET"
+   "local": "Sat 21 Nov 11:00 EET"
   },
   {
-   "gw": 10,
+   "gw": 11,
    "label": "final",
-   "at": "2026-11-06T17:15:00Z",
-   "target": "2026-11-06T17:15:00Z",
+   "at": "2026-11-21T09:45:00Z",
+   "target": "2026-11-21T09:45:00Z",
    "moved": false,
    "severity": "high",
    "action": "Last chance: confirm XI, captain/vice, bench order and transfers",
-   "local": "Fri 06 Nov 19:15 EET"
+   "local": "Sat 21 Nov 11:45 EET"
   }
  ],
- "next_deadline_text": "Fri 06 Nov 20:30 EET (Africa/Cairo) · 18:30 GMT UK · 18:30 UTC",
- "elite_last": "2026-11-06T16:19:58Z",
- "elite_gw": 9,
+ "next_deadline_text": "Sat 21 Nov 13:00 EET (Africa/Cairo) · 11:00 GMT UK · 11:00 UTC",
+ "elite_last": "2026-11-06T21:43:58Z",
+ "elite_gw": 10,
  "push_devices": 0,
  "cadence": {
-  "phase": "focus",
-  "interval_minutes": 5,
-  "hours_to_deadline": 2.17,
-  "deadline": "2026-11-06T18:30:00Z",
-  "gw": 10,
+  "phase": "live",
+  "interval_minutes": 120,
+  "hours_to_deadline": 349.27,
+  "deadline": "2026-11-21T11:00:00Z",
+  "gw": 11,
   "focus_hours": 36,
-  "focus_from": "2026-11-05T06:30:00Z",
-  "next_due": "2026-11-06T16:24:58Z",
-  "computed_at": "2026-11-06T16:19:58Z"
+  "focus_from": "2026-11-19T23:00:00Z",
+  "next_due": "2026-11-06T23:43:58Z",
+  "computed_at": "2026-11-06T21:43:58Z"
  }
 }
