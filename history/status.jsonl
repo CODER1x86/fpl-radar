@@ -179,3 +179,12 @@
 {"ts":"2026-11-05T21:11:33Z","id":543,"name":"Diarra","from":["d",75],"to":["i",0],"news":"Muscular injury - Unknown return date","news_added":"2026-11-01T08:30:09.264068Z"}
 {"ts":"2026-11-06T01:35:26Z","id":573,"name":"Sanchez","from":["a",null],"to":["i",0],"news":"Ankle injury - Unknown return date","news_added":"2026-11-05T21:30:08.441541Z"}
 {"ts":"2026-11-06T11:13:02Z","id":266,"name":"Cairney","from":["a",100],"to":["i",0],"news":"Knee injury - Expected back 21 Nov","news_added":"2026-11-06T10:30:09.529201Z"}
+{"ts":"2026-11-06T16:19:58Z","id":31,"name":"Konsa","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-05T20:30:09.025008Z"}
+{"ts":"2026-11-06T16:19:58Z","id":611,"name":"Wan-Bissaka","from":["i",0],"to":["d",50],"news":"Hamstring injury - 50% chance of playing","news_added":"2026-10-17T19:30:10.120990Z"}
+{"ts":"2026-11-06T16:19:58Z","id":69,"name":"Scott","from":["i",0],"to":["d",75],"news":"Thigh injury - 75% chance of playing","news_added":"2026-10-05T09:30:09.910752Z"}
+{"ts":"2026-11-06T16:19:58Z","id":28,"name":"Martinez","from":["i",0],"to":["d",75],"news":"Head injury - 75% chance of playing","news_added":"2026-10-17T13:30:08.724000Z"}
+{"ts":"2026-11-06T16:19:58Z","id":159,"name":"Caicedo","from":["a",100],"to":["d",75],"news":"Calf injury - 75% chance of playing","news_added":"2026-11-06T15:30:09.180442Z"}
+{"ts":"2026-11-06T16:19:58Z","id":131,"name":"Baleba","from":["d",50],"to":["i",0],"news":"Hamstring injury - Unknown return date","news_added":"2026-11-03T22:00:07.995956Z"}
+{"ts":"2026-11-06T16:19:58Z","id":415,"name":"Dorgu","from":["i",0],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-09-27T21:30:07.831640Z"}
+{"ts":"2026-11-06T16:19:58Z","id":429,"name":"Rashford","from":["d",75],"to":["i",0],"news":"Hip injury - Unknown return date","news_added":"2026-10-20T20:00:09.925594Z"}
+{"ts":"2026-11-06T16:19:58Z","id":147,"name":"Tosin","from":["i",0],"to":["a",100],"news":"","news_added":"2026-10-29T17:00:09.335810Z"}
