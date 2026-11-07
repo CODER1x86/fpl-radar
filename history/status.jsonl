@@ -203,3 +203,6 @@
 {"ts":"2026-11-07T18:59:34Z","id":456,"name":"J.Ramsey","from":["s",0],"to":["a",100],"news":"","news_added":"2026-11-02T22:00:09.813234Z"}
 {"ts":"2026-11-07T18:59:34Z","id":491,"name":"Igor Jesus","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-09T14:30:11.491800Z"}
 {"ts":"2026-11-07T18:59:34Z","id":514,"name":"Tel","from":["a",null],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-11-07T18:30:09.104275Z"}
+{"ts":"2026-11-07T22:40:00Z","id":268,"name":"King","from":["a",null],"to":["d",75],"news":"Groin injury - 75% chance of playing","news_added":"2026-11-07T20:00:09.169385Z"}
+{"ts":"2026-11-07T22:40:00Z","id":388,"name":"Guéhi","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-07T21:30:08.741792Z"}
+{"ts":"2026-11-07T22:40:00Z","id":391,"name":"Gvardiol","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-07T21:30:08.752464Z"}
