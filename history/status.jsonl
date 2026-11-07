@@ -198,3 +198,8 @@
 {"ts":"2026-11-07T14:22:26Z","id":450,"name":"Livramento","from":["i",0],"to":["a",100],"news":"","news_added":"2026-09-19T14:00:09.046677Z"}
 {"ts":"2026-11-07T14:22:26Z","id":459,"name":"L.Miley","from":["d",50],"to":["a",100],"news":"","news_added":"2026-10-27T16:00:07.981816Z"}
 {"ts":"2026-11-07T14:22:26Z","id":634,"name":"Fernandez-Pardo","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-23T14:30:10.429365Z"}
+{"ts":"2026-11-07T18:59:34Z","id":289,"name":"Crooks","from":["s",0],"to":["a",100],"news":"","news_added":"2026-10-31T18:00:09.584315Z"}
+{"ts":"2026-11-07T18:59:34Z","id":589,"name":"Gourna-Douath","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-16T13:00:08.314070Z"}
+{"ts":"2026-11-07T18:59:34Z","id":456,"name":"J.Ramsey","from":["s",0],"to":["a",100],"news":"","news_added":"2026-11-02T22:00:09.813234Z"}
+{"ts":"2026-11-07T18:59:34Z","id":491,"name":"Igor Jesus","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-09T14:30:11.491800Z"}
+{"ts":"2026-11-07T18:59:34Z","id":514,"name":"Tel","from":["a",null],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-11-07T18:30:09.104275Z"}
