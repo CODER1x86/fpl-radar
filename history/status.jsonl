@@ -223,3 +223,5 @@
 {"ts":"2026-11-08T23:38:18Z","id":544,"name":"Xhaka","from":["d",75],"to":["d",75],"news":"Calf injury - 75% chance of playing","news_added":"2026-11-08T14:30:09.504002Z"}
 {"ts":"2026-11-09T21:35:49Z","id":268,"name":"King","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-07T20:00:09.169385Z"}
 {"ts":"2026-11-09T21:35:49Z","id":356,"name":"Virgil","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-09T18:00:09.325472Z"}
+{"ts":"2026-11-10T19:55:56Z","id":286,"name":"Belloumi","from":["a",null],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-11-10T19:00:09.431074Z"}
+{"ts":"2026-11-10T19:55:56Z","id":552,"name":"Brobbey","from":["a",100],"to":["d",75],"news":"Muscular injury - 75% chance of playing","news_added":"2026-11-10T11:30:10.818854Z"}
