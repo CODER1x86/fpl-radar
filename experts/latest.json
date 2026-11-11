@@ -1,115 +1,60 @@
 {
- "ts": "2026-11-06T06:32:56Z",
- "gw": 10,
+ "ts": "2026-11-11T06:35:01Z",
+ "gw": 11,
  "xi": [
   {
    "id": 1,
    "name": "Raya",
-   "mentions": 2
-  },
-  {
-   "id": 115,
-   "name": "De Cuyper",
-   "mentions": 6
+   "mentions": 1
   },
   {
    "id": 4,
    "name": "Gabriel",
-   "mentions": 6
+   "mentions": 1
   },
   {
    "id": 8,
    "name": "Calafiori",
-   "mentions": 3
-  },
-  {
-   "id": 154,
-   "name": "Palmer",
-   "mentions": 4
-  },
-  {
-   "id": 40,
-   "name": "Rogers",
-   "mentions": 4
+   "mentions": 1
   },
   {
    "id": 124,
    "name": "Groß",
-   "mentions": 4
+   "mentions": 1
+  },
+  {
+   "id": 13,
+   "name": "Rice",
+   "mentions": 1
   },
   {
    "id": 68,
    "name": "Tavernier",
-   "mentions": 3
+   "mentions": 1
   },
   {
    "id": 411,
    "name": "Haaland",
-   "mentions": 7
+   "mentions": 1
   },
   {
-   "id": 379,
-   "name": "Isak",
-   "mentions": 5
+   "id": 166,
+   "name": "N.Jackson",
+   "mentions": 1
   },
   {
-   "id": 249,
-   "name": "Barry",
-   "mentions": 4
+   "id": 79,
+   "name": "Evanilson",
+   "mentions": 1
   }
  ],
- "captain_id": 411,
- "notes": "GW10 consensus (Fri): Haaland (at Forest) captain everywhere incl. PL Scout Selection (vice Isak) and AllAboutFPL (Haaland over Gabriel). Scout Selection adds Tavernier, Odegaard, Tarkowski, Petrovic; De Cuyper/Gabriel/Gross/Rogers/Isak/Barry broadly shared. Model agrees on Haaland but rolls the FT, while several experts move B.Fernandes->Rogers or bring in Tavernier/Rayan; Van Hecke dropped for Tavernier (3-4-3).",
+ "captain_id": null,
+ "notes": "GW11 early view during the international break: only FFS early Scout Picks (4-3-3, no Chelsea) published so far; XI partly unverified (image-only), defence slots beyond Gabriel/Calafiori unclear (Van Hecke, De Cuyper/Vuskovic, A.Silva all discussed); no captain stated yet. Main difference vs model: experts ignore B.Fernandes/Mbeumo and prefer Rice, Jackson, Evanilson; model's top move B.Fernandes->Rogers clashes with the 'no Chelsea' stance.",
  "sources": [
   {
-   "name": "Fantasy Football Scout - GW10 early Scout Picks",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/02/fpl-gameweek-10-early-scout-picks-four-double-ups",
-   "published": "2026-11-02"
-  },
-  {
-   "name": "Fantasy Football Hub - Best FPL players for GW10",
-   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-10-article-26-27",
-   "published": "2026-11-03"
-  },
-  {
-   "name": "RotoWire - FPL GW10 rankings & captain picks",
-   "url": "https://www.rotowire.com/soccer/article/fpl-gw10-gameweek-10-rankings-best-players-captain-picks-145057",
-   "published": "2026-11-03"
-  },
-  {
-   "name": "The False 9 - GW10 captain picks",
-   "url": "https://thefalse9.com/2026/11/fpl-gw10-captain-picks.html",
-   "published": "2026-11-01"
-  },
-  {
-   "name": "Fantasy Six Pack - GW10 tips & transfers",
-   "url": "https://fantasysixpack.net/2026-27-fpl-gameweek-10-tips-transfers-strategy-chip-watch/",
-   "published": "2026-11-04"
-  },
-  {
-   "name": "OneFPL - GW10 captain ranking",
-   "url": "https://onefpl.com/blog/fpl-gw10-captain-haaland-palmer-gabriel-2026-27",
-   "published": "2026-11-02"
-  },
-  {
-   "name": "RotoWire - GW10 best upcoming fixtures",
-   "url": "https://rotowire.com/soccer/article/fpl-gw10-teams-best-upcoming-fixtures-gameweek-10-145276",
-   "published": "2026-11-04"
-  },
-  {
-   "name": "The Scout (premierleague.com) - GW10 transfer radar",
-   "url": "https://www.premierleague.com/en/news/4756485/the-scouts-fpl-gameweek-10-transfer-radar",
-   "published": "2026-11-04"
-  },
-  {
-   "name": "The Scout (premierleague.com) - Scout Selection GW10",
-   "url": "https://www.premierleague.com/en/news/4756626/scout-selection-best-fantasy-team-for-gameweek-10",
-   "published": "2026-11-05"
-  },
-  {
-   "name": "AllAboutFPL - GW10 team selection drafts & watchlist",
-   "url": "https://allaboutfpl.com/2026/11/fpl-gw10-team-selection-drafts-transfer-plans-and-watchlist/",
-   "published": "2026-11-05"
+   "name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-gameweek-11-early-scout-picks-4-3-3-with-no-chelsea",
+   "published": "2026-11-09"
   }
  ]
 }
