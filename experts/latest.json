@@ -1,60 +1,23 @@
 {
- "ts": "2026-11-11T06:35:01Z",
+ "ts": "2026-11-12T06:45:00Z",
  "gw": 11,
  "xi": [
-  {
-   "id": 1,
-   "name": "Raya",
-   "mentions": 1
-  },
-  {
-   "id": 4,
-   "name": "Gabriel",
-   "mentions": 1
-  },
-  {
-   "id": 8,
-   "name": "Calafiori",
-   "mentions": 1
-  },
-  {
-   "id": 124,
-   "name": "Groß",
-   "mentions": 1
-  },
-  {
-   "id": 13,
-   "name": "Rice",
-   "mentions": 1
-  },
-  {
-   "id": 68,
-   "name": "Tavernier",
-   "mentions": 1
-  },
-  {
-   "id": 411,
-   "name": "Haaland",
-   "mentions": 1
-  },
-  {
-   "id": 166,
-   "name": "N.Jackson",
-   "mentions": 1
-  },
-  {
-   "id": 79,
-   "name": "Evanilson",
-   "mentions": 1
-  }
+  {"id": 1, "name": "Raya", "mentions": 2},
+  {"id": 4, "name": "Gabriel", "mentions": 2},
+  {"id": 112, "name": "Van Hecke", "mentions": 2},
+  {"id": 115, "name": "De Cuyper", "mentions": 2},
+  {"id": 124, "name": "Groß", "mentions": 2},
+  {"id": 68, "name": "Tavernier", "mentions": 2},
+  {"id": 40, "name": "Rogers", "mentions": 2},
+  {"id": 183, "name": "Rudoni", "mentions": 2},
+  {"id": 411, "name": "Haaland", "mentions": 2},
+  {"id": 379, "name": "Isak", "mentions": 2},
+  {"id": 166, "name": "N.Jackson", "mentions": 2}
  ],
  "captain_id": null,
- "notes": "GW11 early view during the international break: only FFS early Scout Picks (4-3-3, no Chelsea) published so far; XI partly unverified (image-only), defence slots beyond Gabriel/Calafiori unclear (Van Hecke, De Cuyper/Vuskovic, A.Silva all discussed); no captain stated yet. Main difference vs model: experts ignore B.Fernandes/Mbeumo and prefer Rice, Jackson, Evanilson; model's top move B.Fernandes->Rogers clashes with the 'no Chelsea' stance.",
+ "notes": "GW11 (international break, early views only): FFS early Scout Picks and FFFix GW11 wildcard agree on Raya, Gabriel, Van Hecke, Groß, Tavernier, Haaland, Isak, N.Jackson; both XIs are image-only so starters are partly unverified; no captain stated (Haaland implied). Disagreement: FFS goes 'no Chelsea' while FFFix starts Rogers; experts drop B.Fernandes/Mbeumo (FFFix: Fernandes injured/out of form). Official Scout GW11 picks not yet published. Groß and Tavernier are one yellow from a ban.",
  "sources": [
-  {
-   "name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-gameweek-11-early-scout-picks-4-3-3-with-no-chelsea",
-   "published": "2026-11-09"
-  }
+  {"name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea", "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-gameweek-11-early-scout-picks-4-3-3-with-no-chelsea", "published": "2026-11-09"},
+  {"name": "Fantasy Football Fix - GW11 best wildcard team", "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/", "published": "2026-11-11"}
  ]
 }
