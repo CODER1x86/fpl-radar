@@ -35,6 +35,8 @@ fixtures_hours = 3
 market_snapshot_minutes = 60
 model_max_age_minutes = 60
 model_min_gap_minutes = 15
+# between gameweeks: recompute when the next GW changes, or when inputs changed and the model is older than this
+quiet_model_max_age_minutes = 720
 validate_hours = 24
 stale_after_minutes = 45
 raw_snapshot_hours = 24

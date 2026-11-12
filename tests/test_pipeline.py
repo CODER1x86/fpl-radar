@@ -347,3 +347,27 @@ def test_quiet_phase_only_confirmed_absences(env, monkeypatch):
     assert len(inj) == 1 and inj[0]["player"] == "Haaland" and "Best replacement" in inj[0]["what"]
     assert "-90,000" in inj[0]["what"] and inj[0]["replacement"]
     assert status(d)["last_model_ok"] != model_ts
+
+
+def test_quiet_phase_refreshes_stale_or_rolled_model(env, monkeypatch):
+    fake, d = env
+    monkeypatch.setenv("WC_NOW", "2026-10-20T12:00:00Z")          # quiet phase before GW8
+    R.main(["auto", "--dry-notify"])
+    model_ts = status(d)["last_model_ok"]
+    # unchanged inputs 13 h later: no recompute
+    monkeypatch.setenv("WC_NOW", "2026-10-21T01:00:00Z")
+    R.main(["auto", "--dry-notify"])
+    assert status(d)["last_model_ok"] == model_ts
+    # inputs changed and model older than quiet_model_max_age_minutes: recompute
+    fake.mutate(1, now_cost=fake.boot["elements"][0]["now_cost"] + 1)
+    monkeypatch.setenv("WC_NOW", "2026-10-21T02:00:00Z")
+    R.main(["auto", "--dry-notify"])
+    assert status(d)["last_model_ok"] != model_ts
+    # plan still for a past gameweek: recompute even with unchanged inputs
+    dec = json.loads((d / "latest" / "decision.json").read_text())
+    dec["gw"] = 7
+    (d / "latest" / "decision.json").write_text(json.dumps(dec))
+    ts2 = status(d)["last_model_ok"]
+    monkeypatch.setenv("WC_NOW", "2026-10-21T03:00:00Z")
+    R.main(["auto", "--dry-notify"])
+    assert status(d)["last_model_ok"] != ts2

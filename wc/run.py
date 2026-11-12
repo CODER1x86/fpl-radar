@@ -581,8 +581,12 @@ def main(argv=None):
         if cad["phase"] == "focus":
             need = (a.force_model or a.mode == "validate" or not have_proj or ctx.due("last_model_ok", cfg["intervals"]["model_max_age_minutes"])
                     or (mh != ctx.status.get("model_inputs_hash") and ctx.due("last_model_ok", gap)))
-        else:  # quiet / live: nothing new until the focus window, except a confirmed absence in your squad
-            need = a.force_model or not have_proj or bool(absent)
+        else:  # quiet / live: no alerts until the focus window, but keep the model view current
+            last_dec_gw = (read_json(p("latest", "decision.json")) or {}).get("gw")
+            gw_rolled = bool(d["gw"].get("next")) and last_dec_gw != d["gw"].get("next")   # plan still for a past GW
+            quiet_age = cfg["intervals"].get("quiet_model_max_age_minutes", 720)
+            stale = ctx.due("last_model_ok", quiet_age) and mh != ctx.status.get("model_inputs_hash")
+            need = a.force_model or not have_proj or bool(absent) or gw_rolled or stale
         ctx.events.append(f"phase={cad['phase']} next_due={cad['next_due']}" + (f" absences={absent}" if absent else ""))
         if need:
             r = run_model(ctx, d)
