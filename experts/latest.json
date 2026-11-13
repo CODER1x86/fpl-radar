@@ -1,23 +1,80 @@
 {
- "ts": "2026-11-12T06:45:00Z",
+ "ts": "2026-11-13T06:33:19Z",
  "gw": 11,
  "xi": [
-  {"id": 1, "name": "Raya", "mentions": 2},
-  {"id": 4, "name": "Gabriel", "mentions": 2},
-  {"id": 112, "name": "Van Hecke", "mentions": 2},
-  {"id": 115, "name": "De Cuyper", "mentions": 2},
-  {"id": 124, "name": "Groß", "mentions": 2},
-  {"id": 68, "name": "Tavernier", "mentions": 2},
-  {"id": 40, "name": "Rogers", "mentions": 2},
-  {"id": 183, "name": "Rudoni", "mentions": 2},
-  {"id": 411, "name": "Haaland", "mentions": 2},
-  {"id": 379, "name": "Isak", "mentions": 2},
-  {"id": 166, "name": "N.Jackson", "mentions": 2}
+  {
+   "id": 1,
+   "name": "Raya",
+   "mentions": 2
+  },
+  {
+   "id": 4,
+   "name": "Gabriel",
+   "mentions": 3
+  },
+  {
+   "id": 112,
+   "name": "Van Hecke",
+   "mentions": 2
+  },
+  {
+   "id": 115,
+   "name": "De Cuyper",
+   "mentions": 2
+  },
+  {
+   "id": 124,
+   "name": "Groß",
+   "mentions": 3
+  },
+  {
+   "id": 68,
+   "name": "Tavernier",
+   "mentions": 3
+  },
+  {
+   "id": 40,
+   "name": "Rogers",
+   "mentions": 2
+  },
+  {
+   "id": 183,
+   "name": "Rudoni",
+   "mentions": 2
+  },
+  {
+   "id": 411,
+   "name": "Haaland",
+   "mentions": 3
+  },
+  {
+   "id": 379,
+   "name": "Isak",
+   "mentions": 2
+  },
+  {
+   "id": 166,
+   "name": "N.Jackson",
+   "mentions": 2
+  }
  ],
- "captain_id": null,
- "notes": "GW11 (international break, early views only): FFS early Scout Picks and FFFix GW11 wildcard agree on Raya, Gabriel, Van Hecke, Groß, Tavernier, Haaland, Isak, N.Jackson; both XIs are image-only so starters are partly unverified; no captain stated (Haaland implied). Disagreement: FFS goes 'no Chelsea' while FFFix starts Rogers; experts drop B.Fernandes/Mbeumo (FFFix: Fernandes injured/out of form). Official Scout GW11 picks not yet published. Groß and Tavernier are one yellow from a ban.",
+ "captain_id": 411,
+ "notes": "GW11 (intl break): FFS early Scout Picks + FFFix wildcard + Onside model wildcard agree on Gabriel, Groß, Tavernier, Haaland; Raya/Van Hecke/Isak/N.Jackson backed by 2; captain Haaland (Onside explicit, FFS 'still backed'). Disagreement: Chelsea (FFS none vs FFFix Rogers) and B.Fernandes/Mbeumo (Onside keeps both, FFFix drops Fernandes). Official Scout GW11 picks not yet published.",
  "sources": [
-  {"name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea", "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-gameweek-11-early-scout-picks-4-3-3-with-no-chelsea", "published": "2026-11-09"},
-  {"name": "Fantasy Football Fix - GW11 best wildcard team", "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/", "published": "2026-11-11"}
+  {
+   "name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-gameweek-11-early-scout-picks-4-3-3-with-no-chelsea",
+   "published": "2026-11-09"
+  },
+  {
+   "name": "Fantasy Football Fix - GW11 best wildcard team",
+   "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
+   "published": "2026-11-11"
+  },
+  {
+   "name": "Onside - best wildcard GW11 2026/27 (model)",
+   "url": "https://onsidearena.com/tips/best-wildcard-week-11-2026-27",
+   "published": "2026-11-12"
+  }
  ]
 }
