@@ -229,3 +229,5 @@
 {"ts":"2026-11-11T15:15:28Z","id":222,"name":"Strand Larsen","from":["a",100],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-11-11T13:00:09.556609Z"}
 {"ts":"2026-11-12T19:02:36Z","id":53,"name":"Manzambi","from":["a",100],"to":["d",75],"news":"Calf injury - 75% chance of playing","news_added":"2026-11-12T13:00:05.872260Z"}
 {"ts":"2026-11-14T10:43:17Z","id":415,"name":"Dorgu","from":["a",100],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-11-14T10:00:05.646862Z"}
+{"ts":"2026-11-14T15:22:34Z","id":614,"name":"Hadjam","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-14T15:00:05.225678Z"}
+{"ts":"2026-11-14T15:22:34Z","id":639,"name":"Andrés","from":["a",100],"to":["d",75],"news":"Hip injury - 75% chance of playing","news_added":"2026-11-14T15:00:05.235535Z"}
