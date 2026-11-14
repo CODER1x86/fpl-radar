@@ -1,21 +1,21 @@
 {
- "ts": "2026-11-13T06:33:19Z",
+ "ts": "2026-11-14T06:34:22Z",
  "gw": 11,
  "xi": [
   {
    "id": 1,
    "name": "Raya",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 4,
    "name": "Gabriel",
-   "mentions": 3
+   "mentions": 4
   },
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 115,
@@ -25,46 +25,51 @@
   {
    "id": 124,
    "name": "Groß",
-   "mentions": 3
+   "mentions": 4
   },
   {
    "id": 68,
    "name": "Tavernier",
-   "mentions": 3
+   "mentions": 4
   },
   {
    "id": 40,
    "name": "Rogers",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 183,
    "name": "Rudoni",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 411,
    "name": "Haaland",
-   "mentions": 3
+   "mentions": 4
   },
   {
    "id": 379,
    "name": "Isak",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 2
+   "mentions": 3
   }
  ],
  "captain_id": 411,
- "notes": "GW11 (intl break): FFS early Scout Picks + FFFix wildcard + Onside model wildcard agree on Gabriel, Groß, Tavernier, Haaland; Raya/Van Hecke/Isak/N.Jackson backed by 2; captain Haaland (Onside explicit, FFS 'still backed'). Disagreement: Chelsea (FFS none vs FFFix Rogers) and B.Fernandes/Mbeumo (Onside keeps both, FFFix drops Fernandes). Official Scout GW11 picks not yet published.",
+ "notes": "GW11 (intl break): 4 sources (FFS early Scout Picks, FFS GW11 wildcard draft 13 Nov, FFFix wildcard, Onside model). Gabriel, Gross, Tavernier, Haaland in all 4; Raya, Van Hecke, Rogers, Rudoni, Isak, N.Jackson in 3. Captain Haaland (Onside explicit; no other source names one). Disagreement: Chelsea exposure (FFS early none vs FFS wildcard/FFFix Rogers) and Man Utd pair B.Fernandes/Mbeumo (only Onside keeps them). Official Scout GW11 picks not yet published.",
  "sources": [
   {
    "name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea",
    "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-gameweek-11-early-scout-picks-4-3-3-with-no-chelsea",
    "published": "2026-11-09"
+  },
+  {
+   "name": "Fantasy Football Scout - GW11 Wildcard best team + pros/cons",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
+   "published": "2026-11-13"
   },
   {
    "name": "Fantasy Football Fix - GW11 best wildcard team",
