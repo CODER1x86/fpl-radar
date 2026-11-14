@@ -15,3 +15,4 @@
 {"ts":"2026-11-05T21:11:33Z","file":"2026-11-05T2111Z.json.gz","gws":[10,11,12,13,14],"model":"m3-cloud-1.0","inputs_hash":"29bec18bb901e99a"}
 {"ts":"2026-11-06T16:19:58Z","file":"2026-11-06T1619Z.json.gz","gws":[10,11,12,13,14],"model":"m3-cloud-1.0","inputs_hash":"0ecd7026bbe679d5"}
 {"ts":"2026-11-12T06:38:26Z","file":"2026-11-12T0638Z.json.gz","gws":[11,12,13,14,15],"model":"m3-cloud-1.0","inputs_hash":"6b29a1f45c9d7bb6"}
+{"ts":"2026-11-14T01:51:01Z","file":"2026-11-14T0151Z.json.gz","gws":[11,12,13,14,15],"model":"m3-cloud-1.0","inputs_hash":"fc801d2e2d579231"}

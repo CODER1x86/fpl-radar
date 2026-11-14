@@ -1,18 +1,18 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-11-13T21:30:50Z",
+   "last_ok": "2026-11-14T01:51:01Z",
    "last_status": 200,
-   "ms": 260,
-   "bytes": 1797381,
+   "ms": 237,
+   "bytes": 1797235,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
   },
   "fixtures": {
-   "last_ok": "2026-11-13T21:30:50Z",
+   "last_ok": "2026-11-14T01:51:01Z",
    "last_status": 200,
-   "ms": 80,
+   "ms": 60,
    "bytes": 346292,
    "not_modified": false,
    "attempts": 1,
@@ -58,17 +58,17 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-11-13T21:30:50Z",
- "fixtures_last_ok": "2026-11-13T21:30:50Z",
+ "last_ingest_attempt": "2026-11-14T01:51:01Z",
+ "fixtures_last_ok": "2026-11-14T01:51:01Z",
  "picks_last_ok": "2026-11-13T21:30:50Z",
  "history_last_ok": "2026-11-13T21:30:50Z",
- "market_last": "2026-11-13T21:30:50Z",
+ "market_last": "2026-11-14T01:51:01Z",
  "raw_last": "2026-11-13T21:30:50Z",
- "last_ingest_ok": "2026-11-13T21:30:50Z",
- "data_observed_at": "2026-11-13T21:30:50Z",
- "last_archive": "2026-11-12T06:38:26Z",
- "last_model_ok": "2026-11-12T19:02:36Z",
- "model_inputs_hash": "1638e2dbd98881dd",
+ "last_ingest_ok": "2026-11-14T01:51:01Z",
+ "data_observed_at": "2026-11-14T01:51:01Z",
+ "last_archive": "2026-11-14T01:51:01Z",
+ "last_model_ok": "2026-11-14T01:51:01Z",
+ "model_inputs_hash": "fc801d2e2d579231",
  "blanks_doubles": {
   "11": {
    "doubles": [],
@@ -91,7 +91,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-11-13T21:30:50Z",
+ "last_alert_check": "2026-11-14T01:51:01Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -135,8 +135,8 @@
  "health": "ok",
  "quota": {
   "month": "2026-11",
-  "runs": 63,
-  "est_billable_minutes": 63,
+  "runs": 64,
+  "est_billable_minutes": 64,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
@@ -252,12 +252,12 @@
  "cadence": {
   "phase": "quiet",
   "interval_minutes": 60,
-  "hours_to_deadline": 181.49,
+  "hours_to_deadline": 177.15,
   "deadline": "2026-11-21T11:00:00Z",
   "gw": 11,
   "focus_hours": 36,
   "focus_from": "2026-11-19T23:00:00Z",
-  "next_due": "2026-11-13T22:30:50Z",
-  "computed_at": "2026-11-13T21:30:50Z"
+  "next_due": "2026-11-14T02:51:01Z",
+  "computed_at": "2026-11-14T01:51:01Z"
  }
 }
