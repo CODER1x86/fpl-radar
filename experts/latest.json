@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-17T06:37:55Z",
+ "ts": "2026-11-18T06:33:00Z",
  "gw": 11,
  "xi": [
   {
@@ -40,7 +40,7 @@
   {
    "id": 183,
    "name": "Rudoni",
-   "mentions": 3
+   "mentions": 4
   },
   {
    "id": 411,
@@ -59,7 +59,7 @@
   }
  ],
  "captain_id": 411,
- "notes": "GW11: 6 sources (4 earlier wildcard/early-picks drafts + FFS buy/keep/sell 16 Nov + RotoWire rankings 16 Nov). Haaland, Gabriel, Gross, N.Jackson in 5; captain Haaland (RotoWire + Onside; De Cuyper the RotoWire defender alt, Jackson the differential). Disagreement: Chelsea exposure (Rogers) and Man Utd pair (FFS says keep Mbeumo, no source buys B.Fernandes); Barry a buy/differential captain for FFS & False9 but at Brentford. Official Scout GW11 2026/27 picks not found yet.",
+ "notes": "GW11: 7 sources (4 earlier wildcard/early-picks drafts + FFS buy/keep/sell 16 Nov + RotoWire rankings 16 Nov). Haaland, Gabriel, Gross, N.Jackson in 5; captain Haaland (RotoWire + Onside; De Cuyper the RotoWire defender alt, Jackson the differential). Disagreement: Chelsea exposure (Rogers) and Man Utd pair (FFS says keep Mbeumo, no source buys B.Fernandes); Barry a buy/differential captain for FFS & False9 but at Brentford. Official Scout GW11 2026/27 picks not found yet. 17 Nov FFS low-owned mids adds Rudoni (pens) alongside Wirtz/Gomez/Kudus.",
  "sources": [
   {
    "name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea",
@@ -90,6 +90,11 @@
    "name": "RotoWire - FPL GW11 rankings & captain picks",
    "url": "https://www.rotowire.com/soccer/article/fpl-gameweek-11-rankings-best-players-captain-picks-gw11-145946",
    "published": "2026-11-16"
+  },
+  {
+   "name": "Fantasy Football Scout - 4 low-owned FPL midfielders for GW11 and beyond",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/17/4-low-owned-fpl-midfielders-for-gameweek-11-and-beyond",
+   "published": "2026-11-17"
   }
  ]
 }
