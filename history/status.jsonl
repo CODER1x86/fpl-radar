@@ -238,3 +238,11 @@
 {"ts":"2026-11-16T21:11:23Z","id":586,"name":"Mendy","from":["a",100],"to":["d",75],"news":"Knee injury - 75% chance of playing","news_added":"2026-11-16T19:00:05.574151Z"}
 {"ts":"2026-11-16T21:11:23Z","id":469,"name":"N.Williams","from":["a",100],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-11-16T19:00:05.480350Z"}
 {"ts":"2026-11-17T12:08:45Z","id":90,"name":"Hickey","from":["a",null],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-11-17T11:00:05.107723Z"}
+{"ts":"2026-11-19T18:57:32Z","id":104,"name":"Onyeka","from":["d",50],"to":["d",75],"news":"Groin injury - 75% chance of playing","news_added":"2026-11-05T09:00:09.236330Z"}
+{"ts":"2026-11-19T18:57:32Z","id":173,"name":"Thomas","from":["d",50],"to":["d",75],"news":"Calf injury - 75% chance of playing","news_added":"2026-10-24T17:00:09.115906Z"}
+{"ts":"2026-11-19T18:57:32Z","id":193,"name":"Wright","from":["i",0],"to":["i",0],"news":"Lack of match fitness - Unknown return date","news_added":"2026-08-14T22:00:07.214508Z"}
+{"ts":"2026-11-19T18:57:32Z","id":331,"name":"Gudmundsson","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-08T12:30:09.622622Z"}
+{"ts":"2026-11-19T18:57:32Z","id":335,"name":"Stach","from":["d",50],"to":["a",100],"news":"","news_added":"2026-11-05T18:30:07.925529Z"}
+{"ts":"2026-11-19T18:57:32Z","id":482,"name":"Hudson-Odoi","from":["a",100],"to":["i",0],"news":"Unspecified injury - Unknown return date","news_added":"2026-11-19T15:30:05.816247Z"}
+{"ts":"2026-11-19T18:57:32Z","id":544,"name":"Xhaka","from":["d",75],"to":["i",0],"news":"Calf injury - Unknown return date","news_added":"2026-11-08T14:30:09.504002Z"}
+{"ts":"2026-11-19T18:57:32Z","id":552,"name":"Brobbey","from":["d",75],"to":["i",0],"news":"Muscular injury - Unknown return date","news_added":"2026-11-10T11:30:10.818854Z"}
