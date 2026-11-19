@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-18T06:33:00Z",
+ "ts": "2026-11-19T06:50:00Z",
  "gw": 11,
  "xi": [
   {
@@ -15,51 +15,51 @@
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 4
+   "mentions": 7
   },
   {
    "id": 115,
    "name": "De Cuyper",
-   "mentions": 4
+   "mentions": 6
   },
   {
    "id": 124,
    "name": "Groß",
-   "mentions": 5
+   "mentions": 6
   },
   {
    "id": 68,
    "name": "Tavernier",
-   "mentions": 4
+   "mentions": 5
   },
   {
    "id": 40,
    "name": "Rogers",
-   "mentions": 3
+   "mentions": 4
   },
   {
    "id": 183,
    "name": "Rudoni",
-   "mentions": 4
+   "mentions": 5
   },
   {
    "id": 411,
    "name": "Haaland",
-   "mentions": 5
+   "mentions": 8
   },
   {
    "id": 379,
    "name": "Isak",
-   "mentions": 4
+   "mentions": 7
   },
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 5
+   "mentions": 9
   }
  ],
  "captain_id": 411,
- "notes": "GW11: 7 sources (4 earlier wildcard/early-picks drafts + FFS buy/keep/sell 16 Nov + RotoWire rankings 16 Nov). Haaland, Gabriel, Gross, N.Jackson in 5; captain Haaland (RotoWire + Onside; De Cuyper the RotoWire defender alt, Jackson the differential). Disagreement: Chelsea exposure (Rogers) and Man Utd pair (FFS says keep Mbeumo, no source buys B.Fernandes); Barry a buy/differential captain for FFS & False9 but at Brentford. Official Scout GW11 2026/27 picks not found yet. 17 Nov FFS low-owned mids adds Rudoni (pens) alongside Wirtz/Gomez/Kudus.",
+ "notes": "GW11 refresh 19 Nov: 12 sources (prior 7 + FFH best players 18 Nov, FFH ultimate guide upd. 18 Nov, FFFix transfer tips 15 Nov, FFS tips via Brentford 17 Nov, Onside captain page). Consensus captain Haaland (Onside 6.2xP; Isak v MUN the vice/alt, Barry the differential). N.Jackson, Haaland, Isak, Van Hecke most-mentioned. Disagreement: Barry backed by 4+ sources but no room beside Haaland/Isak/Jackson; Palmer back in FFH top 5 while FFFix calls Chelsea disappointing. Official Scout GW11 2026/27 XI still not found.",
  "sources": [
   {
    "name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea",
@@ -95,6 +95,31 @@
    "name": "Fantasy Football Scout - 4 low-owned FPL midfielders for GW11 and beyond",
    "url": "https://www.fantasyfootballscout.co.uk/2026/11/17/4-low-owned-fpl-midfielders-for-gameweek-11-and-beyond",
    "published": "2026-11-17"
+  },
+  {
+   "name": "Fantasy Football Hub - Best FPL players for GW11",
+   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-11-article-26-27",
+   "published": "2026-11-18"
+  },
+  {
+   "name": "Fantasy Football Hub - Ultimate Guide to GW11",
+   "url": "https://www.fantasyfootballhub.co.uk/articles/fantasy-premier-league-ultimate-guide-fpl-tips",
+   "published": "2026-11-18"
+  },
+  {
+   "name": "Fantasy Football Fix - GW11 transfer tips",
+   "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
+   "published": "2026-11-15"
+  },
+  {
+   "name": "Fantasy Football Scout GW11 tips (Brentford FC)",
+   "url": "https://www.brentfordfc.com/en/news/fantasy-football-scout-gameweek-11-hints-tips-and-advice",
+   "published": "2026-11-17"
+  },
+  {
+   "name": "Onside - GW11 captain picks (model)",
+   "url": "https://onsidearena.com/captain/11",
+   "published": "2026-11-19"
   }
  ]
 }
