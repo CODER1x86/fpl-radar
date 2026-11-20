@@ -1,10 +1,10 @@
 {
- "ts": "2026-11-19T06:50:00Z",
+ "ts": "2026-11-20T06:33:50Z",
  "gw": 11,
  "xi": [
   {
-   "id": 1,
-   "name": "Raya",
+   "id": 109,
+   "name": "Verbruggen",
    "mentions": 3
   },
   {
@@ -15,110 +15,65 @@
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 7
+   "mentions": 5
   },
   {
-   "id": 115,
-   "name": "De Cuyper",
-   "mentions": 6
+   "id": 566,
+   "name": "Silva",
+   "mentions": 4
   },
   {
    "id": 124,
    "name": "Groß",
-   "mentions": 6
+   "mentions": 5
   },
   {
-   "id": 68,
-   "name": "Tavernier",
+   "id": 512,
+   "name": "Kudus",
    "mentions": 5
   },
   {
    "id": 40,
    "name": "Rogers",
-   "mentions": 4
+   "mentions": 3
   },
   {
-   "id": 183,
-   "name": "Rudoni",
-   "mentions": 5
+   "id": 15,
+   "name": "Ødegaard",
+   "mentions": 3
   },
   {
    "id": 411,
    "name": "Haaland",
-   "mentions": 8
+   "mentions": 5
   },
   {
    "id": 379,
    "name": "Isak",
-   "mentions": 7
+   "mentions": 5
   },
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 9
+   "mentions": 5
   }
  ],
  "captain_id": 411,
- "notes": "GW11 refresh 19 Nov: 12 sources (prior 7 + FFH best players 18 Nov, FFH ultimate guide upd. 18 Nov, FFFix transfer tips 15 Nov, FFS tips via Brentford 17 Nov, Onside captain page). Consensus captain Haaland (Onside 6.2xP; Isak v MUN the vice/alt, Barry the differential). N.Jackson, Haaland, Isak, Van Hecke most-mentioned. Disagreement: Barry backed by 4+ sources but no room beside Haaland/Isak/Jackson; Palmer back in FFH top 5 while FFFix calls Chelsea disappointing. Official Scout GW11 2026/27 XI still not found.",
+ "notes": "3-4-3 consensus across The Scout + 4 FFS panelists (+F6P targets): Haaland/Isak/Jackson, Gabriel/Van Hecke/Groß/Kudus near-unanimous; only The Scout names a captain (Haaland), FFS's Sam floats Jackson; GK split (Verbruggen 3 vs Raya/Petrovic 2) and Rogers/Ødegaard vs De Cuyper for the last slots.",
  "sources": [
   {
-   "name": "Fantasy Football Scout - GW11 early Scout Picks: 4-3-3 with no Chelsea",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/09/fpl-gameweek-11-early-scout-picks-4-3-3-with-no-chelsea",
-   "published": "2026-11-09"
+   "name": "Premier League – The Scout: Scout Selection GW11",
+   "url": "https://www.premierleague.com/en/news/4764656/scout-selection-best-fantasy-team-for-gameweek-11",
+   "published": "2026-11-19"
   },
   {
-   "name": "Fantasy Football Scout - GW11 Wildcard best team + pros/cons",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/13/fpl-gameweek-11-wildcard-best-team-pros-cons-of-using",
-   "published": "2026-11-13"
+   "name": "Fantasy Football Scout – The Scout Squad GW11 (Neale, Tom, Sam, Marc)",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/20/the-scout-squad-our-top-picks-for-fpl-gameweek-11-3",
+   "published": "2026-11-20"
   },
   {
-   "name": "Fantasy Football Fix - GW11 best wildcard team",
-   "url": "https://www.fantasyfootballfix.com/blog-index/fpl-best-wildcard-team-gameweek-11-2026/",
-   "published": "2026-11-11"
-  },
-  {
-   "name": "Onside - best wildcard GW11 2026/27 (model)",
-   "url": "https://onsidearena.com/tips/best-wildcard-week-11-2026-27",
-   "published": "2026-11-12"
-  },
-  {
-   "name": "Fantasy Football Scout - Jackson, Barry, Mbeumo, Hall: buy, keep or sell in GW11",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/16/jackson-barry-mbeumo-hall-buy-keep-or-sell-in-gameweek-11",
-   "published": "2026-11-16"
-  },
-  {
-   "name": "RotoWire - FPL GW11 rankings & captain picks",
-   "url": "https://www.rotowire.com/soccer/article/fpl-gameweek-11-rankings-best-players-captain-picks-gw11-145946",
-   "published": "2026-11-16"
-  },
-  {
-   "name": "Fantasy Football Scout - 4 low-owned FPL midfielders for GW11 and beyond",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/17/4-low-owned-fpl-midfielders-for-gameweek-11-and-beyond",
-   "published": "2026-11-17"
-  },
-  {
-   "name": "Fantasy Football Hub - Best FPL players for GW11",
-   "url": "https://www.fantasyfootballhub.co.uk/articles/fpl-best-players-gameweek-11-article-26-27",
-   "published": "2026-11-18"
-  },
-  {
-   "name": "Fantasy Football Hub - Ultimate Guide to GW11",
-   "url": "https://www.fantasyfootballhub.co.uk/articles/fantasy-premier-league-ultimate-guide-fpl-tips",
-   "published": "2026-11-18"
-  },
-  {
-   "name": "Fantasy Football Fix - GW11 transfer tips",
-   "url": "https://www.fantasyfootballfix.com/blog-index/fpl-gw11-transfer-tips-2026-27/",
-   "published": "2026-11-15"
-  },
-  {
-   "name": "Fantasy Football Scout GW11 tips (Brentford FC)",
-   "url": "https://www.brentfordfc.com/en/news/fantasy-football-scout-gameweek-11-hints-tips-and-advice",
-   "published": "2026-11-17"
-  },
-  {
-   "name": "Onside - GW11 captain picks (model)",
-   "url": "https://onsidearena.com/captain/11",
+   "name": "Fantasy Six Pack – GW11 tips (transfer targets)",
+   "url": "https://fantasysixpack.net/2026-27-fpl-gameweek-11-tips-transfers-strategy-chip-watch/",
    "published": "2026-11-19"
   }
  ]
