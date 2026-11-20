@@ -259,3 +259,29 @@
 {"ts":"2026-11-20T11:57:02Z","id":251,"name":"Lecomte","from":["a",null],"to":["i",0],"news":"Achilles injury - Unknown return date","news_added":"2026-11-20T11:30:05.525769Z"}
 {"ts":"2026-11-20T11:57:02Z","id":262,"name":"Smith Rowe","from":["a",100],"to":["i",0],"news":"Hip injury - Expected back 29 Nov","news_added":"2026-11-20T11:30:05.541395Z"}
 {"ts":"2026-11-20T11:57:02Z","id":266,"name":"Cairney","from":["i",0],"to":["a",100],"news":"","news_added":"2026-11-06T10:30:09.529201Z"}
+{"ts":"2026-11-20T17:19:36Z","id":32,"name":"Cash","from":["d",75],"to":["i",0],"news":"Concussion - Expected back 28 Nov","news_added":"2026-11-15T10:30:05.648897Z"}
+{"ts":"2026-11-20T17:19:36Z","id":53,"name":"Manzambi","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-12T13:00:05.872260Z"}
+{"ts":"2026-11-20T17:19:36Z","id":611,"name":"Wan-Bissaka","from":["d",50],"to":["a",100],"news":"","news_added":"2026-10-17T19:30:10.120990Z"}
+{"ts":"2026-11-20T17:19:36Z","id":84,"name":"Collins","from":["d",75],"to":["i",0],"news":"Knee injury - Expected back 2 Dec","news_added":"2026-11-16T19:00:05.204970Z"}
+{"ts":"2026-11-20T17:19:36Z","id":90,"name":"Hickey","from":["d",75],"to":["i",0],"news":"Hamstring injury - Expected back 2 Dec","news_added":"2026-11-17T11:00:05.107723Z"}
+{"ts":"2026-11-20T17:19:36Z","id":100,"name":"Carvalho","from":["i",0],"to":["d",75],"news":"Knock - 75% chance of playing","news_added":"2026-10-30T14:30:09.456391Z"}
+{"ts":"2026-11-20T17:19:36Z","id":103,"name":"Dasilva","from":["d",25],"to":["i",0],"news":"Hamstring injury - Unknown return date","news_added":"2026-09-04T13:30:08.371955Z"}
+{"ts":"2026-11-20T17:19:36Z","id":121,"name":"Mitoma","from":["i",0],"to":["i",0],"news":"Hamstring injury - Expected back 2 Dec","news_added":"2026-07-24T18:30:10.661894Z"}
+{"ts":"2026-11-20T17:19:36Z","id":328,"name":"Struijk","from":["i",0],"to":["a",100],"news":"","news_added":"2026-10-16T17:30:09.428175Z"}
+{"ts":"2026-11-20T17:19:36Z","id":28,"name":"Martinez","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-17T13:30:08.724000Z"}
+{"ts":"2026-11-20T17:19:36Z","id":148,"name":"Hato","from":["i",0],"to":["i",0],"news":"Back injury - Unknown return date","news_added":"2026-10-29T22:00:09.909621Z"}
+{"ts":"2026-11-20T17:19:36Z","id":151,"name":"Acheampong","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-08T15:00:09.230933Z"}
+{"ts":"2026-11-20T17:19:36Z","id":159,"name":"Caicedo","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-19T20:30:06.307481Z"}
+{"ts":"2026-11-20T17:19:36Z","id":286,"name":"Belloumi","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-10T19:00:09.431074Z"}
+{"ts":"2026-11-20T17:19:36Z","id":586,"name":"Mendy","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-16T19:00:05.574151Z"}
+{"ts":"2026-11-20T17:19:36Z","id":356,"name":"Virgil","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-09T18:00:09.325472Z"}
+{"ts":"2026-11-20T17:19:36Z","id":357,"name":"Frimpong","from":["i",0],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-10-17T15:30:09.979166Z"}
+{"ts":"2026-11-20T17:19:36Z","id":388,"name":"Guéhi","from":["d",75],"to":["d",75],"news":"Hip injury - 75% chance of playing","news_added":"2026-11-07T21:30:08.741792Z"}
+{"ts":"2026-11-20T17:19:36Z","id":389,"name":"Matheus N.","from":["a",100],"to":["d",50],"news":"Unspecified injury - 50% chance of playing","news_added":"2026-11-20T15:30:06.460505Z"}
+{"ts":"2026-11-20T17:19:36Z","id":391,"name":"Gvardiol","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-07T21:30:08.752464Z"}
+{"ts":"2026-11-20T17:19:36Z","id":393,"name":"Khusanov","from":["a",null],"to":["d",50],"news":"Unspecified injury - 50% chance of playing","news_added":"2026-11-20T15:30:06.486420Z"}
+{"ts":"2026-11-20T17:19:36Z","id":325,"name":"Darlow","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-20T17:00:04.943349Z"}
+{"ts":"2026-11-20T17:19:36Z","id":147,"name":"Tosin","from":["a",100],"to":["i",0],"news":"Calf injury - Expected back 29 Nov","news_added":"2026-11-20T15:30:06.265590Z"}
+{"ts":"2026-11-20T17:19:36Z","id":403,"name":"Sávio","from":["i",0],"to":["a",100],"news":"","news_added":"2026-10-18T13:00:09.266321Z"}
+{"ts":"2026-11-20T17:19:36Z","id":514,"name":"Tel","from":["d",75],"to":["i",0],"news":"Ankle injury - Expected back 6 Dec","news_added":"2026-11-07T18:30:09.104275Z"}
+{"ts":"2026-11-20T17:19:36Z","id":520,"name":"Bergvall","from":["i",0],"to":["a",100],"news":"","news_added":"2026-10-18T13:00:09.356060Z"}
