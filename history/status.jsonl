@@ -305,3 +305,5 @@
 {"ts":"2026-11-21T20:55:26Z","id":1,"name":"Raya","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-21T19:00:05.753960Z"}
 {"ts":"2026-11-21T20:55:26Z","id":449,"name":"Hall","from":["a",null],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-21T19:30:06.216627Z"}
 {"ts":"2026-11-21T20:55:26Z","id":455,"name":"Tonali","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-21T16:30:05.729405Z"}
+{"ts":"2026-11-21T22:55:25Z","id":1,"name":"Raya","from":["d",75],"to":["d",75],"news":"Shoulder injury - 75% chance of playing","news_added":"2026-11-21T19:00:05.753960Z"}
+{"ts":"2026-11-21T22:55:25Z","id":20,"name":"Dowman","from":["s",0],"to":["a",100],"news":"","news_added":"2026-10-27T22:30:09.534466Z"}
