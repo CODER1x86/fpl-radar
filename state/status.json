@@ -1,10 +1,10 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-11-21T06:35:24Z",
+   "last_ok": "2026-11-21T07:00:36Z",
    "last_status": 200,
-   "ms": 186,
-   "bytes": 1799368,
+   "ms": 145,
+   "bytes": 1799440,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
@@ -58,14 +58,14 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-11-21T06:35:24Z",
+ "last_ingest_attempt": "2026-11-21T07:00:36Z",
  "fixtures_last_ok": "2026-11-21T05:05:25Z",
  "picks_last_ok": "2026-11-21T05:25:32Z",
  "history_last_ok": "2026-11-21T05:25:32Z",
  "market_last": "2026-11-21T06:10:25Z",
  "raw_last": "2026-11-20T11:57:02Z",
- "last_ingest_ok": "2026-11-21T06:35:24Z",
- "data_observed_at": "2026-11-21T06:35:24Z",
+ "last_ingest_ok": "2026-11-21T07:00:36Z",
+ "data_observed_at": "2026-11-21T07:00:36Z",
  "last_archive": "2026-11-20T08:35:44Z",
  "last_model_ok": "2026-11-21T06:35:24Z",
  "model_inputs_hash": "85cc593c37eddd55",
@@ -91,7 +91,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-11-21T06:35:24Z",
+ "last_alert_check": "2026-11-21T07:00:36Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -135,8 +135,8 @@
  "health": "ok",
  "quota": {
   "month": "2026-11",
-  "runs": 119,
-  "est_billable_minutes": 119,
+  "runs": 120,
+  "est_billable_minutes": 120,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
@@ -252,12 +252,12 @@
  "cadence": {
   "phase": "focus",
   "interval_minutes": 10,
-  "hours_to_deadline": 4.41,
+  "hours_to_deadline": 3.99,
   "deadline": "2026-11-21T11:00:00Z",
   "gw": 11,
   "focus_hours": 36,
   "focus_from": "2026-11-19T23:00:00Z",
-  "next_due": "2026-11-21T06:45:24Z",
-  "computed_at": "2026-11-21T06:35:24Z"
+  "next_due": "2026-11-21T07:10:36Z",
+  "computed_at": "2026-11-21T07:00:36Z"
  }
 }
