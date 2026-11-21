@@ -294,3 +294,6 @@
 {"ts":"2026-11-21T14:35:26Z","id":222,"name":"Strand Larsen","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-11T13:00:09.556609Z"}
 {"ts":"2026-11-21T14:35:26Z","id":469,"name":"N.Williams","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-16T19:00:05.480350Z"}
 {"ts":"2026-11-21T14:35:26Z","id":558,"name":"Schlager","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-15T17:00:06.045512Z"}
+{"ts":"2026-11-21T16:35:36Z","id":159,"name":"Caicedo","from":["a",100],"to":["d",75],"news":"Back injury - 75% chance of playing","news_added":"2026-11-21T16:30:05.451902Z"}
+{"ts":"2026-11-21T16:35:36Z","id":492,"name":"Awoniyi","from":["a",100],"to":["d",75],"news":"Leg injury - 75% chance of playing","news_added":"2026-11-21T16:30:05.778377Z"}
+{"ts":"2026-11-21T16:35:36Z","id":455,"name":"Tonali","from":["a",100],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-11-21T16:30:05.729405Z"}
