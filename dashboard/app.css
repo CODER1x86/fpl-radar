@@ -176,3 +176,7 @@ html[dir=rtl] #chat-close{transform:scaleX(-1)}
 .ch-clip{background:var(--chip);color:var(--ink)}.ch-clip input{position:absolute;inset:0;opacity:0}
 .ch-send{background:var(--neon);color:var(--brand)}html[dir=rtl] .ch-send svg{transform:scaleX(-1)}
 .ch-clip svg,.ch-send svg{width:22px;height:22px}
+/* ---- Cup (v2.2) */
+.wbar{height:10px;border-radius:99px;background:#d9741c;overflow:hidden;margin:8px 0}.wbar i{display:block;height:100%;background:#1f5fbf}
+#cup input[type=range]{padding:0;border:0;background:none;accent-color:var(--brand);margin:8px 0 0}
+#cup .dlab{justify-content:space-between}#cup .dlab span{flex:0 0 auto}

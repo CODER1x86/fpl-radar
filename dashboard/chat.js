@@ -96,6 +96,7 @@ else (() => {
   }
   function suggestions() {
     const s = ['chQCap', 'chQTr', 'chQChip', 'chQRisk', 'chQRate'];
+    if (window.cupContext && window.cupContext()) s.unshift('cupAskShort');
     if (CH.scouts.length) s.unshift('chQBeat');
     return s.map(k => `<button type="button" data-q="${k}">${t(k)}</button>`).join('');
   }
@@ -118,6 +119,7 @@ else (() => {
   }
   function contextBlock() {
     let c = R().askContext ? R().askContext() : '';
+    if (window.cupContext && window.cupContext()) c += '\n\n' + window.cupContext();
     const P = allP(), g = (D.projection.gws || []), line = i => { const p = P[i]; return p ? `${p.n} (${p.t} ${PN[p.posn]} £${p.c}) xP GW${g[0]} ${f1((p.b || [])[0])}, next3 ${f1(CHAT.xpN(p, 3))}` : ''; };
     if (CH.mineShot) c += `\n\nMY SQUAD (screenshot, replaces the public squad):\n${CH.mineShot.map(line).join('\n')}`;
     const s = CH.scouts[CH.scouts.length - 1];
