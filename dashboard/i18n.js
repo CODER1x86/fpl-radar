@@ -86,3 +86,38 @@ rvNone:'مفيش جولات خلصت للمقارنة لسه.',helped:'الحق�
 lvTitle:'GW{g} مباشر',lvFinal:'GW{g} النهائي',lvPts:'النقط',lvSub:'التبديلات التلقائية متطبقة على الماتشات اللي خلصت',lvMovers:'مين بيحرّك ترتيبك (مقابل ملكية أفضل 100)',lvNone:'مفيش جولة بدأت لسه.',lvLeagues:'دورياتك',lvMin:'د',subIn:'دخل',subOut:'خرج',
 prTitle:'ضغط الأسعار الجولة دي',prNote:'صافي التحويلات من آخر ديدلاين. ده بيوضح الضغط، مش قاعدة FPL بالظبط.',prMine:'فريقك',prRise:'الأكتر شراءً',prFall:'الأكتر بيعًا',
 });
+// ---- v2.1 Ask Radar chat (screenshots of your squad or a scouted/rival squad)
+Object.assign(I18N.en,{
+askPh:'Ask Radar…',askNote:'Free AI. Answers only from Radar’s data and can be wrong. Screenshots are read on your phone and never uploaded.',
+chIntro:'Chat with Radar. Attach a screenshot of your team (pending transfers, price changes) or a rival’s team to compare.',
+chOpen:'Open chat',chContinue:'Continue chat',chAttach:'📷 Attach screenshot',
+chSub:'Uses your public squad + Radar projections',chSubShot:'Using your screenshot squad',
+chHello:'Hi! Ask me about captains, transfers or chips. Tap 📷 to attach a screenshot of <b>your squad</b> or a <b>scout / rival squad</b> — I read it on your phone and compare it with yours.',
+chPhImg:'Add a question or just send',chShots:'{n} screenshot(s)',chOnlyImg:'📷 Sent {n} screenshot(s)',
+chK_auto:'Auto',chK_mine:'Mine',chK_scout:'Scout',
+chReading:'Reading screenshot {i}/{n}… {p}%',chNoPlayers:'I could not read player names in that image. Try a sharper screenshot of the Pick Team list or pitch view.',
+chReadMine:'Your squad · {n} players read',chReadScout:'Scout squad · {n} players read',chKept:'{n} not seen in the image, kept from your public squad.',
+chUseMine:'Review & use as my squad',chIsScout:'This isn’t my team',chIsMine:'Actually, this is my team',chScoutN:'Scout {n}',
+chCmpTitle:'You vs {l}',chYou:'You',chCmpSub:'Best XI xP, next {k} GWs · next GW {a} vs {b}',
+chThreats:'Their differentials ({n}) · {x} xP to cover',chEdges:'Your differentials ({n}) · {x} xP edge',chShared:'Shared players ({n})',
+chCmpNote:'Captaincy and bench aren’t visible in a screenshot, so this compares squads, not exact scores.',chNone:'none',
+chQCap:'Who should I captain?',chQTr:'Best transfer this week?',chQChip:'Should I play a chip?',chQRisk:'What’s my biggest risk?',chQRate:'Rate my team',chQBeat:'How do I beat this rival?',
+chAutoScout:'Compare my squad with this scout squad: where do they gain on me, where do I gain, and which one transfer closes the gap best?',
+chAutoMine:'This is my real squad now. Rate it and tell me the best move for this gameweek.',chSure:'Clear?'});
+Object.assign(I18N.ar,{
+askPh:'اسأل Radar…',askNote:'ذكاء اصطناعي مجاني. بيرد من بيانات Radar بس وممكن يغلط. الصور بتتقري على موبايلك ومش بتترفع.',
+chIntro:'اتكلم مع Radar. ضيف صورة لتشكيلتك (تحويلات معلقة، أسعار اتغيرت) أو تشكيلة منافس عشان تقارن.',
+chOpen:'افتح الشات',chContinue:'كمّل الشات',chAttach:'📷 ضيف صورة',
+chSub:'بيستخدم تشكيلتك العامة + توقعات Radar',chSubShot:'بيستخدم تشكيلتك من الصورة',
+chHello:'أهلًا! اسألني عن الكابتن أو التحويلات أو الشيبس. دوس 📷 وضيف صورة <b>تشكيلتك</b> أو <b>تشكيلة منافس / سكاوت</b> — هقراها على موبايلك وأقارنها بتشكيلتك.',
+chPhImg:'ضيف سؤال أو ابعت على طول',chShots:'{n} صورة',chOnlyImg:'📷 بعت {n} صورة',
+chK_auto:'تلقائي',chK_mine:'بتاعتي',chK_scout:'منافس',
+chReading:'بقرا الصورة {i}/{n}… {p}%',chNoPlayers:'مقدرتش أقرا أسماء لاعيبة في الصورة دي. جرب سكرين شوت أوضح لصفحة Pick Team.',
+chReadMine:'تشكيلتك · اتقرا {n} لاعب',chReadScout:'تشكيلة السكاوت · اتقرا {n} لاعب',chKept:'{n} مش ظاهرين في الصورة، سبتهم من تشكيلتك العامة.',
+chUseMine:'راجعها واستخدمها كتشكيلتي',chIsScout:'دي مش تشكيلتي',chIsMine:'لأ، دي تشكيلتي',chScoutN:'سكاوت {n}',
+chCmpTitle:'إنت ضد {l}',chYou:'إنت',chCmpSub:'نقاط أفضل 11 المتوقعة، {k} جولات · الجولة الجاية {a} ضد {b}',
+chThreats:'لاعيبة عنده ومش عندك ({n}) · {x} نقطة متوقعة',chEdges:'لاعيبة عندك ومش عنده ({n}) · {x} نقطة أفضلية',chShared:'لاعيبة مشتركة ({n})',
+chCmpNote:'الكابتن والدكة مش باينين في الصورة، فدي مقارنة تشكيلات مش نتيجة دقيقة.',chNone:'مفيش',
+chQCap:'مين الكابتن؟',chQTr:'أحسن تحويلة الجولة دي؟',chQChip:'ألعب شيب؟',chQRisk:'إيه أكبر خطر عليّا؟',chQRate:'قيّم تشكيلتي',chQBeat:'أغلب المنافس ده إزاي؟',
+chAutoScout:'قارن تشكيلتي بتشكيلة السكاوت دي: هو بيكسب عليّا فين، وأنا بكسب فين، وأنهي تحويلة واحدة تقفل الفرق أحسن؟',
+chAutoMine:'دي تشكيلتي الحقيقية دلوقتي. قيّمها وقولي أحسن حركة للجولة دي.',chSure:'أمسح؟'});

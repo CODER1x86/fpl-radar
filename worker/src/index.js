@@ -55,16 +55,24 @@ const SYSTEM = `You are FPL Radar, a Fantasy Premier League assistant. Answer us
 (projected points "xP" from the Radar model, prices, availability, fixtures). If the data does not cover the question,
 say so. Give a clear recommendation first, then 2-4 short reasons with numbers from the context, then a confidence level
 (high/medium/low). Never invent injuries, news or statistics. Reply in the language of the question
-(Egyptian Arabic if the question is in Arabic). Keep it under 150 words.`;
+(Egyptian Arabic if the question is in Arabic). Keep it under 150 words.
+The CONTEXT may include SCREENSHOT SQUADS the user attached (read on their phone): "MY SQUAD (screenshot)" replaces the
+public squad; "SCOUT SQUAD" is a rival's or a scouted team. When a scout squad is present, compare it with the user's
+squad: shared players, the rival's differentials (threats) and the user's differentials (edges), with xP numbers.`;
 async function ask(req, env, h, origin) {
   const allowed = (env.ALLOWED_ORIGINS || "").split(",").map(s => s.trim());
   if (!allowed.includes(origin) && !/^http:\/\/localhost(:\d+)?$/.test(origin)) return Response.json({ error: "origin not allowed" }, { status: 403, headers: h });
   if (!env.AI) return Response.json({ error: "AI binding missing" }, { status: 503, headers: h });
   let body;
   try { body = await req.json(); } catch (e) { return Response.json({ error: "bad json" }, { status: 400, headers: h }); }
-  const q = String(body.q || "").slice(0, 500), context = String(body.context || "").slice(0, 12000);
+  const q = String(body.q || "").slice(0, 500), context = String(body.context || "").slice(0, 16000);
   if (!q.trim()) return Response.json({ error: "empty question" }, { status: 400, headers: h });
-  const messages = [{ role: "system", content: SYSTEM }, { role: "user", content: `CONTEXT:\n${context}\n\nQUESTION: ${q}` }];
+  // chat memory: the last few turns, text only (images never leave the phone)
+  const past = (Array.isArray(body.history) ? body.history : []).slice(-6)
+    .filter(m => m && (m.role === "user" || m.role === "assistant") && m.content)
+    .map(m => ({ role: m.role, content: String(m.content).slice(0, 1500) }));
+  const messages = [{ role: "system", content: SYSTEM }, { role: "user", content: `CONTEXT:\n${context}` },
+    { role: "assistant", content: "Got it. I will answer only from this data." }, ...past, { role: "user", content: `QUESTION: ${q}` }];
   let last = "";
   for (const m of MODELS) {
     try {

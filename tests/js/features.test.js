@@ -58,3 +58,12 @@ test('OCR matching: names, typos, quotas, prior squad fallback, bank', () => {
   assert.ok(!r.seen.has(md[4]) && r.squad.includes(md[4]), 'Thomas not seen, kept from prior squad');
   assert.equal(SYNC.money(text), 0.4); assert.equal(SYNC.freeT(text), 1);
 });
+test('labels(): keeps dark text inside light labels, clears the dark background', () => {
+  // 12x7: dark background (30), a light label (240) at x2-9,y1-5 holding dark text (20) at x4-6,y3
+  const w = 12, h = 7, g = new Uint8Array(w * h).fill(30);
+  for (let y = 1; y <= 5; y++) for (let x = 2; x <= 9; x++) g[y * w + x] = 240;
+  for (let x = 4; x <= 6; x++) g[3 * w + x] = 20;
+  const L = SYNC.labels(g, w, h);
+  assert.equal(L[0], 255); assert.equal(L[3 * w + 5], 0); assert.equal(L[2 * w + 3], 255);
+  assert.equal([...L].filter(v => v === 0).length, 3);
+});

@@ -84,7 +84,21 @@ const SYNC = (() => {
   }
   function money(text) { const m = String(text).match(/(?:money\s*remaining|in\s*the\s*bank|bank|itb)[^0-9\-]{0,12}(-?\d{1,3}\.\d)/i); return m ? +m[1] : null; }
   function freeT(text) { const m = String(text).match(/free\s*transfers?[^0-9]{0,12}(\d)/i); return m ? +m[1] : null; }
-  return { match, money, freeT, norm };
+  // Name labels on the FPL pitch are light boxes with dark text on a dark/green background, which confuses the reader.
+  // Binarise (Otsu), then paint every dark area that touches the image edge white: only text inside labels stays dark.
+  function labels(g, w, h) {
+    const hist = new Array(256).fill(0); for (let i = 0; i < g.length; i++) hist[g[i]]++;
+    let sum = 0; for (let v = 0; v < 256; v++) sum += v * hist[v];
+    let sB = 0, wB = 0, best = 0, th = 128;
+    for (let v = 0; v < 256; v++) { wB += hist[v]; if (!wB) continue; const wF = g.length - wB; if (!wF) break; sB += v * hist[v];
+      const mB = sB / wB, mF = (sum - sB) / wF, b = wB * wF * (mB - mF) ** 2; if (b > best) { best = b; th = v; } }
+    const out = new Uint8Array(g.length); for (let i = 0; i < g.length; i++) out[i] = g[i] > th ? 255 : 0;
+    const st = []; const push = i => { if (out[i] === 0) { out[i] = 255; st.push(i); } };
+    for (let x = 0; x < w; x++) { push(x); push((h - 1) * w + x); } for (let y = 0; y < h; y++) { push(y * w); push(y * w + w - 1); }
+    while (st.length) { const i = st.pop(), x = i % w; if (x > 0) push(i - 1); if (x < w - 1) push(i + 1); if (i >= w) push(i - w); if (i < g.length - w) push(i + w); }
+    return out;
+  }
+  return { match, money, freeT, norm, labels };
 })();
 
 if (typeof module !== 'undefined') { module.exports = { RV, SYNC }; }
@@ -139,23 +153,37 @@ else {
   }
   function loadTess() { return window.Tesseract ? Promise.resolve() : new Promise((res, rej) => { const s = document.createElement('script');
     s.src = 'https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'; s.onload = res; s.onerror = () => rej(new Error('download failed')); document.head.appendChild(s); }); }
-  async function prep(file) { // grayscale + 2x upscale helps the reader with small white-on-dark labels
+  async function prep(file) { // grayscale + 2x upscale helps the reader with small labels; also returns a labels-only copy
     const img = await createImageBitmap(file), k = img.width < 1400 ? 2 : 1, c = document.createElement('canvas');
     c.width = img.width * k; c.height = img.height * k; const x = c.getContext('2d'); x.drawImage(img, 0, 0, c.width, c.height);
-    const d = x.getImageData(0, 0, c.width, c.height), a = d.data;
-    for (let i = 0; i < a.length; i += 4) { const g = 0.299 * a[i] + 0.587 * a[i + 1] + 0.114 * a[i + 2]; a[i] = a[i + 1] = a[i + 2] = g; }
-    x.putImageData(d, 0, 0); return c; }
+    const d = x.getImageData(0, 0, c.width, c.height), a = d.data, g = new Uint8Array(a.length / 4);
+    for (let i = 0, j = 0; i < a.length; i += 4, j++) { g[j] = 0.299 * a[i] + 0.587 * a[i + 1] + 0.114 * a[i + 2]; a[i] = a[i + 1] = a[i + 2] = g[j]; }
+    x.putImageData(d, 0, 0);
+    const L = SYNC.labels(g, c.width, c.height), c2 = document.createElement('canvas'); c2.width = c.width; c2.height = c.height;
+    const x2 = c2.getContext('2d'), d2 = x2.createImageData(c.width, c.height);
+    for (let j = 0, i = 0; j < L.length; j++, i += 4) { d2.data[i] = d2.data[i + 1] = d2.data[i + 2] = L[j]; d2.data[i + 3] = 255; }
+    x2.putImageData(d2, 0, 0); return { gray: c, lab: c2 }; }
+  // on-device OCR, shared by Squad Sync and the Ask Radar chat
+  async function ocrText(file, onP) {
+    await loadTess();
+    const w = await Tesseract.createWorker('eng', 1, { logger: m => { if (m.status === 'recognizing text' && onP) onP(m.progress) } });
+    try { // FPL screenshots are sparse name labels on a pitch: "sparse text" mode finds them; then a normal pass for lists
+      const src = await prep(file).catch(() => ({ gray: file, lab: null })); let out = '';
+      if (src.lab) { await w.setParameters({ tessedit_pageseg_mode: '11' }); out += (await w.recognize(src.lab)).data.text + '\n'; }
+      await w.setParameters({ tessedit_pageseg_mode: '3' }); out += (await w.recognize(src.gray)).data.text;
+      return out; }
+    finally { await w.terminate(); }
+  }
+  function syncResult(text, prior) {
+    const P = ALLP(), r = SYNC.match(text, P, prior);
+    r.bank = SYNC.money(text) ?? (TEAMDATA && TEAMDATA.picks ? TEAMDATA.picks.entry_history.bank / 10 : null);
+    r.ft = SYNC.freeT(text) ?? (D.projection ? D.projection.free_transfers_est : null);
+    return r;
+  }
   async function readShot(file, prior) {
     if (SS.busy) return; SS.busy = true; const pg = p => { SS.msg = t('syncReading', { p: Math.round(p * 100) }); const e = $('#sy-prog'); if (e) e.textContent = SS.msg; };
-    try { pg(0); await loadTess();
-      const w = await Tesseract.createWorker('eng', 1, { logger: m => { if (m.status === 'recognizing text') pg(m.progress) } });
-      const src = await prep(file).catch(() => file);
-      const { data } = await w.recognize(src); await w.terminate();
-      const P = ALLP(), r = SYNC.match(data.text, P, prior);
-      r.bank = SYNC.money(data.text) ?? (TEAMDATA && TEAMDATA.picks ? TEAMDATA.picks.entry_history.bank / 10 : null);
-      r.ft = SYNC.freeT(data.text) ?? (D.projection ? D.projection.free_transfers_est : null);
-      SS.res = r; SS.msg = '';
-    } catch (e) { SS.msg = t('syncLoadErr', { e: e.message || e }); }
+    try { pg(0); SS.res = syncResult(await ocrText(file, pg), prior); SS.msg = ''; }
+    catch (e) { SS.msg = t('syncLoadErr', { e: e.message || e }); }
     SS.busy = false; renderSync(); }
 
   // ---- What-If review --------------------------------------------------------------------
@@ -255,16 +283,9 @@ else {
       `MY SQUAD:\n${sq.map(line).join('\n')}`, `PLAN: transfers ${pl.moves.map(m => m.out_n + ' -> ' + m.in_n).join(', ') || 'none (roll)'}; captain ${L.captain_n || '?'}, vice ${L.vice_n || '?'}; XI ${(L.xi_n || []).join(', ')}.`,
       `CHIPS: ${C}`, `BEST ALTERNATIVES (by xP next 3 GWs):\n${alts}`].join('\n\n');
   }
-  async function ask(e) {
-    e.preventDefault(); const q = $('#ask-q').value.trim(), a = $('#ask-a'); if (!q || !D || !D.projection) return;
-    if (!PROXY) { a.textContent = t('askErr', { e: 'no proxy' }); return; }
-    a.textContent = t('askWait');
-    try { const r = await fetch(PROXY + '/ai', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q, context: askContext() }) });
-      const j = await r.json(); a.textContent = j.answer || t('askErr', { e: j.error || r.status }); }
-    catch (err) { a.textContent = t('askErr', { e: err.message || err }); }
-  }
-  $('#ask-form').addEventListener('submit', ask);
-  $('#ask-q').placeholder = t('askPh');
+  // shared with chat.js
+  window.RADAR = { ocrText, syncResult, allP: ALLP, askContext, nm,
+    useSync: r => { SS.res = r; SS.msg = ''; go('squad', 'sync'); renderSync(); } };
 
   // ---- hooks called by app.js --------------------------------------------------------------
   window.onPane = (view, p) => {
@@ -275,7 +296,7 @@ else {
     if (view === 'explore' && p === 'prices') renderPressure();
   };
   window.onData = () => {
-    $('#ask-q').placeholder = t('askPh');
+    if (window.onChatData) window.onChatData();
     renderPressure();
     const on = document.querySelector('.view.on'); if (!on) return;
     const v = on.id.slice(2), b = document.querySelector(`[data-seg="${v}"] button.on`); if (b) window.onPane(v, b.dataset.p);
