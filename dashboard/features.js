@@ -294,9 +294,11 @@ else {
     if (view === 'squad' && p === 'review') renderReview();
     if (view === 'live' && p === 'live') renderLive();
     if (view === 'explore' && p === 'prices') renderPressure();
+    if (view === 'planner' && p === 'cup' && window.onCupPane) window.onCupPane();
   };
   window.onData = () => {
     if (window.onChatData) window.onChatData();
+    if (window.onCupData) window.onCupData();
     renderPressure();
     const on = document.querySelector('.view.on'); if (!on) return;
     const v = on.id.slice(2), b = document.querySelector(`[data-seg="${v}"] button.on`); if (b) window.onPane(v, b.dataset.p);

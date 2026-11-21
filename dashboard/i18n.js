@@ -121,3 +121,38 @@ chCmpNote:'الكابتن والدكة مش باينين في الصورة، ف�
 chQCap:'مين الكابتن؟',chQTr:'أحسن تحويلة الجولة دي؟',chQChip:'ألعب شيب؟',chQRisk:'إيه أكبر خطر عليّا؟',chQRate:'قيّم تشكيلتي',chQBeat:'أغلب المنافس ده إزاي؟',
 chAutoScout:'قارن تشكيلتي بتشكيلة السكاوت دي: هو بيكسب عليّا فين، وأنا بكسب فين، وأنهي تحويلة واحدة تقفل الفرق أحسن؟',
 chAutoMine:'دي تشكيلتي الحقيقية دلوقتي. قيّمها وقولي أحسن حركة للجولة دي.',chSure:'أمسح؟'});
+// ---- v2.2 Cup
+Object.assign(I18N.en,{
+sgCup:'Cup',cupTitle:'FPL Cup',cupNotYet:'The Cup hasn’t been drawn yet. FPL usually runs a qualifying gameweek in mid-season; your score that week decides if you get in. This page fills in automatically once you have a tie.',
+cupQual:'Qualifying is decided by your GW{g} score. Round 1 is played in GW{r}.',cupLeagues:'Your league cups',cupOut:'not qualified',cupWait:'waiting for the draw',
+cupHow:'Cup ties are head to head: your GW score (after hits) vs one opponent. Ties go to the better overall rank.',
+cupWonLast:'Through to the next round ({r}) ✓',cupOutBy:'Knocked out by {o}',cupTie:'{r} · GW{g}',cupVs:'vs',cupBye:'Bye',cupByeTxt:'You have a bye this round: you go through automatically. Plan for your season.',
+cupFar:'The tie is in GW{g}, beyond the projection window. Check back closer to it.',cupLoading:'Scouting your opponent…',
+cupH2H:'Head to head',cupGw:'GW{g} projection',cupFav:'You’re the favourite: {p} to win, about {d} pts ahead on expected points. Play it safe: cover their big players.',
+cupDog:'You’re the underdog: {p} to win, about {d} pts behind on expected points. Take calculated differentials to swing the tie.',
+cupSwing:'What decides the tie (only players you don’t share count)',cupOnlyMe:'only you',cupOnlyThem:'only them',cupOnlyMeC:'only you · your C',cupOnlyThemC:'only them · their C',cupMyCap:'both · your C',cupTheirCapS:'both · their C',cupShared:'{n} starters shared — they cancel out.',
+cupCap:'Captain for the Cup',cupCapFav:'As favourite, matching their likely captain ({c}) cancels their biggest swing.',cupCapDog:'As underdog, a different captain from theirs ({c}) gives you the upside you need.',cupTheirCap:'their likely C',
+cupTr:'Transfers: beat them and stay strong',cupBal:'Balance: season ↔ cup',cupSeason:'Season',cupBalanced:'Balanced',cupOnly:'Cup only',
+cupRoll:'No transfer improves the balance enough — rolling is fine.',cupWinShort:'win',
+cupTrNote:'Each move shows its change in your Cup win chance this GW and your season expected points (5 GWs, weighted). A −4 hit counts against your Cup score too.',
+cupIntel:'Opponent intel',cupTheirChips:'Chips they still have',cupTheirRank:'Their overall rank',cupTheirBank:'Their bank',cupTheirLast:'Their last GW score',
+cupChipTip:'Triple Captain and Bench Boost count in the Cup too. Only spend one here if it’s also a good week for your season (ideally a Double Gameweek).',
+cupCaveat:'Their team is from their last public deadline (GW{g}); they can still make transfers before the Cup GW.',cupAsk:'Ask Radar about this tie',cupAskQ:'How do I beat {o} in the Cup without hurting my season?',
+cupHist:'Cup history',cupHome:'vs {o} · {p} to win',cupAskShort:'How do I win my Cup tie?'});
+Object.assign(I18N.ar,{
+sgCup:'الكأس',cupTitle:'كأس FPL',cupNotYet:'قرعة الكأس لسه ما اتعملتش. FPL عادة بيعمل جولة تأهيل في نص الموسم، ونقطك فيها بتحدد هتدخل ولا لأ. الصفحة دي هتتملي لوحدها أول ما يبقى عندك ماتش.',
+cupQual:'التأهل بنقطك في GW{g}. الدور الأول في GW{r}.',cupLeagues:'كؤوس الدوريات بتاعتك',cupOut:'ما اتأهلتش',cupWait:'مستني القرعة',
+cupHow:'ماتشات الكأس واحد ضد واحد: نقطك في الجولة (بعد الخصومات) ضد منافس واحد. التعادل بيروح للأحسن في الترتيب العام.',
+cupWonLast:'اتأهلت للدور الجاي ({r}) ✓',cupOutBy:'خرجت قدام {o}',cupTie:'{r} · GW{g}',cupVs:'ضد',cupBye:'راحة',cupByeTxt:'عندك راحة الدور ده: متأهل أوتوماتيك. خطط لموسمك.',
+cupFar:'الماتش في GW{g}، أبعد من فترة التوقعات. ارجع قبلها بشوية.',cupLoading:'بنستكشف منافسك…',
+cupH2H:'واحد ضد واحد',cupGw:'توقع GW{g}',cupFav:'إنت المرشح: فرصة فوزك {p}، متقدم بحوالي {d} نقطة متوقعة. العب مضمون: غطّي لاعيبته الكبار.',
+cupDog:'إنت الأقل حظًا: فرصة فوزك {p}، متأخر بحوالي {d} نقطة متوقعة. خد لاعيبة مختلفة بحساب عشان تقلب الماتش.',
+cupSwing:'اللي هيحسم الماتش (اللاعيبة اللي مش مشتركة بس)',cupOnlyMe:'عندك بس',cupOnlyThem:'عنده بس',cupOnlyMeC:'عندك بس · كابتنك',cupOnlyThemC:'عنده بس · كابتنه',cupMyCap:'الاتنين · كابتنك',cupTheirCapS:'الاتنين · كابتنه',cupShared:'{n} أساسيين مشتركين — بيلغوا بعض.',
+cupCap:'الكابتن في الكأس',cupCapFav:'وإنت المرشح، إنك تاخد نفس الكابتن المتوقع بتاعه ({c}) بيلغي أكبر فرق عنده.',cupCapDog:'وإنت الأقل حظًا، كابتن مختلف عن بتاعه ({c}) بيديك الفرصة اللي محتاجها.',cupTheirCap:'الكابتن المتوقع بتاعه',
+cupTr:'التحويلات: اكسبه وفضل قوي في الموسم',cupBal:'التوازن: الموسم ↔ الكأس',cupSeason:'الموسم',cupBalanced:'متوازن',cupOnly:'الكأس بس',
+cupRoll:'مفيش تحويلة بتحسن التوازن كفاية — تأجيل التحويلة كويس.',cupWinShort:'فوز',
+cupTrNote:'كل تحويلة بتوضح التغيير في فرصة فوزك بالكأس الجولة دي ونقطك المتوقعة للموسم (5 جولات). خصم −4 بيتحسب على نقط الكأس كمان.',
+cupIntel:'معلومات عن المنافس',cupTheirChips:'الشيبس اللي لسه معاه',cupTheirRank:'ترتيبه العام',cupTheirBank:'رصيده',cupTheirLast:'نقطه آخر جولة',
+cupChipTip:'التريبل كابتن والبنش بوست بيتحسبوا في الكأس كمان. استخدم واحد هنا بس لو الجولة كويسة لموسمك كمان (الأفضل دبل جولة).',
+cupCaveat:'تشكيلته من آخر ديدلاين معلن (GW{g})؛ ممكن لسه يعمل تحويلات قبل جولة الكأس.',cupAsk:'اسأل Radar عن الماتش ده',cupAskQ:'أكسب {o} في الكأس إزاي من غير ما أضر موسمي؟',
+cupHist:'تاريخ الكأس',cupHome:'ضد {o} · فرصة الفوز {p}',cupAskShort:'أكسب ماتش الكأس إزاي؟'});
