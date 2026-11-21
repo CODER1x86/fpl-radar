@@ -288,3 +288,9 @@
 {"ts":"2026-11-20T22:52:44Z","id":421,"name":"Heaven","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-20T17:30:06.088714Z"}
 {"ts":"2026-11-21T12:30:24Z","id":388,"name":"Guéhi","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-07T21:30:08.741792Z"}
 {"ts":"2026-11-21T12:30:24Z","id":393,"name":"Khusanov","from":["d",50],"to":["a",100],"news":"","news_added":"2026-11-20T15:30:06.486420Z"}
+{"ts":"2026-11-21T14:35:26Z","id":37,"name":"Lindelöf","from":["a",null],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-11-21T14:30:05.829063Z"}
+{"ts":"2026-11-21T14:35:26Z","id":104,"name":"Onyeka","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-05T09:00:09.236330Z"}
+{"ts":"2026-11-21T14:35:26Z","id":173,"name":"Thomas","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-24T17:00:09.115906Z"}
+{"ts":"2026-11-21T14:35:26Z","id":222,"name":"Strand Larsen","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-11T13:00:09.556609Z"}
+{"ts":"2026-11-21T14:35:26Z","id":469,"name":"N.Williams","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-16T19:00:05.480350Z"}
+{"ts":"2026-11-21T14:35:26Z","id":558,"name":"Schlager","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-15T17:00:06.045512Z"}
