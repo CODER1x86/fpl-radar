@@ -311,3 +311,10 @@
 {"ts":"2026-11-22T07:00:23Z","id":305,"name":"Davis","from":["d",75],"to":["d",75],"news":"Calf injury - 75% chance of playing","news_added":"2026-11-21T17:00:05.582448Z"}
 {"ts":"2026-11-22T07:00:23Z","id":403,"name":"Sávio","from":["d",75],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-11-21T17:30:05.822258Z"}
 {"ts":"2026-11-22T15:45:23Z","id":240,"name":"Iroegbunam","from":["a",100],"to":["d",75],"news":"Hamstring injury - 75% chance of playing","news_added":"2026-11-22T15:00:05.901794Z"}
+{"ts":"2026-11-22T17:45:22Z","id":119,"name":"Costinha","from":["a",null],"to":["s",0],"news":"Suspended until 2 Dec","news_added":"2026-11-22T16:00:06.170652Z"}
+{"ts":"2026-11-22T17:45:22Z","id":357,"name":"Frimpong","from":["d",75],"to":["a",100],"news":"","news_added":"2026-10-17T15:30:09.979166Z"}
+{"ts":"2026-11-22T17:45:22Z","id":367,"name":"Gakpo","from":["a",100],"to":["d",75],"news":"Calf injury - 75% chance of playing","news_added":"2026-11-22T16:30:05.520808Z"}
+{"ts":"2026-11-22T17:45:22Z","id":415,"name":"Dorgu","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-14T10:00:05.646862Z"}
+{"ts":"2026-11-22T17:45:22Z","id":418,"name":"Maguire","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-11T01:00:09.173434Z"}
+{"ts":"2026-11-22T17:45:22Z","id":420,"name":"Yoro","from":["a",null],"to":["s",0],"news":"Suspended until 2 Dec","news_added":"2026-11-22T17:00:05.657366Z"}
+{"ts":"2026-11-22T17:45:22Z","id":421,"name":"Heaven","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-20T17:30:06.088714Z"}
