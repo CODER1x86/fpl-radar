@@ -318,3 +318,6 @@
 {"ts":"2026-11-22T17:45:22Z","id":418,"name":"Maguire","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-11T01:00:09.173434Z"}
 {"ts":"2026-11-22T17:45:22Z","id":420,"name":"Yoro","from":["a",null],"to":["s",0],"news":"Suspended until 2 Dec","news_added":"2026-11-22T17:00:05.657366Z"}
 {"ts":"2026-11-22T17:45:22Z","id":421,"name":"Heaven","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-20T17:30:06.088714Z"}
+{"ts":"2026-11-23T13:19:11Z","id":32,"name":"Cash","from":["i",0],"to":["d",75],"news":"Concussion - 75% chance of playing","news_added":"2026-11-15T10:30:05.648897Z"}
+{"ts":"2026-11-23T13:19:11Z","id":340,"name":"Gelhardt","from":["a",100],"to":["i",0],"news":"Thigh injury - Unknown return date","news_added":"2026-11-23T12:00:05.467109Z"}
+{"ts":"2026-11-23T13:19:11Z","id":389,"name":"Matheus N.","from":["d",50],"to":["a",100],"news":"","news_added":"2026-11-20T15:30:06.460505Z"}
