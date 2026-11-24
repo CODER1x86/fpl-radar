@@ -1,80 +1,85 @@
 {
- "ts": "2026-11-20T06:33:50Z",
- "gw": 11,
+ "ts": "2026-11-24T06:34:06Z",
+ "gw": 12,
  "xi": [
   {
-   "id": 109,
-   "name": "Verbruggen",
-   "mentions": 3
+   "id": 385,
+   "name": "Trafford",
+   "mentions": 2
   },
   {
-   "id": 4,
-   "name": "Gabriel",
-   "mentions": 5
+   "id": 115,
+   "name": "De Cuyper",
+   "mentions": 2
+  },
+  {
+   "id": 334,
+   "name": "Muharemović",
+   "mentions": 2
   },
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 5
-  },
-  {
-   "id": 566,
-   "name": "Silva",
-   "mentions": 4
+   "mentions": 2
   },
   {
    "id": 124,
    "name": "Groß",
-   "mentions": 5
+   "mentions": 2
   },
   {
-   "id": 512,
-   "name": "Kudus",
-   "mentions": 5
+   "id": 286,
+   "name": "Belloumi",
+   "mentions": 2
   },
   {
-   "id": 40,
-   "name": "Rogers",
+   "id": 426,
+   "name": "B.Fernandes",
+   "mentions": 1
+  },
+  {
+   "id": 68,
+   "name": "Tavernier",
+   "mentions": 1
+  },
+  {
+   "id": 346,
+   "name": "Calvert-Lewin",
    "mentions": 3
-  },
-  {
-   "id": 15,
-   "name": "Ødegaard",
-   "mentions": 3
-  },
-  {
-   "id": 411,
-   "name": "Haaland",
-   "mentions": 5
-  },
-  {
-   "id": 379,
-   "name": "Isak",
-   "mentions": 5
   },
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 5
+   "mentions": 3
+  },
+  {
+   "id": 379,
+   "name": "Isak",
+   "mentions": 2
   }
  ],
- "captain_id": 411,
- "notes": "3-4-3 consensus across The Scout + 4 FFS panelists (+F6P targets): Haaland/Isak/Jackson, Gabriel/Van Hecke/Groß/Kudus near-unanimous; only The Scout names a captain (Haaland), FFS's Sam floats Jackson; GK split (Verbruggen 3 vs Raya/Petrovic 2) and Rogers/Ødegaard vs De Cuyper for the last slots.",
+ "captain_id": 379,
+ "notes": "Early GW12 consensus (3-4-3): Leeds defence/attack vs Coventry (Trafford, Muharemović, Calvert-Lewin), N.Jackson and Isak near-unanimous; FFS benches Haaland (at Arsenal) and The False 9 captains Isak over Haaland; FPL Focal leans Bruno/Calvert-Lewin. Main split: Haaland hold vs sell, and Bogle (budget pick) vs Silva/Gabriel. Official Scout Selection for GW12 not yet published.",
  "sources": [
   {
-   "name": "Premier League – The Scout: Scout Selection GW11",
-   "url": "https://www.premierleague.com/en/news/4764656/scout-selection-best-fantasy-team-for-gameweek-11",
-   "published": "2026-11-19"
+   "name": "Fantasy Football Scout – FPL GW12 early Scout Picks (FPL Marc)",
+   "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-gameweek-12-early-scout-picks-leeds-triple-up-no-haaland",
+   "published": "2026-11-23"
   },
   {
-   "name": "Fantasy Football Scout – The Scout Squad GW11 (Neale, Tom, Sam, Marc)",
-   "url": "https://www.fantasyfootballscout.co.uk/2026/11/20/the-scout-squad-our-top-picks-for-fpl-gameweek-11-3",
-   "published": "2026-11-20"
+   "name": "FPL Focal (fpl.page) – GW12 players to buy / Team of the Week",
+   "url": "https://fpl.page/article/fpl-gw12-best-players-to-buy-2627",
+   "published": "2026-11-23"
   },
   {
-   "name": "Fantasy Six Pack – GW11 tips (transfer targets)",
-   "url": "https://fantasysixpack.net/2026-27-fpl-gameweek-11-tips-transfers-strategy-chip-watch/",
-   "published": "2026-11-19"
+   "name": "The False 9 – GW12 captain picks",
+   "url": "https://thefalse9.com/2026/11/fpl-gw12-captain-picks-isak-haaland-24-november.html",
+   "published": "2026-11-24"
+  },
+  {
+   "name": "The False 9 – GW12 budget picks",
+   "url": "https://thefalse9.com/2026/11/fpl-gw12-budget-picks.html",
+   "published": "2026-11-22"
   }
  ]
 }
