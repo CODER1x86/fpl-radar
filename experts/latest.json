@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-24T06:34:06Z",
+ "ts": "2026-11-25T06:33:57Z",
  "gw": 12,
  "xi": [
   {
@@ -8,13 +8,13 @@
    "mentions": 2
   },
   {
-   "id": 115,
-   "name": "De Cuyper",
+   "id": 334,
+   "name": "Muharemović",
    "mentions": 2
   },
   {
-   "id": 334,
-   "name": "Muharemović",
+   "id": 115,
+   "name": "De Cuyper",
    "mentions": 2
   },
   {
@@ -28,8 +28,8 @@
    "mentions": 2
   },
   {
-   "id": 286,
-   "name": "Belloumi",
+   "id": 480,
+   "name": "Gibbs-White",
    "mentions": 2
   },
   {
@@ -43,14 +43,14 @@
    "mentions": 1
   },
   {
-   "id": 346,
-   "name": "Calvert-Lewin",
-   "mentions": 3
-  },
-  {
    "id": 166,
    "name": "N.Jackson",
    "mentions": 3
+  },
+  {
+   "id": 346,
+   "name": "Calvert-Lewin",
+   "mentions": 2
   },
   {
    "id": 379,
@@ -59,27 +59,27 @@
   }
  ],
  "captain_id": 379,
- "notes": "Early GW12 consensus (3-4-3): Leeds defence/attack vs Coventry (Trafford, Muharemović, Calvert-Lewin), N.Jackson and Isak near-unanimous; FFS benches Haaland (at Arsenal) and The False 9 captains Isak over Haaland; FPL Focal leans Bruno/Calvert-Lewin. Main split: Haaland hold vs sell, and Bogle (budget pick) vs Silva/Gabriel. Official Scout Selection for GW12 not yet published.",
+ "notes": "GW12 consensus 3-4-3: Leeds triple (Trafford, Muharemovic, Calvert-Lewin) vs Coventry, N.Jackson unanimous, Isak captain (False 9) over Haaland at Arsenal; main split is Haaland hold/bench and Bruno vs Gibbs-White. Groß/Tavernier/Bogle/Silva on 4 yellows. Official Scout Selection for GW12 2026/27 not yet published.",
  "sources": [
   {
-   "name": "Fantasy Football Scout – FPL GW12 early Scout Picks (FPL Marc)",
+   "name": "Fantasy Football Scout - GW12 early Scout Picks",
    "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-gameweek-12-early-scout-picks-leeds-triple-up-no-haaland",
    "published": "2026-11-23"
   },
   {
-   "name": "FPL Focal (fpl.page) – GW12 players to buy / Team of the Week",
+   "name": "FPL Focal (fpl.page) - GW12 players to buy / Team of the Week",
    "url": "https://fpl.page/article/fpl-gw12-best-players-to-buy-2627",
    "published": "2026-11-23"
   },
   {
-   "name": "The False 9 – GW12 captain picks",
+   "name": "The False 9 - GW12 captain picks",
    "url": "https://thefalse9.com/2026/11/fpl-gw12-captain-picks-isak-haaland-24-november.html",
    "published": "2026-11-24"
   },
   {
-   "name": "The False 9 – GW12 budget picks",
-   "url": "https://thefalse9.com/2026/11/fpl-gw12-budget-picks.html",
-   "published": "2026-11-22"
+   "name": "Premier League - Three Gameweeks in 10 days tips",
+   "url": "https://www.premierleague.com/en/news/4770845/three-gameweeks-in-10-days-six-tips-for-navigating-busy-spell-in-fpl",
+   "published": "2026-11-24"
   }
  ]
 }
