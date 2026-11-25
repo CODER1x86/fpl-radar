@@ -62,7 +62,7 @@ jobs:
     timeout-minutes: 15
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deploy.outputs.page_url || steps.deploy2.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
 
@@ -159,8 +159,22 @@ jobs:
         with:
           path: site
 
+      # deploy-pages sometimes cannot see the artifact that was just uploaded ("No artifacts named
+      # github-pages were found") — a GitHub API lag, not a pipeline fault. Retry once after a pause and
+      # only fail the run if both attempts fail.
       - id: deploy
         if: always()
+        continue-on-error: true
+        uses: actions/deploy-pages@v4
+
+      - name: Wait before retrying Pages deploy
+        if: always() && steps.deploy.outcome == 'failure'
+        run: |
+          echo "::warning::Pages deploy attempt 1 failed (artifact not visible yet); retrying in 30 s"
+          sleep 30
+
+      - id: deploy2
+        if: always() && steps.deploy.outcome == 'failure'
         uses: actions/deploy-pages@v4
 
       - name: Fail visibly if sources failed
