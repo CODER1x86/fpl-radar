@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-25T06:33:57Z",
+ "ts": "2026-11-26T06:45:00Z",
  "gw": 12,
  "xi": [
   {
@@ -15,12 +15,12 @@
   {
    "id": 115,
    "name": "De Cuyper",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 124,
@@ -35,7 +35,7 @@
   {
    "id": 426,
    "name": "B.Fernandes",
-   "mentions": 1
+   "mentions": 2
   },
   {
    "id": 68,
@@ -45,21 +45,21 @@
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 3
+   "mentions": 6
   },
   {
    "id": 346,
    "name": "Calvert-Lewin",
-   "mentions": 2
+   "mentions": 5
   },
   {
    "id": 379,
    "name": "Isak",
-   "mentions": 2
+   "mentions": 3
   }
  ],
- "captain_id": 379,
- "notes": "GW12 consensus 3-4-3: Leeds triple (Trafford, Muharemovic, Calvert-Lewin) vs Coventry, N.Jackson unanimous, Isak captain (False 9) over Haaland at Arsenal; main split is Haaland hold/bench and Bruno vs Gibbs-White. Groß/Tavernier/Bogle/Silva on 4 yellows. Official Scout Selection for GW12 2026/27 not yet published.",
+ "captain_id": 346,
+ "notes": "GW12 3-4-3 consensus: N.Jackson and Calvert-Lewin near-unanimous, Leeds triple vs Coventry, avoid Arsenal defence (Raya 50% shoulder). Captain split: Calvert-Lewin/Isak/B.Fernandes over Haaland at Arsenal; model captains Bogle. Official Scout Selection GW12 2026/27 not yet published.",
  "sources": [
   {
    "name": "Fantasy Football Scout - GW12 early Scout Picks",
@@ -67,7 +67,7 @@
    "published": "2026-11-23"
   },
   {
-   "name": "FPL Focal (fpl.page) - GW12 players to buy / Team of the Week",
+   "name": "FPL Focal (fpl.page) - GW12 players to buy",
    "url": "https://fpl.page/article/fpl-gw12-best-players-to-buy-2627",
    "published": "2026-11-23"
   },
@@ -77,9 +77,19 @@
    "published": "2026-11-24"
   },
   {
-   "name": "Premier League - Three Gameweeks in 10 days tips",
-   "url": "https://www.premierleague.com/en/news/4770845/three-gameweeks-in-10-days-six-tips-for-navigating-busy-spell-in-fpl",
+   "name": "RotoWire - FPL GW12 rankings & captain picks",
+   "url": "https://www.rotowire.com/soccer/article/fpl-gameweek-12-rankings-best-players-captain-picks-gw12-147867",
+   "published": "2026-11-25"
+  },
+  {
+   "name": "AllAboutFPL - GW12 transfer tips",
+   "url": "https://allaboutfpl.com/2026/11/fpl-gameweek-12-transfer-tips-players-to-buy-avoid-sell-hold/",
    "published": "2026-11-24"
+  },
+  {
+   "name": "Fantasy Football Scout via Brentford FC - GW12 tips",
+   "url": "https://www.brentfordfc.com/en/news/fpl-fantasy-football-scout-gameweek-12-premier-league-2026-27-hints-tips-advice",
+   "published": "2026-11-25"
   }
  ]
 }
