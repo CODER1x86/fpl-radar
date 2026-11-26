@@ -1,10 +1,10 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-11-26T12:45:29Z",
+   "last_ok": "2026-11-26T12:55:16Z",
    "last_status": 200,
-   "ms": 97,
-   "bytes": 1804941,
+   "ms": 146,
+   "bytes": 1804942,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
@@ -58,16 +58,16 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-11-26T12:45:29Z",
+ "last_ingest_attempt": "2026-11-26T12:55:16Z",
  "fixtures_last_ok": "2026-11-26T09:55:23Z",
  "picks_last_ok": "2026-11-26T11:45:27Z",
  "history_last_ok": "2026-11-26T11:45:27Z",
- "market_last": "2026-11-26T11:55:28Z",
+ "market_last": "2026-11-26T12:55:16Z",
  "raw_last": "2026-11-25T16:25:30Z",
- "last_ingest_ok": "2026-11-26T12:45:29Z",
- "data_observed_at": "2026-11-26T12:45:29Z",
+ "last_ingest_ok": "2026-11-26T12:55:16Z",
+ "data_observed_at": "2026-11-26T12:55:16Z",
  "last_archive": "2026-11-25T16:25:30Z",
- "last_model_ok": "2026-11-26T11:55:28Z",
+ "last_model_ok": "2026-11-26T12:55:16Z",
  "model_inputs_hash": "943bdcb7fcb9e379",
  "blanks_doubles": {
   "12": {
@@ -91,7 +91,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-11-26T12:45:29Z",
+ "last_alert_check": "2026-11-26T12:55:16Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -121,7 +121,7 @@
   {
    "check": "projection age < 24h",
    "ok": true,
-   "detail": "8.8h"
+   "detail": "0.0h"
   },
   {
    "check": "no duplicate price rows",
@@ -129,14 +129,14 @@
    "detail": "0 duplicates"
   }
  ],
- "last_validate_ok": "2026-11-25T13:15:04Z",
+ "last_validate_ok": "2026-11-26T12:55:16Z",
  "consecutive_failures": 0,
  "warnings": [],
  "health": "ok",
  "quota": {
   "month": "2026-11",
-  "runs": 256,
-  "est_billable_minutes": 257,
+  "runs": 257,
+  "est_billable_minutes": 258,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
@@ -252,12 +252,12 @@
  "cadence": {
   "phase": "focus",
   "interval_minutes": 10,
-  "hours_to_deadline": 29.74,
+  "hours_to_deadline": 29.58,
   "deadline": "2026-11-27T18:30:00Z",
   "gw": 12,
   "focus_hours": 36,
   "focus_from": "2026-11-26T06:30:00Z",
-  "next_due": "2026-11-26T12:55:29Z",
-  "computed_at": "2026-11-26T12:45:29Z"
+  "next_due": "2026-11-26T13:05:16Z",
+  "computed_at": "2026-11-26T12:55:16Z"
  }
 }
