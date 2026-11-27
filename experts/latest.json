@@ -1,5 +1,5 @@
 {
- "ts": "2026-11-26T06:45:00Z",
+ "ts": "2026-11-27T06:34:46Z",
  "gw": 12,
  "xi": [
   {
@@ -10,22 +10,22 @@
   {
    "id": 334,
    "name": "Muharemović",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 115,
    "name": "De Cuyper",
-   "mentions": 3
+   "mentions": 5
   },
   {
    "id": 112,
    "name": "Van Hecke",
-   "mentions": 3
+   "mentions": 5
   },
   {
    "id": 124,
    "name": "Groß",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 480,
@@ -35,32 +35,42 @@
   {
    "id": 426,
    "name": "B.Fernandes",
-   "mentions": 2
+   "mentions": 3
   },
   {
    "id": 68,
    "name": "Tavernier",
-   "mentions": 1
+   "mentions": 2
   },
   {
    "id": 166,
    "name": "N.Jackson",
-   "mentions": 6
+   "mentions": 7
   },
   {
    "id": 346,
    "name": "Calvert-Lewin",
-   "mentions": 5
+   "mentions": 6
   },
   {
    "id": 379,
    "name": "Isak",
-   "mentions": 3
+   "mentions": 4
   }
  ],
- "captain_id": 346,
- "notes": "GW12 3-4-3 consensus: N.Jackson and Calvert-Lewin near-unanimous, Leeds triple vs Coventry, avoid Arsenal defence (Raya 50% shoulder). Captain split: Calvert-Lewin/Isak/B.Fernandes over Haaland at Arsenal; model captains Bogle. Official Scout Selection GW12 2026/27 not yet published.",
+ "captain_id": 426,
+ "notes": "GW12 3-4-3 consensus incl. official Scout Selection (26 Nov): De Cuyper, Van Hecke, N.Jackson, Calvert-Lewin near-unanimous; avoid Raya (50% shoulder). Captain: Scout picks B.Fernandes (MUN v BRE, Thiago banned), FPL Focal De Cuyper, others Calvert-Lewin/Isak; nobody backs Haaland at Arsenal. Model captains Bogle - experts disagree. Scout's GK is Petrovic, Odegaard in MID (single mentions).",
  "sources": [
+  {
+   "name": "Premier League - Scout Selection GW12",
+   "url": "https://www.premierleague.com/en/news/4771382/scout-selection-best-fantasy-team-for-gameweek-12",
+   "published": "2026-11-26"
+  },
+  {
+   "name": "FPL Focal - GW12 Team Selection",
+   "url": "https://fpl.page/article/fpl-gw12-team-selection-2627",
+   "published": "2026-11-26"
+  },
   {
    "name": "Fantasy Football Scout - GW12 early Scout Picks",
    "url": "https://www.fantasyfootballscout.co.uk/2026/11/23/fpl-gameweek-12-early-scout-picks-leeds-triple-up-no-haaland",
