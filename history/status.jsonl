@@ -360,3 +360,5 @@
 {"ts":"2026-11-27T15:00:29Z","id":632,"name":"Ansah","from":["i",0],"to":["d",50],"news":"Back injury - 50% chance of playing","news_added":"2026-09-09T10:00:08.919489Z"}
 {"ts":"2026-11-27T15:00:29Z","id":131,"name":"Baleba","from":["i",0],"to":["i",0],"news":"Hamstring injury - Expected back 1 Feb","news_added":"2026-11-03T22:00:07.995956Z"}
 {"ts":"2026-11-27T15:00:29Z","id":535,"name":"Alderete","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-27T09:30:06.176281Z"}
+{"ts":"2026-11-27T15:30:30Z","id":72,"name":"Gannon-Doak","from":["a",null],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-11-27T15:30:06.231137Z"}
+{"ts":"2026-11-27T15:30:30Z","id":520,"name":"Bergvall","from":["a",100],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-11-27T15:30:06.712878Z"}
