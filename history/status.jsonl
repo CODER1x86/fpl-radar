@@ -347,3 +347,5 @@
 {"ts":"2026-11-27T09:30:32Z","id":99,"name":"Milambo","from":["i",0],"to":["i",0],"news":"Lack of match fitness - Expected back 5 Dec","news_added":"2026-07-23T12:01:23.384798Z"}
 {"ts":"2026-11-27T09:30:32Z","id":103,"name":"Dasilva","from":["i",0],"to":["i",0],"news":"Lack of match fitness - Expected back 5 Dec","news_added":"2026-09-04T13:30:08.371955Z"}
 {"ts":"2026-11-27T09:30:32Z","id":535,"name":"Alderete","from":["a",100],"to":["d",75],"news":"Unspecified injury - 75% chance of playing","news_added":"2026-11-27T09:30:06.176281Z"}
+{"ts":"2026-11-27T13:00:27Z","id":253,"name":"Andersen","from":["a",100],"to":["i",0],"news":"Unspecified injury - Unknown return date","news_added":"2026-11-27T13:00:06.047138Z"}
+{"ts":"2026-11-27T13:00:27Z","id":426,"name":"B.Fernandes","from":["a",null],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-11-27T13:00:06.141043Z"}
