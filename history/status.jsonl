@@ -362,3 +362,5 @@
 {"ts":"2026-11-27T15:00:29Z","id":535,"name":"Alderete","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-27T09:30:06.176281Z"}
 {"ts":"2026-11-27T15:30:30Z","id":72,"name":"Gannon-Doak","from":["a",null],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-11-27T15:30:06.231137Z"}
 {"ts":"2026-11-27T15:30:30Z","id":520,"name":"Bergvall","from":["a",100],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-11-27T15:30:06.712878Z"}
+{"ts":"2026-11-27T16:00:24Z","id":63,"name":"Milosavljević","from":["i",0],"to":["a",100],"news":"","news_added":"2026-08-06T10:00:10.456051Z"}
+{"ts":"2026-11-27T16:00:24Z","id":126,"name":"O'Riley","from":["a",null],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-11-27T16:00:05.751888Z"}
