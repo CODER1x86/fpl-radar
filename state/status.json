@@ -1,10 +1,10 @@
 {
  "sources": {
   "bootstrap": {
-   "last_ok": "2026-11-27T14:20:31Z",
+   "last_ok": "2026-11-27T14:30:28Z",
    "last_status": 200,
-   "ms": 192,
-   "bytes": 1806448,
+   "ms": 230,
+   "bytes": 1806659,
    "not_modified": false,
    "attempts": 1,
    "last_error": null
@@ -58,17 +58,17 @@
  "notify_channels": [
   "github_issue"
  ],
- "last_ingest_attempt": "2026-11-27T14:20:31Z",
+ "last_ingest_attempt": "2026-11-27T14:30:28Z",
  "fixtures_last_ok": "2026-11-27T14:20:31Z",
  "picks_last_ok": "2026-11-27T12:10:26Z",
  "history_last_ok": "2026-11-27T12:10:26Z",
  "market_last": "2026-11-27T14:20:31Z",
  "raw_last": "2026-11-26T16:25:27Z",
- "last_ingest_ok": "2026-11-27T14:20:31Z",
- "data_observed_at": "2026-11-27T14:20:31Z",
+ "last_ingest_ok": "2026-11-27T14:30:28Z",
+ "data_observed_at": "2026-11-27T14:30:28Z",
  "last_archive": "2026-11-26T17:10:24Z",
- "last_model_ok": "2026-11-27T14:00:29Z",
- "model_inputs_hash": "a3ec6caa6a6773b5",
+ "last_model_ok": "2026-11-27T14:30:28Z",
+ "model_inputs_hash": "42b78452ee8bf0ba",
  "blanks_doubles": {
   "12": {
    "doubles": [],
@@ -91,7 +91,7 @@
    "blanks": []
   }
  },
- "last_alert_check": "2026-11-27T14:20:31Z",
+ "last_alert_check": "2026-11-27T14:30:28Z",
  "consistency": [
   {
    "check": "squad has 15 known players",
@@ -135,16 +135,16 @@
  "health": "ok",
  "quota": {
   "month": "2026-11",
-  "runs": 338,
-  "est_billable_minutes": 339,
+  "runs": 339,
+  "est_billable_minutes": 340,
   "private_repo_allowance": 2000,
   "note": "Public repos: standard runners free. Private: 2,000 min/month on Free."
  },
  "freshness": "current",
  "data_age_minutes": 0.0,
  "last_delivery": {
-  "ts": "2026-11-27T13:00:27Z",
-  "n": 2,
+  "ts": "2026-11-27T14:30:28Z",
+  "n": 1,
   "records": [
    {
     "channel": "github_issue",
@@ -252,12 +252,12 @@
  "cadence": {
   "phase": "focus",
   "interval_minutes": 10,
-  "hours_to_deadline": 4.16,
+  "hours_to_deadline": 3.99,
   "deadline": "2026-11-27T18:30:00Z",
   "gw": 12,
   "focus_hours": 36,
   "focus_from": "2026-11-26T06:30:00Z",
-  "next_due": "2026-11-27T14:30:31Z",
-  "computed_at": "2026-11-27T14:20:31Z"
+  "next_due": "2026-11-27T14:40:28Z",
+  "computed_at": "2026-11-27T14:30:28Z"
  }
 }
