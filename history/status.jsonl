@@ -364,3 +364,6 @@
 {"ts":"2026-11-27T15:30:30Z","id":520,"name":"Bergvall","from":["a",100],"to":["d",75],"news":"Illness - 75% chance of playing","news_added":"2026-11-27T15:30:06.712878Z"}
 {"ts":"2026-11-27T16:00:24Z","id":63,"name":"Milosavljević","from":["i",0],"to":["a",100],"news":"","news_added":"2026-08-06T10:00:10.456051Z"}
 {"ts":"2026-11-27T16:00:24Z","id":126,"name":"O'Riley","from":["a",null],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-11-27T16:00:05.751888Z"}
+{"ts":"2026-11-28T14:05:29Z","id":103,"name":"Dasilva","from":["i",0],"to":["a",100],"news":"","news_added":"2026-09-04T13:30:08.371955Z"}
+{"ts":"2026-11-28T14:05:29Z","id":186,"name":"Mason-Clark","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-19T19:00:05.701445Z"}
+{"ts":"2026-11-28T14:05:29Z","id":426,"name":"B.Fernandes","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-27T13:00:06.141043Z"}
