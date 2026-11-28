@@ -367,3 +367,5 @@
 {"ts":"2026-11-28T14:05:29Z","id":103,"name":"Dasilva","from":["i",0],"to":["a",100],"news":"","news_added":"2026-09-04T13:30:08.371955Z"}
 {"ts":"2026-11-28T14:05:29Z","id":186,"name":"Mason-Clark","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-19T19:00:05.701445Z"}
 {"ts":"2026-11-28T14:05:29Z","id":426,"name":"B.Fernandes","from":["d",75],"to":["a",100],"news":"","news_added":"2026-11-27T13:00:06.141043Z"}
+{"ts":"2026-11-28T18:05:28Z","id":108,"name":"Wilson","from":["a",null],"to":["d",75],"news":"Ankle injury - 75% chance of playing","news_added":"2026-11-28T16:30:05.448452Z"}
+{"ts":"2026-11-28T18:05:28Z","id":330,"name":"Bogle","from":["a",null],"to":["s",0],"news":"Suspended until 5 Dec","news_added":"2026-11-28T16:30:05.673310Z"}

@@ -32,3 +32,4 @@
 {"ts":"2026-11-27T15:30:30Z","file":"2026-11-27T1530Z.json.gz","gws":[12,13,14,15,16],"model":"m3-cloud-1.0","inputs_hash":"b16cfcf357dbbe62"}
 {"ts":"2026-11-27T17:00:26Z","file":"2026-11-27T1700Z.json.gz","gws":[12,13,14,15,16],"model":"m3-cloud-1.0","inputs_hash":"ee8dd22f2e124d8a"}
 {"ts":"2026-11-27T18:05:25Z","file":"2026-11-27T1805Z.json.gz","gws":[12,13,14,15,16],"model":"m3-cloud-1.0","inputs_hash":"ee8dd22f2e124d8a"}
+{"ts":"2026-11-28T18:05:28Z","file":"2026-11-28T1805Z.json.gz","gws":[13,14,15,16,17],"model":"m3-cloud-1.0","inputs_hash":"863483a05e34c179"}
